@@ -194,7 +194,7 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:flex-
       <div class="chip active" id="chipShuffle" onclick="toggleShuffle()">随机</div>
       <div class="chip" id="chipRepeat" onclick="toggleRepeat()">重复</div>
       <div class="chip active" id="chipExample" onclick="toggleExSetting()">例句</div>
-      <div class="chip" id="chipSpeed" onclick="cycleSpeed()">0.85x</div>
+      <div class="chip" id="chipSpell" onclick="toggleSpellMain()">拼读</div><div class="chip active" id="chipCnMeaning" onclick="toggleCnMeaning()">释义</div><div class="chip" id="chipSpeed" onclick="cycleSpeed()">0.85x</div>
     </div>
     <div class="interval-slider">
       <label>间隔</label>
@@ -2172,7 +2172,7 @@ function updateBgPlayIcon(playing){
 
 let currentCat='core100',currentDeck=[],currentIdx=0,isPlaying=false,playTimer=null;
 let showMeaning=false,showExample=false,isShuffle=true,isRepeat=false,showExSetting=true;
-let playSpeed=0.85,interval=3;
+let playSpeed=0.85,interval=3;let mainSpell=false,mainCnMeaning=true;
 let ttsVoice=null;
 
 // ═══════════════ TTS ═══════════════
@@ -2304,19 +2304,27 @@ async function playNext(){
   if(!isPlaying||!currentDeck.length)return;
   showMeaning=true;showExample=showExSetting;renderCard();
   const card=currentDeck[currentIdx];
-  // Speak word
   await speak(card.w);
   if(!isPlaying)return;
-  // Wait a beat
-  await new Promise(r=>setTimeout(r,400));
+  await new Promise(r=>setTimeout(r,300));
   if(!isPlaying)return;
-  // Speak example if exists and setting is on
+  if(mainSpell&&card.type==='word'){
+    await speak(card.w.split('').join(' ').toUpperCase(),playSpeed*0.9);
+    if(!isPlaying)return;
+    await new Promise(r=>setTimeout(r,200));
+  }
+  if(mainCnMeaning&&card.c){
+    var u=new SpeechSynthesisUtterance(card.c);
+    u.lang='zh-CN';u.rate=0.9;
+    var vs=speechSynthesis.getVoices();for(var i=0;i<vs.length;i++){if(/zh/i.test(vs[i].lang)){u.voice=vs[i];break}}
+    await new Promise(function(r){u.onend=r;u.onerror=r;speechSynthesis.speak(u)});
+    if(!isPlaying)return;
+    await new Promise(r=>setTimeout(r,200));
+  }
   if(showExSetting&&card.s){await speak(card.s,0.8);if(!isPlaying)return;await new Promise(r=>setTimeout(r,300))}
-  // Wait interval
   await new Promise(r=>{playTimer=setTimeout(r,interval*1000)});
   if(!isPlaying)return;
-  // Move to next
-  if(isRepeat){/* stay on same card */}
+  if(isRepeat){}
   else{currentIdx=(currentIdx+1)%currentDeck.length;if(currentIdx===0&&isShuffle)shuffleDeck()}
   showMeaning=false;showExample=false;
   playNext();
@@ -2324,6 +2332,8 @@ async function playNext(){
 function toggleShuffle(){isShuffle=!isShuffle;document.getElementById('chipShuffle').classList.toggle('active',isShuffle);if(isShuffle)shuffleDeck()}
 function toggleRepeat(){isRepeat=!isRepeat;document.getElementById('chipRepeat').classList.toggle('active',isRepeat)}
 function toggleExSetting(){showExSetting=!showExSetting;document.getElementById('chipExample').classList.toggle('active',showExSetting);renderCard()}
+function toggleSpellMain(){mainSpell=!mainSpell;document.getElementById("chipSpell").classList.toggle("active",mainSpell)}
+function toggleCnMeaning(){mainCnMeaning=!mainCnMeaning;document.getElementById("chipCnMeaning").classList.toggle("active",mainCnMeaning)}
 function cycleSpeed(){
   const speeds=[0.6,0.75,0.85,1.0,1.2];const labels=['0.6x','0.75x','0.85x','1x','1.2x'];
   let i=speeds.indexOf(playSpeed);i=(i+1)%speeds.length;
