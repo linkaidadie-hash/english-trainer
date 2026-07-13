@@ -1,0 +1,14 @@
+{
+  "name": "英语快充",
+  "short_name": "英语快充",
+  "description": "3个月快速学英语 - 高频单词自动播放、日常短语、阅读练习",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#4f46e5",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

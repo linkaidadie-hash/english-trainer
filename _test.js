@@ -1,0 +1,1978 @@
+
+// ═══════════════ VOCABULARY DATABASE ═══════════════
+const WORD_CATS=[
+{id:'core100',name:'核心高频词',icon:'⭐',desc:'最高频基础词汇',words:[
+{w:'the',p:'art.',c:'这/那',s:'The cat is on the chair.'},
+{w:'be',p:'v.',c:'是/在',s:'I want to be a teacher.'},
+{w:'to',p:'prep.',c:'到/向',s:'Go to the store.'},
+{w:'of',p:'prep.',c:'的/属于',s:'A cup of tea.'},
+{w:'and',p:'conj.',c:'和/并且',s:'You and I are friends.'},
+{w:'a',p:'art.',c:'一个',s:'I have a dog.'},
+{w:'in',p:'prep.',c:'在…里',s:'The book is in the bag.'},
+{w:'is',p:'v.',c:'是',s:'She is very kind.'},
+{w:'it',p:'pron.',c:'它',s:'It is raining today.'},
+{w:'you',p:'pron.',c:'你/你们',s:'You look happy today.'},
+{w:'that',p:'pron.',c:'那个',s:'That is a good idea.'},
+{w:'he',p:'pron.',c:'他',s:'He is my brother.'},
+{w:'was',p:'v.',c:'是(过去)',s:'She was at home yesterday.'},
+{w:'for',p:'prep.',c:'为了/给',s:'This gift is for you.'},
+{w:'on',p:'prep.',c:'在…上',s:'The pen is on the desk.'},
+{w:'are',p:'v.',c:'是(复数)',s:'They are students.'},
+{w:'with',p:'prep.',c:'和…一起',s:'Come with me.'},
+{w:'as',p:'prep.',c:'作为/像',s:'Work as a team.'},
+{w:'I',p:'pron.',c:'我',s:'I like reading books.'},
+{w:'his',p:'pron.',c:'他的',s:'His car is very fast.'},
+{w:'they',p:'pron.',c:'他们',s:'They live in Beijing.'},
+{w:'at',p:'prep.',c:'在',s:'Meet me at the station.'},
+{w:'but',p:'conj.',c:'但是',s:'I tried but failed.'},
+{w:'we',p:'pron.',c:'我们',s:'We are a family.'},
+{w:'have',p:'v.',c:'有/吃',s:'I have two sisters.'},
+{w:'not',p:'adv.',c:'不',s:'I am not tired.'},
+{w:'what',p:'pron.',c:'什么',s:'What is your name?'},
+{w:'all',p:'adj.',c:'所有的',s:'All students passed.'},
+{w:'were',p:'v.',c:'是(过去复数)',s:'They were very happy.'},
+{w:'when',p:'adv.',c:'什么时候',s:'When do you wake up?'},
+{w:'there',p:'adv.',c:'那里',s:'Go over there.'},
+{w:'can',p:'v.',c:'能/可以',s:'I can swim very fast.'},
+{w:'an',p:'art.',c:'一个(元音前)',s:'She is an engineer.'},
+{w:'your',p:'pron.',c:'你的',s:'Your phone is ringing.'},
+{w:'which',p:'pron.',c:'哪一个',s:'Which color do you like?'},
+{w:'their',p:'pron.',c:'他们的',s:'Their house is big.'},
+{w:'will',p:'v.',c:'将会',s:'I will call you later.'},
+{w:'about',p:'prep.',c:'关于/大约',s:'Tell me about yourself.'},
+{w:'how',p:'adv.',c:'怎样/如何',s:'How are you doing?'},
+{w:'up',p:'adv.',c:'向上/起来',s:'Wake up early tomorrow.'},
+{w:'out',p:'adv.',c:'出去',s:'Let\'s go out tonight.'},
+{w:'them',p:'pron.',c:'他们(宾格)',s:'I told them the news.'},
+{w:'then',p:'adv.',c:'然后/那时',s:'Eat first, then study.'},
+{w:'she',p:'pron.',c:'她',s:'She sings very well.'},
+{w:'many',p:'adj.',c:'许多',s:'There are many books here.'},
+{w:'some',p:'adj.',c:'一些',s:'I need some water.'},
+{w:'so',p:'adv.',c:'所以/如此',s:'I am so happy for you.'},
+{w:'these',p:'pron.',c:'这些',s:'These apples are fresh.'},
+{w:'would',p:'v.',c:'会/愿意',s:'Would you like some tea?'},
+{w:'other',p:'adj.',c:'其他的',s:'Do you have other colors?'},
+{w:'into',p:'prep.',c:'进入',s:'Walk into the room.'},
+{w:'has',p:'v.',c:'有(三单)',s:'He has a new car.'},
+{w:'more',p:'adj.',c:'更多的',s:'I need more time.'},
+{w:'her',p:'pron.',c:'她的',s:'Give her the message.'},
+{w:'two',p:'num.',c:'二',s:'I have two children.'},
+{w:'like',p:'v.',c:'喜欢/像',s:'I like watching movies.'},
+{w:'him',p:'pron.',c:'他(宾格)',s:'I gave him a present.'},
+{w:'see',p:'v.',c:'看见',s:'I can see the mountain.'},
+{w:'time',p:'n.',c:'时间',s:'What time is it now?'},
+{w:'very',p:'adv.',c:'非常',s:'It is very cold today.'},
+{w:'could',p:'v.',c:'能(过去)',s:'Could you help me?'},
+{w:'no',p:'adj.',c:'没有/不',s:'I have no money.'},
+{w:'make',p:'v.',c:'做/制作',s:'Let me make dinner.'},
+{w:'been',p:'v.',c:'是/去过',s:'I have been to Japan.'},
+{w:'call',p:'v.',c:'打电话/叫',s:'Call me when you arrive.'},
+{w:'who',p:'pron.',c:'谁',s:'Who is that man?'},
+{w:'did',p:'v.',c:'做(过去)',s:'Did you finish homework?'},
+{w:'get',p:'v.',c:'得到/到达',s:'Get some rest.'},
+{w:'come',p:'v.',c:'来',s:'Come here please.'},
+{w:'may',p:'v.',c:'可以/可能',s:'May I come in?'},
+{w:'my',p:'pron.',c:'我的',s:'My name is David.'},
+{w:'know',p:'v.',c:'知道/认识',s:'I know the answer.'},
+{w:'water',p:'n.',c:'水',s:'Drink more water.'},
+{w:'than',p:'conj.',c:'比',s:'She is taller than me.'},
+{w:'first',p:'adj.',c:'第一/首先',s:'First, open the book.'},
+{w:'people',p:'n.',c:'人们',s:'Many people came.'},
+{w:'had',p:'v.',c:'有(过去)',s:'I had a great time.'},
+{w:'way',p:'n.',c:'方式/路',s:'This is the best way.'},
+{w:'find',p:'v.',c:'找到/发现',s:'I cannot find my keys.'},
+{w:'long',p:'adj.',c:'长的',s:'It was a long day.'},
+{w:'day',p:'n.',c:'天',s:'Have a nice day!'},
+{w:'go',p:'v.',c:'去',s:'Let\'s go to the park.'},
+{w:'do',p:'v.',c:'做',s:'Do your best!'},
+{w:'good',p:'adj.',c:'好的',s:'That is a good idea.'},
+{w:'new',p:'adj.',c:'新的',s:'I bought a new phone.'},
+{w:'work',p:'v./n.',c:'工作',s:'I work in a hospital.'},
+{w:'take',p:'v.',c:'拿/带/乘坐',s:'Take the bus to school.'},
+{w:'place',p:'n.',c:'地方',s:'This is a beautiful place.'},
+{w:'live',p:'v.',c:'住/生活',s:'I live in Shanghai.'},
+{w:'where',p:'adv.',c:'哪里',s:'Where do you live?'},
+{w:'after',p:'prep.',c:'在…之后',s:'After lunch, let\'s walk.'},
+{w:'back',p:'adv.',c:'回来',s:'Come back tomorrow.'},
+{w:'little',p:'adj.',c:'小的/一点',s:'A little bird sang.'},
+{w:'only',p:'adv.',c:'只/仅仅',s:'I only have one question.'},
+{w:'man',p:'n.',c:'男人',s:'The man is reading.'},
+{w:'year',p:'n.',c:'年',s:'Happy New Year!'},
+{w:'came',p:'v.',c:'来(过去)',s:'She came home late.'},
+{w:'show',p:'v.',c:'展示',s:'Show me your drawing.'},
+{w:'every',p:'adj.',c:'每一个',s:'I exercise every morning.'},
+{w:'give',p:'v.',c:'给',s:'Give me a chance.'},
+{w:'name',p:'n.',c:'名字',s:'What is your name?'},
+{w:'say',p:'v.',c:'说',s:'What did you say?'},
+{w:'help',p:'v.',c:'帮助',s:'Can you help me?'},
+{w:'great',p:'adj.',c:'伟大的',s:'You did a great job!'},
+{w:'think',p:'v.',c:'想/认为',s:'I think you are right.'},
+{w:'look',p:'v.',c:'看/看起来',s:'Look at the sky!'},
+{w:'use',p:'v.',c:'使用',s:'Use this pen.'},
+{w:'big',p:'adj.',c:'大的',s:'The house is very big.'},
+{w:'small',p:'adj.',c:'小的',s:'I need a small cup.'},
+{w:'home',p:'n.',c:'家',s:'I want to go home.'},
+{w:'read',p:'v.',c:'阅读',s:'I read every night.'},
+{w:'hand',p:'n.',c:'手',s:'Wash your hands.'},
+{w:'here',p:'adv.',c:'这里',s:'Come here please.'},
+{w:'must',p:'v.',c:'必须',s:'You must try harder.'},
+{w:'high',p:'adj.',c:'高的',s:'The mountain is very high.'},
+{w:'follow',p:'v.',c:'跟随',s:'Follow me this way.'},
+{w:'why',p:'adv.',c:'为什么',s:'Why are you so late?'},
+{w:'ask',p:'v.',c:'问',s:'Ask the teacher for help.'},
+{w:'change',p:'v.',c:'改变/换',s:'Change your clothes.'},
+{w:'went',p:'v.',c:'去(过去)',s:'I went to school yesterday.'},
+{w:'light',p:'n.',c:'光/灯',s:'Turn on the light.'},
+{w:'kind',p:'adj.',c:'善良的/种类',s:'She is very kind.'},
+{w:'off',p:'adv.',c:'离开/关',s:'Turn off the TV.'},
+{w:'need',p:'v.',c:'需要',s:'I need your help.'},
+{w:'house',p:'n.',c:'房子',s:'Their house is beautiful.'},
+{w:'picture',p:'n.',c:'图片/照片',s:'Take a picture of us.'},
+{w:'try',p:'v.',c:'尝试',s:'Try your best!'},
+{w:'us',p:'pron.',c:'我们(宾格)',s:'Come with us.'},
+{w:'again',p:'adv.',c:'再/又',s:'Try again!'},
+{w:'animal',p:'n.',c:'动物',s:'I love all animals.'},
+{w:'point',p:'n.',c:'点/观点',s:'That is a good point.'},
+{w:'mother',p:'n.',c:'妈妈',s:'My mother cooks well.'},
+{w:'world',p:'n.',c:'世界',s:'The world is beautiful.'},
+{w:'near',p:'prep.',c:'附近',s:'The shop is near my home.'},
+{w:'build',p:'v.',c:'建造',s:'Build a better future.'},
+{w:'father',p:'n.',c:'爸爸',s:'My father works hard.'},
+{w:'head',p:'n.',c:'头',s:'Nod your head.'},
+{w:'stand',p:'v.',c:'站',s:'Stand up straight.'},
+{w:'own',p:'adj.',c:'自己的',s:'Do your own work.'},
+{w:'should',p:'v.',c:'应该',s:'You should study hard.'},
+{w:'country',p:'n.',c:'国家',s:'China is a big country.'},
+{w:'found',p:'v.',c:'找到(过去)',s:'I found my lost key.'},
+{w:'answer',p:'n./v.',c:'回答',s:'I know the answer.'},
+{w:'school',p:'n.',c:'学校',s:'I walk to school.'},
+{w:'grow',p:'v.',c:'成长/种植',s:'Children grow fast.'},
+{w:'study',p:'v.',c:'学习',s:'I study English every day.'},
+{w:'still',p:'adv.',c:'仍然',s:'I still remember you.'},
+{w:'learn',p:'v.',c:'学习',s:'Learn something new today.'},
+{w:'plant',p:'n./v.',c:'植物/种植',s:'Plant a tree in spring.'},
+{w:'cover',p:'v.',c:'覆盖',s:'Cover the table.'},
+{w:'food',p:'n.',c:'食物',s:'Chinese food is delicious.'},
+{w:'sun',p:'n.',c:'太阳',s:'The sun rises in the east.'},
+{w:'keep',p:'v.',c:'保持',s:'Keep going!'},
+{w:'eye',p:'n.',c:'眼睛',s:'Close your eyes.'},
+{w:'never',p:'adv.',c:'从不',s:'Never give up.'},
+{w:'last',p:'adj.',c:'最后的',s:'Last week I was busy.'},
+{w:'let',p:'v.',c:'让',s:'Let me think about it.'},
+{w:'thought',p:'n.',c:'想法',s:'That\'s a good thought.'},
+{w:'city',p:'n.',c:'城市',s:'Beijing is a big city.'},
+{w:'tree',p:'n.',c:'树',s:'The tree is very tall.'},
+{w:'hard',p:'adj.',c:'困难的/努力',s:'Study hard every day.'},
+{w:'start',p:'v.',c:'开始',s:'Let\'s start the lesson.'},
+{w:'might',p:'v.',c:'可能',s:'It might rain today.'},
+{w:'story',p:'n.',c:'故事',s:'Tell me a story.'},
+{w:'far',p:'adv.',c:'远',s:'The school is not far.'},
+{w:'sea',p:'n.',c:'海',s:'The sea is blue and calm.'},
+{w:'draw',p:'v.',c:'画',s:'Draw a picture for me.'},
+{w:'left',p:'adj.',c:'左边的',s:'Turn left at the corner.'},
+{w:'late',p:'adj.',c:'晚的',s:'Don\'t be late for class.'},
+{w:'run',p:'v.',c:'跑',s:'Run as fast as you can.'},
+{w:'night',p:'n.',c:'夜晚',s:'Good night, sleep well.'},
+{w:'real',p:'adj.',c:'真的',s:'Is this real or fake?'},
+{w:'life',p:'n.',c:'生活/生命',s:'Life is beautiful.'},
+{w:'few',p:'adj.',c:'少数/几个',s:'I have a few questions.'},
+{w:'stop',p:'v.',c:'停止',s:'Stop at the red light.'},
+{w:'open',p:'v.',c:'打开',s:'Open your books.'},
+{w:'seem',p:'v.',c:'似乎',s:'You seem very happy.'},
+{w:'together',p:'adv.',c:'一起',s:'Let\'s work together.'},
+{w:'next',p:'adj.',c:'下一个',s:'See you next week.'},
+{w:'white',p:'adj.',c:'白色的',s:'She wears a white dress.'},
+{w:'children',p:'n.',c:'孩子们',s:'The children are playing.'},
+{w:'begin',p:'v.',c:'开始',s:'Let\'s begin the class.'},
+{w:'walk',p:'v.',c:'走/步行',s:'I walk to work every day.'},
+{w:'example',p:'n.',c:'例子',s:'Give me an example.'},
+{w:'paper',p:'n.',c:'纸',s:'Write on the paper.'},
+{w:'group',p:'n.',c:'组/群',s:'Work in a group.'},
+{w:'always',p:'adv.',c:'总是',s:'Always be honest.'},
+{w:'music',p:'n.',c:'音乐',s:'I love listening to music.'},
+{w:'those',p:'pron.',c:'那些',s:'Those books are mine.'},
+{w:'both',p:'adj.',c:'两个都',s:'Both answers are correct.'},
+{w:'book',p:'n.',c:'书',s:'Read a book every week.'},
+{w:'letter',p:'n.',c:'字母/信',s:'Write a letter to your friend.'},
+{w:'until',p:'conj.',c:'直到',s:'Wait until I come back.'},
+{w:'car',p:'n.',c:'汽车',s:'Drive the car slowly.'},
+{w:'second',p:'adj.',c:'第二',s:'Wait a second please.'},
+{w:'enough',p:'adj.',c:'足够的',s:'Is that enough food?'},
+{w:'girl',p:'n.',c:'女孩',s:'The girl is singing.'},
+{w:'young',p:'adj.',c:'年轻的',s:'She looks very young.'},
+{w:'ready',p:'adj.',c:'准备好的',s:'Are you ready?'},
+{w:'above',p:'prep.',c:'在…上方',s:'The plane is above the clouds.'},
+{w:'ever',p:'adv.',c:'曾经',s:'Have you ever been abroad?'},
+{w:'list',p:'n.',c:'列表',s:'Make a shopping list.'},
+{w:'feel',p:'v.',c:'感觉',s:'I feel happy today.'},
+{w:'talk',p:'v.',c:'说话/交谈',s:'Let\'s talk about it.'},
+{w:'bird',p:'n.',c:'鸟',s:'The bird can fly high.'},
+{w:'soon',p:'adv.',c:'很快',s:'See you soon!'},
+{w:'body',p:'n.',c:'身体',s:'Exercise is good for the body.'},
+{w:'dog',p:'n.',c:'狗',s:'The dog is very friendly.'},
+{w:'family',p:'n.',c:'家庭',s:'I love my family.'},
+{w:'leave',p:'v.',c:'离开',s:'I leave at 8 o\'clock.'},
+{w:'song',p:'n.',c:'歌曲',s:'Sing a song with me.'},
+{w:'door',p:'n.',c:'门',s:'Close the door behind you.'},
+{w:'black',p:'adj.',c:'黑色的',s:'I like black coffee.'},
+{w:'short',p:'adj.',c:'短的/矮的',s:'Keep it short and simple.'},
+{w:'class',p:'n.',c:'班级/课',s:'Class begins at nine.'},
+{w:'wind',p:'n.',c:'风',s:'The wind is strong today.'},
+{w:'question',p:'n.',c:'问题',s:'Do you have any questions?'},
+{w:'happen',p:'v.',c:'发生',s:'What happened yesterday?'},
+{w:'complete',p:'v.',c:'完成',s:'Complete the exercise.'},
+{w:'area',p:'n.',c:'区域',s:'This area is very quiet.'},
+{w:'half',p:'n.',c:'一半',s:'Cut it in half.'},
+{w:'order',p:'n./v.',c:'顺序/点餐',s:'Order your food now.'},
+{w:'fire',p:'n.',c:'火',s:'Be careful with fire.'},
+{w:'problem',p:'n.',c:'问题/困难',s:'No problem at all.'},
+{w:'piece',p:'n.',c:'片/块/件',s:'Have a piece of cake.'},
+{w:'pass',p:'v.',c:'经过/传递',s:'Pass me the salt please.'},
+{w:'since',p:'prep.',c:'自从',s:'Since Monday I feel better.'},
+{w:'whole',p:'adj.',c:'整个的',s:'The whole class passed.'},
+{w:'street',p:'n.',c:'街道',s:'Walk along the street.'},
+{w:'nothing',p:'pron.',c:'没有东西',s:'Nothing is impossible.'},
+{w:'course',p:'n.',c:'课程',s:'Take an English course.'},
+{w:'stay',p:'v.',c:'留下/保持',s:'Stay here and wait.'},
+{w:'full',p:'adj.',c:'满的',s:'The bus is full.'},
+{w:'blue',p:'adj.',c:'蓝色的',s:'The sky is blue today.'},
+{w:'decide',p:'v.',c:'决定',s:'Decide what you want.'},
+{w:'deep',p:'adj.',c:'深的',s:'The lake is very deep.'},
+{w:'moon',p:'n.',c:'月亮',s:'The moon is bright tonight.'},
+{w:'busy',p:'adj.',c:'忙碌的',s:'I am very busy today.'},
+{w:'test',p:'n./v.',c:'测试',s:'The test is next Monday.'},
+{w:'record',p:'n./v.',c:'记录',s:'Record your progress.'},
+{w:'common',p:'adj.',c:'常见的',s:'This is a common word.'},
+{w:'possible',p:'adj.',c:'可能的',s:'Anything is possible.'},
+{w:'plane',p:'n.',c:'飞机',s:'The plane takes off at noon.'},
+{w:'wonder',p:'v.',c:'想知道',s:'I wonder where she is.'},
+{w:'laugh',p:'v.',c:'笑',s:'We laugh a lot together.'},
+{w:'ago',p:'adv.',c:'以前',s:'Two years ago I was a student.'},
+{w:'check',p:'v.',c:'检查',s:'Check your answers.'},
+{w:'game',p:'n.',c:'游戏/比赛',s:'Let\'s play a game.'},
+{w:'hot',p:'adj.',c:'热的',s:'The coffee is too hot.'},
+{w:'miss',p:'v.',c:'想念/错过',s:'I miss my family.'},
+{w:'bring',p:'v.',c:'带来',s:'Bring your book tomorrow.'},
+{w:'yes',p:'adv.',c:'是的',s:'Yes, I agree with you.'},
+{w:'fill',p:'v.',c:'填充',s:'Fill the glass with water.'},
+{w:'east',p:'n.',c:'东方',s:'The sun rises in the east.'},
+{w:'language',p:'n.',c:'语言',s:'English is a global language.'},
+{w:'power',p:'n.',c:'力量',s:'Knowledge is power.'},
+{w:'town',p:'n.',c:'镇',s:'The town is very quiet.'},
+{w:'fine',p:'adj.',c:'好的',s:'I am fine, thank you.'},
+{w:'fly',p:'v.',c:'飞',s:'Birds fly in the sky.'},
+{w:'fall',p:'v.',c:'落下/秋天',s:'Leaves fall in autumn.'},
+{w:'cry',p:'v.',c:'哭',s:'Don\'t cry, it\'s okay.'},
+{w:'dark',p:'adj.',c:'黑暗的',s:'It gets dark early in winter.'},
+{w:'wait',p:'v.',c:'等待',s:'Wait for me here.'},
+{w:'plan',p:'n./v.',c:'计划',s:'Make a study plan.'},
+{w:'star',p:'n.',c:'星星',s:'The stars are beautiful.'},
+{w:'box',p:'n.',c:'盒子',s:'Put it in the box.'},
+{w:'field',p:'n.',c:'田地/领域',s:'Play in the field.'},
+{w:'rest',p:'n./v.',c:'休息',s:'Get some rest.'},
+{w:'correct',p:'adj.',c:'正确的',s:'Your answer is correct.'},
+{w:'able',p:'adj.',c:'能够的',s:'Be able to do anything.'},
+{w:'drive',p:'v.',c:'驾驶',s:'Drive safely.'},
+{w:'teach',p:'v.',c:'教',s:'Teach me something new.'},
+{w:'week',p:'n.',c:'周/星期',s:'I work five days a week.'},
+{w:'final',p:'adj.',c:'最终的',s:'This is the final exam.'},
+{w:'green',p:'adj.',c:'绿色的',s:'The grass is green.'},
+{w:'quick',p:'adj.',c:'快的',s:'Be quick, we are late.'},
+{w:'develop',p:'v.',c:'发展',s:'Develop good habits.'},
+{w:'ocean',p:'n.',c:'海洋',s:'The ocean is vast.'},
+{w:'warm',p:'adj.',c:'温暖的',s:'The weather is warm today.'},
+{w:'free',p:'adj.',c:'自由的/免费',s:'This app is free to use.'},
+{w:'strong',p:'adj.',c:'强壮的',s:'He is very strong.'},
+{w:'special',p:'adj.',c:'特别的',s:'Today is a special day.'},
+{w:'mind',p:'n.',c:'头脑/介意',s:'Keep an open mind.'},
+{w:'behind',p:'prep.',c:'在…后面',s:'The garden is behind the house.'},
+{w:'clear',p:'adj.',c:'清晰的',s:'The instructions are clear.'},
+{w:'love',p:'v./n.',c:'爱',s:'I love my family.'},
+{w:'person',p:'n.',c:'人',s:'She is a nice person.'},
+{w:'money',p:'n.',c:'钱',s:'Save your money.'},
+{w:'road',p:'n.',c:'路',s:'The road is very long.'},
+{w:'map',p:'n.',c:'地图',s:'Look at the map.'},
+{w:'rain',p:'n./v.',c:'雨/下雨',s:'It will rain tomorrow.'},
+{w:'rule',p:'n.',c:'规则',s:'Follow the rules.'},
+{w:'pull',p:'v.',c:'拉',s:'Pull the door to open it.'},
+{w:'cold',p:'adj.',c:'冷的',s:'It is very cold outside.'},
+{w:'voice',p:'n.',c:'声音',s:'She has a beautiful voice.'},
+{w:'best',p:'adj.',c:'最好的',s:'You are the best!'},
+{w:'hour',p:'n.',c:'小时',s:'Study for one hour.'},
+{w:'better',p:'adj.',c:'更好的',s:'Practice makes better.'},
+{w:'true',p:'adj.',c:'真的',s:'Is that true?'},
+{w:'during',p:'prep.',c:'在…期间',s:'Stay quiet during class.'},
+{w:'hundred',p:'num.',c:'百',s:'I have a hundred books.'},
+{w:'remember',p:'v.',c:'记住',s:'Remember this word.'},
+{w:'step',p:'n.',c:'步骤/脚步',s:'Follow each step carefully.'},
+{w:'early',p:'adj.',c:'早的',s:'Wake up early every day.'},
+{w:'hold',p:'v.',c:'握住',s:'Hold my hand.'},
+{w:'ground',p:'n.',c:'地面',s:'The ground is wet.'},
+{w:'reach',p:'v.',c:'到达/伸手',s:'Reach for the stars.'},
+{w:'fast',p:'adj.',c:'快的',s:'The train is very fast.'},
+{w:'sing',p:'v.',c:'唱歌',s:'She can sing beautifully.'},
+{w:'listen',p:'v.',c:'听',s:'Listen carefully.'},
+{w:'table',p:'n.',c:'桌子',s:'The book is on the table.'},
+{w:'travel',p:'v.',c:'旅行',s:'I love to travel.'},
+{w:'morning',p:'n.',c:'早上',s:'Good morning!'},
+{w:'simple',p:'adj.',c:'简单的',s:'The rule is very simple.'},
+{w:'space',p:'n.',c:'空间/太空',s:'I need more space.'},
+{w:'fact',p:'n.',c:'事实',s:'Tell me the facts.'},
+{w:'front',p:'n.',c:'前面',s:'Stand in front of me.'}
+]},
+{id:'life',name:'生活词汇',icon:'🏠',desc:'日常生活必备',words:[
+{w:'kitchen',p:'n.',c:'厨房',s:'Cook in the kitchen.'},
+{w:'bathroom',p:'n.',c:'浴室',s:'Take a shower.'},
+{w:'bedroom',p:'n.',c:'卧室',s:'My bedroom is upstairs.'},
+{w:'window',p:'n.',c:'窗户',s:'Open the window please.'},
+{w:'garden',p:'n.',c:'花园',s:'Flowers grow in the garden.'},
+{w:'floor',p:'n.',c:'地板/楼层',s:'The floor is clean.'},
+{w:'wall',p:'n.',c:'墙',s:'Hang the picture on the wall.'},
+{w:'chair',p:'n.',c:'椅子',s:'Sit in the chair.'},
+{w:'bed',p:'n.',c:'床',s:'Make your bed every morning.'},
+{w:'clock',p:'n.',c:'时钟',s:'The clock says 3 o\'clock.'},
+{w:'key',p:'n.',c:'钥匙',s:'I lost my house key.'},
+{w:'phone',p:'n.',c:'电话/手机',s:'Answer the phone.'},
+{w:'computer',p:'n.',c:'电脑',s:'Use the computer to study.'},
+{w:'television',p:'n.',c:'电视',s:'Watch television after dinner.'},
+{w:'clothes',p:'n.',c:'衣服',s:'Wash your clothes.'},
+{w:'shoe',p:'n.',c:'鞋子',s:'Put on your shoes.'},
+{w:'hat',p:'n.',c:'帽子',s:'Wear a hat in the sun.'},
+{w:'bag',p:'n.',c:'包/袋子',s:'Carry your school bag.'},
+{w:'umbrella',p:'n.',c:'雨伞',s:'Take an umbrella today.'},
+{w:'mirror',p:'n.',c:'镜子',s:'Look in the mirror.'},
+{w:'towel',p:'n.',c:'毛巾',s:'Dry your hands with a towel.'},
+{w:'soap',p:'n.',c:'肥皂',s:'Use soap to wash hands.'},
+{w:'blanket',p:'n.',c:'毯子',s:'Cover yourself with a blanket.'},
+{w:'pillow',p:'n.',c:'枕头',s:'The pillow is very soft.'},
+{w:'lamp',p:'n.',c:'台灯',s:'Turn on the desk lamp.'},
+{w:'cup',p:'n.',c:'杯子',s:'A cup of coffee please.'},
+{w:'plate',p:'n.',c:'盘子',s:'Put food on the plate.'},
+{w:'fork',p:'n.',c:'叉子',s:'Eat with a fork and knife.'},
+{w:'knife',p:'n.',c:'刀',s:'Cut with the knife carefully.'},
+{w:'spoon',p:'n.',c:'勺子',s:'Use a spoon for soup.'},
+{w:'bowl',p:'n.',c:'碗',s:'A bowl of rice please.'},
+{w:'rice',p:'n.',c:'米饭',s:'I eat rice every day.'},
+{w:'bread',p:'n.',c:'面包',s:'Have bread for breakfast.'},
+{w:'egg',p:'n.',c:'鸡蛋',s:'Boil two eggs.'},
+{w:'milk',p:'n.',c:'牛奶',s:'Drink a glass of milk.'},
+{w:'meat',p:'n.',c:'肉',s:'I don\'t eat much meat.'},
+{w:'fish',p:'n.',c:'鱼',s:'Fish is healthy food.'},
+{w:'chicken',p:'n.',c:'鸡/鸡肉',s:'We had chicken for dinner.'},
+{w:'vegetable',p:'n.',c:'蔬菜',s:'Eat more vegetables.'},
+{w:'fruit',p:'n.',c:'水果',s:'Fruit is good for you.'},
+{w:'apple',p:'n.',c:'苹果',s:'An apple a day keeps the doctor away.'},
+{w:'banana',p:'n.',c:'香蕉',s:'I like bananas.'},
+{w:'sugar',p:'n.',c:'糖',s:'Too much sugar is bad.'},
+{w:'salt',p:'n.',c:'盐',s:'Add a little salt.'},
+{w:'tea',p:'n.',c:'茶',s:'I drink green tea.'},
+{w:'coffee',p:'n.',c:'咖啡',s:'I need a cup of coffee.'},
+{w:'juice',p:'n.',c:'果汁',s:'Fresh juice is delicious.'},
+{w:'soup',p:'n.',c:'汤',s:'The soup is very hot.'},
+{w:'cake',p:'n.',c:'蛋糕',s:'Happy birthday! Here\'s your cake.'},
+{w:'restaurant',p:'n.',c:'餐厅',s:'Let\'s eat at a restaurant.'},
+{w:'breakfast',p:'n.',c:'早餐',s:'Eat breakfast every morning.'},
+{w:'lunch',p:'n.',c:'午餐',s:'Lunch is at noon.'},
+{w:'dinner',p:'n.',c:'晚餐',s:'Dinner is ready!'},
+{w:'supermarket',p:'n.',c:'超市',s:'Buy food at the supermarket.'},
+{w:'store',p:'n.',c:'商店',s:'The store is open now.'},
+{w:'price',p:'n.',c:'价格',s:'What is the price?'},
+{w:'cheap',p:'adj.',c:'便宜的',s:'This shirt is very cheap.'},
+{w:'expensive',p:'adj.',c:'贵的',s:'That bag is too expensive.'},
+{w:'pay',p:'v.',c:'付款',s:'Pay with your phone.'},
+{w:'buy',p:'v.',c:'买',s:'Buy some vegetables.'},
+{w:'sell',p:'v.',c:'卖',s:'Sell the old books.'},
+{w:'clean',p:'v./adj.',c:'打扫/干净的',s:'Clean your room.'},
+{w:'wash',p:'v.',c:'洗',s:'Wash the dishes.'},
+{w:'cook',p:'v.',c:'烹饪',s:'I cook dinner every day.'},
+{w:'neighbor',p:'n.',c:'邻居',s:'My neighbor is very friendly.'},
+{w:'apartment',p:'n.',c:'公寓',s:'I live in an apartment.'},
+{w:'elevator',p:'n.',c:'电梯',s:'Take the elevator up.'},
+{w:'stairs',p:'n.',c:'楼梯',s:'Walk up the stairs.'},
+{w:'roof',p:'n.',c:'屋顶',s:'The cat is on the roof.'},
+{w:'garage',p:'n.',c:'车库',s:'Park the car in the garage.'},
+{w:'yard',p:'n.',c:'院子',s:'Kids play in the yard.'}
+]},
+{id:'travel',name:'出行旅游',icon:'✈️',desc:'旅游出行必备',words:[
+{w:'airport',p:'n.',c:'机场',s:'Go to the airport early.'},
+{w:'ticket',p:'n.',c:'票',s:'Buy a train ticket.'},
+{w:'passport',p:'n.',c:'护照',s:'Show your passport.'},
+{w:'hotel',p:'n.',c:'酒店',s:'Book a hotel room.'},
+{w:'luggage',p:'n.',c:'行李',s:'Pack your luggage.'},
+{w:'suitcase',p:'n.',c:'行李箱',s:'My suitcase is heavy.'},
+{w:'train',p:'n.',c:'火车',s:'Take the train to Shanghai.'},
+{w:'bus',p:'n.',c:'公交车',s:'Wait for the bus.'},
+{w:'taxi',p:'n.',c:'出租车',s:'Call a taxi for me.'},
+{w:'subway',p:'n.',c:'地铁',s:'Take the subway to work.'},
+{w:'station',p:'n.',c:'车站',s:'The station is nearby.'},
+{w:'flight',p:'n.',c:'航班',s:'The flight is delayed.'},
+{w:'gate',p:'n.',c:'登机口',s:'Go to gate number five.'},
+{w:'address',p:'n.',c:'地址',s:'What is your address?'},
+{w:'bridge',p:'n.',c:'桥',s:'Cross the bridge.'},
+{w:'highway',p:'n.',c:'高速公路',s:'Drive on the highway.'},
+{w:'traffic',p:'n.',c:'交通',s:'The traffic is heavy.'},
+{w:'turn',p:'v.',c:'转弯',s:'Turn right at the light.'},
+{w:'straight',p:'adv.',c:'直走',s:'Go straight for 100 meters.'},
+{w:'corner',p:'n.',c:'拐角',s:'Turn left at the corner.'},
+{w:'tourist',p:'n.',c:'游客',s:'Many tourists visit here.'},
+{w:'museum',p:'n.',c:'博物馆',s:'Visit the art museum.'},
+{w:'park',p:'n.',c:'公园',s:'Walk in the park.'},
+{w:'beach',p:'n.',c:'海滩',s:'Play on the beach.'},
+{w:'mountain',p:'n.',c:'山',s:'Climb the mountain.'},
+{w:'lake',p:'n.',c:'湖',s:'The lake is very calm.'},
+{w:'forest',p:'n.',c:'森林',s:'Walk through the forest.'},
+{w:'trip',p:'n.',c:'旅行',s:'Have a nice trip!'},
+{w:'vacation',p:'n.',c:'假期',s:'Where is your vacation?'},
+{w:'journey',p:'n.',c:'旅程',s:'Enjoy the journey.'},
+{w:'guide',p:'n.',c:'导游/指南',s:'Hire a local guide.'},
+{w:'visit',p:'v.',c:'参观/拜访',s:'Visit the old temple.'},
+{w:'explore',p:'v.',c:'探索',s:'Explore the city on foot.'},
+{w:'reserve',p:'v.',c:'预订',s:'Reserve a table for two.'},
+{w:'departure',p:'n.',c:'出发',s:'Departure time is 9 AM.'},
+{w:'arrival',p:'n.',c:'到达',s:'Arrival is at 3 PM.'},
+{w:'delay',p:'n./v.',c:'延误',s:'The flight has a delay.'},
+{w:'seat',p:'n.',c:'座位',s:'Is this seat available?'},
+{w:'foreign',p:'adj.',c:'外国的',s:'Learn a foreign language.'},
+{w:'translate',p:'v.',c:'翻译',s:'Translate this sentence.'},
+{w:'exchange',p:'v./n.',c:'兑换/交换',s:'Exchange money at the bank.'},
+{w:'currency',p:'n.',c:'货币',s:'The local currency is yuan.'},
+{w:'customs',p:'n.',c:'海关',s:'Go through customs.'}
+]},
+{id:'work',name:'工作职场',icon:'💼',desc:'职场英语常用',words:[
+{w:'office',p:'n.',c:'办公室',s:'I work in an office.'},
+{w:'boss',p:'n.',c:'老板',s:'The boss is in a meeting.'},
+{w:'colleague',p:'n.',c:'同事',s:'My colleague helped me.'},
+{w:'meeting',p:'n.',c:'会议',s:'We have a meeting at 2.'},
+{w:'email',p:'n./v.',c:'邮件/发邮件',s:'Send me an email.'},
+{w:'project',p:'n.',c:'项目',s:'Finish the project on time.'},
+{w:'deadline',p:'n.',c:'截止日期',s:'The deadline is Friday.'},
+{w:'report',p:'n.',c:'报告',s:'Write a monthly report.'},
+{w:'salary',p:'n.',c:'工资',s:'The salary is good.'},
+{w:'interview',p:'n.',c:'面试',s:'I have an interview tomorrow.'},
+{w:'resume',p:'n.',c:'简历',s:'Update your resume.'},
+{w:'hire',p:'v.',c:'雇佣',s:'We need to hire more people.'},
+{w:'manager',p:'n.',c:'经理',s:'Ask the manager for help.'},
+{w:'schedule',p:'n.',c:'日程安排',s:'Check your schedule.'},
+{w:'presentation',p:'n.',c:'演示',s:'Give a presentation.'},
+{w:'company',p:'n.',c:'公司',s:'The company is growing fast.'},
+{w:'customer',p:'n.',c:'客户',s:'Help the customer.'},
+{w:'contract',p:'n.',c:'合同',s:'Sign the contract.'},
+{w:'team',p:'n.',c:'团队',s:'Work as a team.'},
+{w:'goal',p:'n.',c:'目标',s:'Set a clear goal.'},
+{w:'skill',p:'n.',c:'技能',s:'Learn new skills.'},
+{w:'experience',p:'n.',c:'经验/经历',s:'Gain work experience.'},
+{w:'training',p:'n.',c:'培训',s:'Attend the training.'},
+{w:'promotion',p:'n.',c:'升职',s:'She got a promotion.'},
+{w:'business',p:'n.',c:'生意/商业',s:'Start a new business.'},
+{w:'success',p:'n.',c:'成功',s:'Work hard for success.'},
+{w:'fail',p:'v.',c:'失败',s:'Don\'t be afraid to fail.'},
+{w:'improve',p:'v.',c:'改善/提高',s:'Improve your English skills.'},
+{w:'agree',p:'v.',c:'同意',s:'I agree with your plan.'},
+{w:'suggest',p:'v.',c:'建议',s:'I suggest we start early.'},
+{w:'discuss',p:'v.',c:'讨论',s:'Let\'s discuss the plan.'},
+{w:'finish',p:'v.',c:'完成',s:'Finish the task today.'},
+{w:'prepare',p:'v.',c:'准备',s:'Prepare for the meeting.'},
+{w:'send',p:'v.',c:'发送',s:'Send the file now.'},
+{w:'receive',p:'v.',c:'接收',s:'Receive the package.'},
+{w:'sign',p:'v.',c:'签名',s:'Sign your name here.'},
+{w:'print',p:'v.',c:'打印',s:'Print the document.'},
+{w:'copy',p:'v./n.',c:'复制/副本',s:'Make a copy of this.'},
+{w:'organize',p:'v.',c:'组织',s:'Organize the event.'},
+{w:'attend',p:'v.',c:'参加',s:'Attend the conference.'},
+{w:'overtime',p:'n.',c:'加班',s:'Work overtime tonight.'},
+{w:'holiday',p:'n.',c:'假日',s:'Enjoy the holiday!'}
+]},
+{id:'health',name:'健康医疗',icon:'🏥',desc:'看病就医必备',words:[
+{w:'hospital',p:'n.',c:'医院',s:'Go to the hospital.'},
+{w:'doctor',p:'n.',c:'医生',s:'See a doctor.'},
+{w:'nurse',p:'n.',c:'护士',s:'The nurse is very kind.'},
+{w:'medicine',p:'n.',c:'药',s:'Take the medicine after meals.'},
+{w:'sick',p:'adj.',c:'生病的',s:'I feel sick today.'},
+{w:'pain',p:'n.',c:'疼痛',s:'I have pain in my back.'},
+{w:'fever',p:'n.',c:'发烧',s:'I have a high fever.'},
+{w:'headache',p:'n.',c:'头痛',s:'I have a bad headache.'},
+{w:'cough',p:'n./v.',c:'咳嗽',s:'I cannot stop coughing.'},
+{w:'stomach',p:'n.',c:'胃/肚子',s:'My stomach hurts.'},
+{w:'toothache',p:'n.',c:'牙痛',s:'I have a toothache.'},
+{w:'allergy',p:'n.',c:'过敏',s:'I have a food allergy.'},
+{w:'blood',p:'n.',c:'血',s:'Check blood pressure.'},
+{w:'heart',p:'n.',c:'心脏',s:'Exercise is good for the heart.'},
+{w:'exercise',p:'n./v.',c:'锻炼',s:'Exercise every day.'},
+{w:'healthy',p:'adj.',c:'健康的',s:'Eat healthy food.'},
+{w:'diet',p:'n.',c:'饮食',s:'Follow a balanced diet.'},
+{w:'sleep',p:'n./v.',c:'睡眠/睡觉',s:'Get enough sleep.'},
+{w:'appointment',p:'n.',c:'预约',s:'Make a doctor appointment.'},
+{w:'prescription',p:'n.',c:'处方',s:'Get the prescription filled.'},
+{w:'pharmacy',p:'n.',c:'药房',s:'Buy medicine at the pharmacy.'},
+{w:'emergency',p:'n.',c:'紧急情况',s:'Call emergency services.'},
+{w:'ambulance',p:'n.',c:'救护车',s:'Call an ambulance!'},
+{w:'recover',p:'v.',c:'康复',s:'Recover quickly at home.'},
+{w:'treatment',p:'n.',c:'治疗',s:'Start treatment immediately.'},
+{w:'symptom',p:'n.',c:'症状',s:'Describe your symptoms.'},
+{w:'temperature',p:'n.',c:'温度/体温',s:'Check your temperature.'},
+{w:'injection',p:'n.',c:'注射/打针',s:'Get a flu injection.'}
+]},
+{id:'emotion',name:'情感表达',icon:'😊',desc:'表达情感和态度',words:[
+{w:'happy',p:'adj.',c:'开心的',s:'I am very happy today.'},
+{w:'sad',p:'adj.',c:'伤心的',s:'The movie made me sad.'},
+{w:'angry',p:'adj.',c:'生气的',s:'Don\'t be angry with me.'},
+{w:'afraid',p:'adj.',c:'害怕的',s:'Don\'t be afraid to try.'},
+{w:'surprised',p:'adj.',c:'惊讶的',s:'I was surprised by the gift.'},
+{w:'tired',p:'adj.',c:'累的',s:'I am very tired now.'},
+{w:'excited',p:'adj.',c:'兴奋的',s:'I am excited about the trip.'},
+{w:'bored',p:'adj.',c:'无聊的',s:'I feel bored at home.'},
+{w:'lonely',p:'adj.',c:'孤独的',s:'She feels lonely sometimes.'},
+{w:'nervous',p:'adj.',c:'紧张的',s:'I am nervous about the exam.'},
+{w:'proud',p:'adj.',c:'骄傲的',s:'I am proud of you.'},
+{w:'grateful',p:'adj.',c:'感恩的',s:'I am grateful for your help.'},
+{w:'sorry',p:'adj.',c:'抱歉的',s:'I am sorry for being late.'},
+{w:'worried',p:'adj.',c:'担心的',s:'Don\'t be worried about it.'},
+{w:'confused',p:'adj.',c:'困惑的',s:'I am confused by this word.'},
+{w:'confident',p:'adj.',c:'自信的',s:'Be confident in yourself.'},
+{w:'curious',p:'adj.',c:'好奇的',s:'I am curious about English.'},
+{w:'satisfied',p:'adj.',c:'满意的',s:'I am satisfied with the result.'},
+{w:'hate',p:'v.',c:'讨厌',s:'I hate waking up late.'},
+{w:'enjoy',p:'v.',c:'享受',s:'Enjoy every moment.'},
+{w:'hope',p:'v./n.',c:'希望',s:'I hope you succeed.'},
+{w:'wish',p:'v./n.',c:'愿望/祝愿',s:'I wish you good luck.'},
+{w:'believe',p:'v.',c:'相信',s:'Believe in yourself.'},
+{w:'trust',p:'v./n.',c:'信任',s:'Trust your friends.'},
+{w:'respect',p:'v./n.',c:'尊重',s:'Respect your elders.'},
+{w:'thank',p:'v.',c:'感谢',s:'Thank you for everything.'},
+{w:'apologize',p:'v.',c:'道歉',s:'I apologize for the mistake.'},
+{w:'forgive',p:'v.',c:'原谅',s:'Forgive and forget.'},
+{w:'encourage',p:'v.',c:'鼓励',s:'Encourage each other.'},
+{w:'promise',p:'v./n.',c:'承诺',s:'Keep your promise.'}
+]},
+{id:'time',name:'时间日期',icon:'📅',desc:'时间和日期表达',words:[
+{w:'today',p:'adv./n.',c:'今天',s:'Today is a good day.'},
+{w:'tomorrow',p:'adv./n.',c:'明天',s:'See you tomorrow.'},
+{w:'yesterday',p:'adv./n.',c:'昨天',s:'I studied yesterday.'},
+{w:'afternoon',p:'n.',c:'下午',s:'Good afternoon!'},
+{w:'evening',p:'n.',c:'傍晚',s:'Good evening!'},
+{w:'Monday',p:'n.',c:'星期一',s:'Meeting on Monday.'},
+{w:'Tuesday',p:'n.',c:'星期二',s:'Class on Tuesday.'},
+{w:'Wednesday',p:'n.',c:'星期三',s:'Wednesday is midweek.'},
+{w:'Thursday',p:'n.',c:'星期四',s:'Go shopping on Thursday.'},
+{w:'Friday',p:'n.',c:'星期五',s:'Friday is my favorite day.'},
+{w:'Saturday',p:'n.',c:'星期六',s:'Rest on Saturday.'},
+{w:'Sunday',p:'n.',c:'星期日',s:'Visit family on Sunday.'},
+{w:'January',p:'n.',c:'一月',s:'January is the first month.'},
+{w:'February',p:'n.',c:'二月',s:'Valentine\'s Day in February.'},
+{w:'March',p:'n.',c:'三月',s:'Spring starts in March.'},
+{w:'April',p:'n.',c:'四月',s:'April showers bring flowers.'},
+{w:'June',p:'n.',c:'六月',s:'Summer starts in June.'},
+{w:'July',p:'n.',c:'七月',s:'Hot weather in July.'},
+{w:'August',p:'n.',c:'八月',s:'Go swimming in August.'},
+{w:'September',p:'n.',c:'九月',s:'School starts in September.'},
+{w:'October',p:'n.',c:'十月',s:'National Day in October.'},
+{w:'November',p:'n.',c:'十一月',s:'It gets cold in November.'},
+{w:'December',p:'n.',c:'十二月',s:'Christmas is in December.'},
+{w:'spring',p:'n.',c:'春天',s:'Flowers bloom in spring.'},
+{w:'summer',p:'n.',c:'夏天',s:'Summer vacation is long.'},
+{w:'autumn',p:'n.',c:'秋天',s:'Leaves turn yellow in autumn.'},
+{w:'winter',p:'n.',c:'冬天',s:'It snows in winter.'},
+{w:'month',p:'n.',c:'月',s:'One month has about 30 days.'},
+{w:'noon',p:'n.',c:'中午',s:'Eat lunch at noon.'},
+{w:'midnight',p:'n.',c:'午夜',s:'Go to bed before midnight.'},
+{w:'already',p:'adv.',c:'已经',s:'I already finished.'},
+{w:'sometimes',p:'adv.',c:'有时',s:'I sometimes read in bed.'},
+{w:'often',p:'adv.',c:'经常',s:'I often go for a walk.'},
+{w:'usually',p:'adv.',c:'通常',s:'I usually wake up at 7.'}
+]},
+{id:'weather',name:'天气自然',icon:'🌤️',desc:'天气和自然环境',words:[
+{w:'weather',p:'n.',c:'天气',s:'How is the weather today?'},
+{w:'sunny',p:'adj.',c:'晴朗的',s:'It is sunny and warm.'},
+{w:'cloudy',p:'adj.',c:'多云的',s:'It is cloudy today.'},
+{w:'rainy',p:'adj.',c:'下雨的',s:'It is a rainy day.'},
+{w:'windy',p:'adj.',c:'有风的',s:'It is very windy outside.'},
+{w:'snowy',p:'adj.',c:'下雪的',s:'It is snowy in winter.'},
+{w:'foggy',p:'adj.',c:'有雾的',s:'It is foggy this morning.'},
+{w:'storm',p:'n.',c:'暴风雨',s:'A storm is coming.'},
+{w:'thunder',p:'n.',c:'雷声',s:'I heard thunder.'},
+{w:'lightning',p:'n.',c:'闪电',s:'Lightning lit up the sky.'},
+{w:'rainbow',p:'n.',c:'彩虹',s:'A rainbow after the rain.'},
+{w:'cloud',p:'n.',c:'云',s:'White clouds in the blue sky.'},
+{w:'sunshine',p:'n.',c:'阳光',s:'Enjoy the sunshine.'},
+{w:'breeze',p:'n.',c:'微风',s:'A cool breeze blew.'},
+{w:'river',p:'n.',c:'河流',s:'Swim in the river.'},
+{w:'hill',p:'n.',c:'小山',s:'Climb the hill.'},
+{w:'valley',p:'n.',c:'山谷',s:'The valley is beautiful.'},
+{w:'desert',p:'n.',c:'沙漠',s:'The desert is very dry.'},
+{w:'grass',p:'n.',c:'草',s:'The grass is green.'},
+{w:'flower',p:'n.',c:'花',s:'Pick a flower for me.'},
+{w:'leaf',p:'n.',c:'树叶',s:'A leaf fell from the tree.'},
+{w:'stone',p:'n.',c:'石头',s:'Pick up a smooth stone.'},
+{w:'sand',p:'n.',c:'沙子',s:'Play in the sand.'},
+{w:'sky',p:'n.',c:'天空',s:'The sky is clear tonight.'},
+{w:'air',p:'n.',c:'空气',s:'The air is fresh here.'},
+{w:'ice',p:'n.',c:'冰',s:'The road has ice on it.'},
+{w:'degree',p:'n.',c:'度',s:'It is 30 degrees today.'},
+{w:'season',p:'n.',c:'季节',s:'My favorite season is spring.'},
+{w:'nature',p:'n.',c:'自然',s:'Enjoy the beauty of nature.'},
+{w:'environment',p:'n.',c:'环境',s:'Protect the environment.'}
+]},
+{id:'body',name:'身体部位',icon:'🦴',desc:'人体各部位名称',words:[
+{w:'shoulder',p:'n.',c:'肩膀',s:'He has broad shoulders.'},
+{w:'elbow',p:'n.',c:'手肘',s:'I hurt my elbow.'},
+{w:'wrist',p:'n.',c:'手腕',s:'She wears a watch on her wrist.'},
+{w:'finger',p:'n.',c:'手指',s:'I cut my finger.'},
+{w:'thumb',p:'n.',c:'拇指',s:'Give me a thumbs up.'},
+{w:'knee',p:'n.',c:'膝盖',s:'My knee hurts.'},
+{w:'ankle',p:'n.',c:'脚踝',s:'I twisted my ankle.'},
+{w:'toe',p:'n.',c:'脚趾',s:'I stubbed my toe.'},
+{w:'heel',p:'n.',c:'脚后跟',s:'My heel is sore.'},
+{w:'chest',p:'n.',c:'胸部',s:'Take a deep breath and expand your chest.'},
+{w:'neck',p:'n.',c:'脖子',s:'My neck is stiff.'},
+{w:'throat',p:'n.',c:'喉咙',s:'My throat hurts.'},
+{w:'tongue',p:'n.',c:'舌头',s:'Stick out your tongue.'},
+{w:'tooth',p:'n.',c:'牙齿',s:'Brush your teeth every day.'},
+{w:'lip',p:'n.',c:'嘴唇',s:'She has red lips.'},
+{w:'cheek',p:'n.',c:'脸颊',s:'Her cheeks are rosy.'},
+{w:'chin',p:'n.',c:'下巴',s:'He has a strong chin.'},
+{w:'nose',p:'n.',c:'鼻子',s:'My nose is running.'},
+{w:'ear',p:'n.',c:'耳朵',s:'I have something in my ear.'},
+{w:'forehead',p:'n.',c:'额头',s:'She touched my forehead to check for fever.'},
+{w:'eyebrow',p:'n.',c:'眉毛',s:'He raised his eyebrows.'},
+{w:'eyelash',p:'n.',c:'睫毛',s:'She has long eyelashes.'},
+{w:'jaw',p:'n.',c:'下巴/颚',s:'My jaw is sore.'},
+{w:'muscle',p:'n.',c:'肌肉',s:'Exercise builds muscle.'},
+{w:'bone',p:'n.',c:'骨头',s:'The bone is strong.'},
+{w:'skin',p:'n.',c:'皮肤',s:'Her skin is smooth.'},
+{w:'hair',p:'n.',c:'头发',s:'She has long hair.'},
+{w:'nail',p:'n.',c:'指甲',s:'Cut your nails regularly.'},
+{w:'brain',p:'n.',c:'大脑',s:'The brain controls the body.'},
+{w:'lung',p:'n.',c:'肺',s:'Smoking damages your lungs.'},
+{w:'liver',p:'n.',c:'肝脏',s:'The liver cleans the blood.'},
+{w:'kidney',p:'n.',c:'肾脏',s:'Drink water for healthy kidneys.'},
+{w:'spine',p:'n.',c:'脊柱',s:'Keep your spine straight.'},
+{w:'thigh',p:'n.',c:'大腿',s:'My thigh muscle is sore.'},
+{w:'calf',p:'n.',c:'小腿',s:'I have a cramp in my calf.'},
+{w:'palm',p:'n.',c:'手掌',s:'Read the lines on your palm.'},
+{w:'fist',p:'n.',c:'拳头',s:'He clenched his fist.'},
+{w:'shin',p:'n.',c:'小腿前部',s:'I kicked my shin.'},
+{w:'waist',p:'n.',c:'腰',s:'She has a slim waist.'},
+{w:'hip',p:'n.',c:'臀部/髋部',s:'My hip hurts.'},
+{w:'forearm',p:'n.',c:'前臂',s:'My forearm is strong.'},
+{w:'nostril',p:'n.',c:'鼻孔',s:'My nostril is blocked.'},
+{w:'pupil',p:'n.',c:'瞳孔',s:'The pupil gets bigger in the dark.'},
+{w:'iris',p:'n.',c:'虹膜',s:'Her iris is blue.'},
+{w:'temple',p:'n.',c:'太阳穴',s:'I have pain in my temple.'},
+{w:'rib',p:'n.',c:'肋骨',s:'I broke a rib.'},
+{w:'pelvis',p:'n.',c:'骨盆',s:'The pelvis supports the body.'},
+{w:'tendon',p:'n.',c:'肌腱',s:'He injured a tendon.'},
+{w:'artery',p:'n.',c:'动脉',s:'The artery carries blood.'},
+{w:'vein',p:'n.',c:'静脉',s:'The nurse found a vein.'},
+{w:'nerve',p:'n.',c:'神经',s:'I feel a sharp nerve pain.'},
+{w:'organ',p:'n.',c:'器官',s:'The heart is a vital organ.'},
+{w:'skull',p:'n.',c:'头骨',s:'The skull protects the brain.'},
+{w:'navel',p:'n.',c:'肚脐',s:'The navel is in the center of the belly.'},
+{w:'belly',p:'n.',c:'肚子',s:'My belly is full.'},
+{w:'buttock',p:'n.',c:'臀部',s:'He fell on his buttocks.'},
+{w:'armpit',p:'n.',c:'腋下',s:'My armpit is sore.'},
+{w:'knuckle',p:'n.',c:'指关节',s:'My knuckles are cold.'},
+{w:'eyeball',p:'n.',c:'眼球',s:'Keep your eyeballs healthy.'},
+{w:'toenail',p:'n.',c:'脚趾甲',s:'Trim your toenails.'},
+{w:'fingernail',p:'n.',c:'手指甲',s:'Her fingernails are long.'},
+{w:'blood',p:'n.',c:'血液',s:'Blood flows through the body.'},
+{w:'pulse',p:'n.',c:'脉搏',s:'Check your pulse.'},
+{w:'breath',p:'n.',c:'呼吸',s:'Take a deep breath.'},
+{w:'skeleton',p:'n.',c:'骨架',s:'The skeleton gives the body shape.'},
+{w:'gum',p:'n.',c:'牙龈',s:'My gums are bleeding.'},
+{w:'mole',p:'n.',c:'痣',s:'She has a mole on her face.'},
+{w:'freckle',p:'n.',c:'雀斑',s:'He has freckles on his nose.'},
+{w:'wrinkle',p:'n.',c:'皱纹',s:'She has wrinkles around her eyes.'},
+{w:'beard',p:'n.',c:'胡须',s:'He grew a beard.'},
+{w:'scar',p:'n.',c:'伤疤',s:'I have a scar on my arm.'}
+]},
+{id:'clothing',name:'服装穿戴',icon:'👔',desc:'衣物鞋帽配饰',words:[
+{w:'shirt',p:'n.',c:'衬衫',s:'He wears a white shirt.'},
+{w:'blouse',p:'n.',c:'女衬衫',s:'She bought a new blouse.'},
+{w:'sweater',p:'n.',c:'毛衣',s:'Wear a sweater, it is cold.'},
+{w:'jacket',p:'n.',c:'夹克',s:'Put on your jacket.'},
+{w:'coat',p:'n.',c:'外套',s:'I need a warm coat.'},
+{w:'dress',p:'n.',c:'连衣裙',s:'She wore a red dress.'},
+{w:'skirt',p:'n.',c:'裙子',s:'The skirt is too short.'},
+{w:'suit',p:'n.',c:'西装',s:'He wears a suit to work.'},
+{w:'uniform',p:'n.',c:'制服',s:'Students wear a uniform.'},
+{w:'jeans',p:'n.',c:'牛仔裤',s:'I like wearing jeans.'},
+{w:'shorts',p:'n.',c:'短裤',s:'Wear shorts in summer.'},
+{w:'pants',p:'n.',c:'裤子',s:'These pants fit well.'},
+{w:'socks',p:'n.',c:'袜子',s:'Put on clean socks.'},
+{w:'boots',p:'n.',c:'靴子',s:'Wear boots in the rain.'},
+{w:'sneakers',p:'n.',c:'运动鞋',s:'I run in sneakers.'},
+{w:'sandals',p:'n.',c:'凉鞋',s:'She wears sandals in summer.'},
+{w:'gloves',p:'n.',c:'手套',s:'Wear gloves when it is cold.'},
+{w:'scarf',p:'n.',c:'围巾',s:'She knitted a warm scarf.'},
+{w:'belt',p:'n.',c:'腰带',s:'He tightened his belt.'},
+{w:'tie',p:'n.',c:'领带',s:'He wears a tie to the meeting.'},
+{w:'cap',p:'n.',c:'鸭舌帽',s:'He wears a baseball cap.'},
+{w:'sunglasses',p:'n.',c:'太阳镜',s:'Wear sunglasses in the sun.'},
+{w:'underwear',p:'n.',c:'内衣',s:'Pack clean underwear.'},
+{w:'pajamas',p:'n.',c:'睡衣',s:'I wear pajamas to bed.'},
+{w:'swimsuit',p:'n.',c:'泳衣',s:'She bought a new swimsuit.'},
+{w:'raincoat',p:'n.',c:'雨衣',s:'Take a raincoat with you.'},
+{w:'hoodie',p:'n.',c:'连帽衫',s:'He loves his hoodie.'},
+{w:'vest',p:'n.',c:'背心/马甲',s:'Wear a vest under your shirt.'},
+{w:'overcoat',p:'n.',c:'大衣',s:'He wore an overcoat in winter.'},
+{w:'collar',p:'n.',c:'衣领',s:'Button your collar.'},
+{w:'sleeve',p:'n.',c:'袖子',s:'The sleeve is too long.'},
+{w:'button',p:'n.',c:'纽扣',s:'The button fell off.'},
+{w:'zipper',p:'n.',c:'拉链',s:'The zipper is stuck.'},
+{w:'pocket',p:'n.',c:'口袋',s:'My keys are in my pocket.'},
+{w:'ring',p:'n.',c:'戒指',s:'She wears a gold ring.'},
+{w:'necklace',p:'n.',c:'项链',s:'The necklace is beautiful.'},
+{w:'bracelet',p:'n.',c:'手镯',s:'She got a bracelet as a gift.'},
+{w:'earrings',p:'n.',c:'耳环',s:'She wears silver earrings.'},
+{w:'watch',p:'n.',c:'手表',s:'What time does your watch show?'},
+{w:'handbag',p:'n.',c:'手提包',s:'She carries a handbag.'},
+{w:'wallet',p:'n.',c:'钱包',s:'I keep my money in a wallet.'},
+{w:'backpack',p:'n.',c:'双肩包',s:'He carries a heavy backpack.'},
+{w:'purse',p:'n.',c:'钱包/手提袋',s:'She found coins in her purse.'},
+{w:'helmet',p:'n.',c:'头盔',s:'Wear a helmet when cycling.'},
+{w:'mask',p:'n.',c:'口罩/面具',s:'Wear a mask in the hospital.'},
+{w:'apron',p:'n.',c:'围裙',s:'She wears an apron while cooking.'},
+{w:'robe',p:'n.',c:'长袍/浴袍',s:'He put on a bathrobe.'},
+{w:'slippers',p:'n.',c:'拖鞋',s:'Wear slippers at home.'},
+{w:'heels',p:'n.',c:'高跟鞋',s:'She wears heels to the party.'},
+{w:'costume',p:'n.',c:'服装/戏服',s:'He wore a Halloween costume.'},
+{w:'outfit',p:'n.',c:'全套服装',s:'That is a nice outfit.'},
+{w:'fabric',p:'n.',c:'布料',s:'This fabric is very soft.'},
+{w:'cotton',p:'n.',c:'棉花/棉布',s:'This shirt is made of cotton.'},
+{w:'silk',p:'n.',c:'丝绸',s:'The scarf is made of silk.'},
+{w:'wool',p:'n.',c:'羊毛',s:'The sweater is wool.'},
+{w:'leather',p:'n.',c:'皮革',s:'He bought leather shoes.'},
+{w:'denim',p:'n.',c:'牛仔布',s:'Denim jeans are popular.'},
+{w:'stripe',p:'n.',c:'条纹',s:'The shirt has blue stripes.'},
+{w:'pattern',p:'n.',c:'图案/花纹',s:'I like the floral pattern.'},
+{w:'size',p:'n.',c:'尺码',s:'What size do you wear?'},
+{w:'fit',p:'v.',c:'合适',s:'These shoes fit perfectly.'},
+{w:'loose',p:'adj.',c:'宽松的',s:'This shirt is too loose.'},
+{w:'tight',p:'adj.',c:'紧的',s:'These pants are too tight.'},
+{w:'fashionable',p:'adj.',c:'时尚的',s:'She always looks fashionable.'},
+{w:'casual',p:'adj.',c:'休闲的',s:'I wear casual clothes on weekends.'},
+{w:'formal',p:'adj.',c:'正式的',s:'Wear formal clothes to the wedding.'},
+{w:'elegant',p:'adj.',c:'优雅的',s:'She looks elegant in that dress.'},
+{w:'comfortable',p:'adj.',c:'舒适的',s:'These shoes are very comfortable.'},
+{w:'trendy',p:'adj.',c:'时髦的',s:'That hairstyle is very trendy.'},
+{w:'secondhand',p:'adj.',c:'二手的',s:'I bought a secondhand jacket.'},
+{w:'brand',p:'n.',c:'品牌',s:'What brand is your watch?'}
+]},
+{id:'animals',name:'动物世界',icon:'🐾',desc:'常见动物名称',words:[
+{w:'cat',p:'n.',c:'猫',s:'The cat is sleeping.'},
+{w:'kitten',p:'n.',c:'小猫',s:'The kitten is playful.'},
+{w:'puppy',p:'n.',c:'小狗',s:'The puppy is very cute.'},
+{w:'horse',p:'n.',c:'马',s:'She rides a horse.'},
+{w:'cow',p:'n.',c:'奶牛',s:'The cow gives us milk.'},
+{w:'pig',p:'n.',c:'猪',s:'The pig is in the pen.'},
+{w:'sheep',p:'n.',c:'绵羊',s:'The sheep has soft wool.'},
+{w:'goat',p:'n.',c:'山羊',s:'The goat climbed the hill.'},
+{w:'duck',p:'n.',c:'鸭子',s:'The duck swims in the pond.'},
+{w:'goose',p:'n.',c:'鹅',s:'The goose is white.'},
+{w:'turkey',p:'n.',c:'火鸡',s:'We eat turkey on Thanksgiving.'},
+{w:'rabbit',p:'n.',c:'兔子',s:'The rabbit has long ears.'},
+{w:'hamster',p:'n.',c:'仓鼠',s:'My hamster runs on the wheel.'},
+{w:'parrot',p:'n.',c:'鹦鹉',s:'The parrot can talk.'},
+{w:'goldfish',p:'n.',c:'金鱼',s:'The goldfish swims in the bowl.'},
+{w:'turtle',p:'n.',c:'海龟',s:'The turtle moves slowly.'},
+{w:'snake',p:'n.',c:'蛇',s:'I am afraid of snakes.'},
+{w:'frog',p:'n.',c:'青蛙',s:'The frog jumps into the water.'},
+{w:'mouse',p:'n.',c:'老鼠',s:'The mouse ran under the table.'},
+{w:'wolf',p:'n.',c:'狼',s:'The wolf howls at the moon.'},
+{w:'fox',p:'n.',c:'狐狸',s:'The fox is very clever.'},
+{w:'bear',p:'n.',c:'熊',s:'The bear caught some fish.'},
+{w:'deer',p:'n.',c:'鹿',s:'The deer runs very fast.'},
+{w:'eagle',p:'n.',c:'鹰',s:'The eagle flies very high.'},
+{w:'hawk',p:'n.',c:'鹰/隼',s:'The hawk hunts at dawn.'},
+{w:'owl',p:'n.',c:'猫头鹰',s:'The owl comes out at night.'},
+{w:'pigeon',p:'n.',c:'鸽子',s:'The pigeon landed on the roof.'},
+{w:'sparrow',p:'n.',c:'麻雀',s:'A sparrow sang in the tree.'},
+{w:'whale',p:'n.',c:'鲸鱼',s:'The whale is the largest animal.'},
+{w:'dolphin',p:'n.',c:'海豚',s:'Dolphins are very smart.'},
+{w:'shark',p:'n.',c:'鲨鱼',s:'The shark swims fast.'},
+{w:'penguin',p:'n.',c:'企鹅',s:'Penguins live in cold places.'},
+{w:'ostrich',p:'n.',c:'鸵鸟',s:'The ostrich cannot fly.'},
+{w:'camel',p:'n.',c:'骆驼',s:'The camel walks in the desert.'},
+{w:'donkey',p:'n.',c:'驴',s:'The donkey carries heavy loads.'},
+{w:'lion',p:'n.',c:'狮子',s:'The lion is the king of animals.'},
+{w:'tiger',p:'n.',c:'老虎',s:'The tiger has orange stripes.'},
+{w:'elephant',p:'n.',c:'大象',s:'The elephant has a long trunk.'},
+{w:'monkey',p:'n.',c:'猴子',s:'The monkey climbs the tree.'},
+{w:'giraffe',p:'n.',c:'长颈鹿',s:'The giraffe has a long neck.'},
+{w:'zebra',p:'n.',c:'斑马',s:'The zebra has black and white stripes.'},
+{w:'kangaroo',p:'n.',c:'袋鼠',s:'The kangaroo jumps very far.'},
+{w:'panda',p:'n.',c:'熊猫',s:'The panda eats bamboo.'},
+{w:'koala',p:'n.',c:'考拉',s:'The koala sleeps in the tree.'},
+{w:'squirrel',p:'n.',c:'松鼠',s:'The squirrel hides nuts.'},
+{w:'hedgehog',p:'n.',c:'刺猬',s:'The hedgehog has sharp spines.'},
+{w:'butterfly',p:'n.',c:'蝴蝶',s:'The butterfly is colorful.'},
+{w:'bee',p:'n.',c:'蜜蜂',s:'The bee makes honey.'},
+{w:'ant',p:'n.',c:'蚂蚁',s:'Ants work together.'},
+{w:'mosquito',p:'n.',c:'蚊子',s:'The mosquito bit me.'},
+{w:'spider',p:'n.',c:'蜘蛛',s:'The spider spins a web.'},
+{w:'worm',p:'n.',c:'虫子/蚯蚓',s:'The bird found a worm.'},
+{w:'crab',p:'n.',c:'螃蟹',s:'The crab walks sideways.'},
+{w:'lobster',p:'n.',c:'龙虾',s:'We had lobster for dinner.'},
+{w:'shrimp',p:'n.',c:'虾',s:'I love eating shrimp.'},
+{w:'octopus',p:'n.',c:'章鱼',s:'The octopus has eight arms.'},
+{w:'jellyfish',p:'n.',c:'水母',s:'Do not touch the jellyfish.'},
+{w:'snail',p:'n.',c:'蜗牛',s:'The snail moves very slowly.'},
+{w:'wasp',p:'n.',c:'黄蜂',s:'A wasp flew near me.'},
+{w:'caterpillar',p:'n.',c:'毛毛虫',s:'The caterpillar becomes a butterfly.'},
+{w:'crow',p:'n.',c:'乌鸦',s:'The crow is very smart.'},
+{w:'bat',p:'n.',c:'蝙蝠',s:'Bats fly at night.'},
+{w:'dinosaur',p:'n.',c:'恐龙',s:'Dinosaurs lived millions of years ago.'},
+{w:'insect',p:'n.',c:'昆虫',s:'Many insects live in the garden.'},
+{w:'pet',p:'n.',c:'宠物',s:'Do you have a pet?'},
+{w:'tail',p:'n.',c:'尾巴',s:'The dog wags its tail.'},
+{w:'wing',p:'n.',c:'翅膀',s:'The bird spread its wings.'},
+{w:'feather',p:'n.',c:'羽毛',s:'The feather is very light.'},
+{w:'fur',p:'n.',c:'毛皮',s:'The cat has soft fur.'},
+{w:'claw',p:'n.',c:'爪子',s:'The cat has sharp claws.'},
+{w:'horn',p:'n.',c:'角',s:'The bull has big horns.'},
+{w:'nest',p:'n.',c:'鸟巢',s:'The bird built a nest.'},
+{w:'den',p:'n.',c:'兽穴',s:'The fox went back to its den.'},
+{w:'herd',p:'n.',c:'兽群',s:'A herd of cattle crossed the road.'},
+{w:'prey',p:'n.',c:'猎物',s:'The lion caught its prey.'},
+{w:'cage',p:'n.',c:'笼子',s:'The bird is in a cage.'},
+{w:'aquarium',p:'n.',c:'水族馆',s:'We visited the aquarium.'}
+]},
+{id:'food2',name:'食物饮品',icon:'🍕',desc:'更多食物和饮料',words:[
+{w:'pizza',p:'n.',c:'比萨饼',s:'Let us order a pizza.'},
+{w:'hamburger',p:'n.',c:'汉堡包',s:'I want a hamburger.'},
+{w:'sandwich',p:'n.',c:'三明治',s:'I had a sandwich for lunch.'},
+{w:'salad',p:'n.',c:'沙拉',s:'She made a fruit salad.'},
+{w:'noodle',p:'n.',c:'面条',s:'I love eating noodles.'},
+{w:'pasta',p:'n.',c:'意面',s:'We had pasta for dinner.'},
+{w:'dumpling',p:'n.',c:'饺子',s:'We eat dumplings during Spring Festival.'},
+{w:'sushi',p:'n.',c:'寿司',s:'Japanese sushi is popular.'},
+{w:'steak',p:'n.',c:'牛排',s:'He ordered a steak.'},
+{w:'bacon',p:'n.',c:'培根',s:'I had bacon and eggs for breakfast.'},
+{w:'sausage',p:'n.',c:'香肠',s:'The sausage is delicious.'},
+{w:'cheese',p:'n.',c:'奶酪',s:'I like cheese on my bread.'},
+{w:'butter',p:'n.',c:'黄油',s:'Spread butter on the toast.'},
+{w:'yogurt',p:'n.',c:'酸奶',s:'I eat yogurt every morning.'},
+{w:'cream',p:'n.',c:'奶油',s:'Put cream on the cake.'},
+{w:'chocolate',p:'n.',c:'巧克力',s:'She loves chocolate.'},
+{w:'candy',p:'n.',c:'糖果',s:'Do not eat too much candy.'},
+{w:'cookie',p:'n.',c:'饼干',s:'I baked some cookies.'},
+{w:'biscuit',p:'n.',c:'饼干',s:'Have a biscuit with your tea.'},
+{w:'ice cream',p:'n.',c:'冰淇淋',s:'I want ice cream.'},
+{w:'honey',p:'n.',c:'蜂蜜',s:'Add honey to the tea.'},
+{w:'jam',p:'n.',c:'果酱',s:'Spread jam on the bread.'},
+{w:'sauce',p:'n.',c:'酱料',s:'Add some sauce to the noodles.'},
+{w:'ketchup',p:'n.',c:'番茄酱',s:'Put ketchup on the fries.'},
+{w:'mustard',p:'n.',c:'芥末',s:'I do not like mustard.'},
+{w:'vinegar',p:'n.',c:'醋',s:'Add a little vinegar.'},
+{w:'oil',p:'n.',c:'油',s:'Use olive oil for cooking.'},
+{w:'pepper',p:'n.',c:'胡椒/辣椒',s:'Add some pepper to the soup.'},
+{w:'garlic',p:'n.',c:'大蒜',s:'Garlic makes food taste better.'},
+{w:'onion',p:'n.',c:'洋葱',s:'Cut the onion into pieces.'},
+{w:'potato',p:'n.',c:'土豆',s:'I like fried potatoes.'},
+{w:'tomato',p:'n.',c:'番茄',s:'The tomato is red and ripe.'},
+{w:'carrot',p:'n.',c:'胡萝卜',s:'Rabbits eat carrots.'},
+{w:'cabbage',p:'n.',c:'卷心菜',s:'Cook the cabbage with garlic.'},
+{w:'lettuce',p:'n.',c:'生菜',s:'Put lettuce in the sandwich.'},
+{w:'spinach',p:'n.',c:'菠菜',s:'Spinach is good for you.'},
+{w:'broccoli',p:'n.',c:'西兰花',s:'I like steamed broccoli.'},
+{w:'cucumber',p:'n.',c:'黄瓜',s:'Slice the cucumber thinly.'},
+{w:'mushroom',p:'n.',c:'蘑菇',s:'Add mushrooms to the pizza.'},
+{w:'corn',p:'n.',c:'玉米',s:'We ate corn at the barbecue.'},
+{w:'bean',p:'n.',c:'豆子',s:'I like green beans.'},
+{w:'pea',p:'n.',c:'豌豆',s:'The peas are sweet.'},
+{w:'peanut',p:'n.',c:'花生',s:'I am allergic to peanuts.'},
+{w:'walnut',p:'n.',c:'核桃',s:'Walnuts are good for the brain.'},
+{w:'almond',p:'n.',c:'杏仁',s:'She ate some almonds.'},
+{w:'lemon',p:'n.',c:'柠檬',s:'Squeeze lemon into the water.'},
+{w:'orange',p:'n.',c:'橙子',s:'I drink orange juice.'},
+{w:'grape',p:'n.',c:'葡萄',s:'The grapes are sweet.'},
+{w:'strawberry',p:'n.',c:'草莓',s:'I love strawberries.'},
+{w:'watermelon',p:'n.',c:'西瓜',s:'Watermelon is refreshing in summer.'},
+{w:'peach',p:'n.',c:'桃子',s:'The peach is juicy.'},
+{w:'pear',p:'n.',c:'梨',s:'She ate a pear.'},
+{w:'cherry',p:'n.',c:'樱桃',s:'The cake has cherries on top.'},
+{w:'mango',p:'n.',c:'芒果',s:'Mango is my favorite fruit.'},
+{w:'pineapple',p:'n.',c:'菠萝',s:'I like pineapple juice.'},
+{w:'coconut',p:'n.',c:'椰子',s:'Drink coconut water.'},
+{w:'kiwi',p:'n.',c:'猕猴桃',s:'Kiwi is rich in vitamin C.'},
+{w:'avocado',p:'n.',c:'牛油果',s:'Avocado toast is popular.'},
+{w:'cereal',p:'n.',c:'麦片',s:'I have cereal for breakfast.'},
+{w:'oatmeal',p:'n.',c:'燕麦粥',s:'Oatmeal is healthy.'},
+{w:'flour',p:'n.',c:'面粉',s:'We need flour to bake bread.'},
+{w:'tofu',p:'n.',c:'豆腐',s:'Tofu is made from soybeans.'},
+{w:'pie',p:'n.',c:'派/饼',s:'She baked an apple pie.'},
+{w:'pudding',p:'n.',c:'布丁',s:'The pudding is sweet and soft.'},
+{w:'jelly',p:'n.',c:'果冻',s:'The jelly is wobbly.'},
+{w:'popcorn',p:'n.',c:'爆米花',s:'We ate popcorn at the movies.'},
+{w:'chip',p:'n.',c:'薯片',s:'I bought a bag of chips.'},
+{w:'fries',p:'n.',c:'薯条',s:'I ordered fries with my burger.'},
+{w:'milkshake',p:'n.',c:'奶昔',s:'She drank a strawberry milkshake.'},
+{w:'lemonade',p:'n.',c:'柠檬水',s:'Cold lemonade is refreshing.'},
+{w:'soda',p:'n.',c:'汽水',s:'I do not drink much soda.'},
+{w:'wine',p:'n.',c:'葡萄酒',s:'He had a glass of wine.'},
+{w:'beer',p:'n.',c:'啤酒',s:'They sell beer at the bar.'},
+{w:'cocktail',p:'n.',c:'鸡尾酒',s:'She ordered a cocktail.'},
+{w:'cocoa',p:'n.',c:'可可',s:'Hot cocoa is nice in winter.'},
+{w:'snack',p:'n.',c:'零食',s:'I need a snack.'},
+{w:'appetite',p:'n.',c:'食欲',s:'I have a big appetite.'},
+{w:'recipe',p:'n.',c:'食谱',s:'Follow the recipe carefully.'},
+{w:'ingredient',p:'n.',c:'食材',s:'Buy fresh ingredients.'},
+{w:'delicious',p:'adj.',c:'美味的',s:'The food is delicious.'},
+{w:'spicy',p:'adj.',c:'辣的',s:'This dish is very spicy.'},
+{w:'sweet',p:'adj.',c:'甜的',s:'The cake is too sweet.'},
+{w:'sour',p:'adj.',c:'酸的',s:'The lemon is sour.'},
+{w:'bitter',p:'adj.',c:'苦的',s:'The medicine tastes bitter.'},
+{w:'salty',p:'adj.',c:'咸的',s:'The soup is too salty.'},
+{w:'fresh',p:'adj.',c:'新鲜的',s:'The vegetables are fresh.'},
+{w:'ripe',p:'adj.',c:'成熟的',s:'The banana is ripe.'},
+{w:'raw',p:'adj.',c:'生的',s:'Do not eat raw meat.'},
+{w:'fried',p:'adj.',c:'油炸的',s:'I like fried rice.'},
+{w:'boiled',p:'adj.',c:'水煮的',s:'I prefer boiled eggs.'},
+{w:'grilled',p:'adj.',c:'烤的',s:'The grilled fish is tasty.'},
+{w:'baked',p:'adj.',c:'烘焙的',s:'She made baked potatoes.'},
+{w:'hungry',p:'adj.',c:'饿的',s:'I am very hungry.'},
+{w:'thirsty',p:'adj.',c:'渴的',s:'I am thirsty.'}
+]},
+{id:'school',name:'学习教育',icon:'📚',desc:'学校和学习相关',words:[
+{w:'classroom',p:'n.',c:'教室',s:'The classroom is clean.'},
+{w:'teacher',p:'n.',c:'老师',s:'The teacher is very kind.'},
+{w:'student',p:'n.',c:'学生',s:'She is a good student.'},
+{w:'desk',p:'n.',c:'课桌',s:'Put the book on the desk.'},
+{w:'blackboard',p:'n.',c:'黑板',s:'The teacher wrote on the blackboard.'},
+{w:'chalk',p:'n.',c:'粉笔',s:'Write with chalk.'},
+{w:'eraser',p:'n.',c:'橡皮擦',s:'Use an eraser to fix mistakes.'},
+{w:'ruler',p:'n.',c:'尺子',s:'Draw a line with a ruler.'},
+{w:'pencil',p:'n.',c:'铅笔',s:'Write with a pencil.'},
+{w:'pen',p:'n.',c:'钢笔',s:'Sign with a pen.'},
+{w:'notebook',p:'n.',c:'笔记本',s:'Write notes in your notebook.'},
+{w:'textbook',p:'n.',c:'课本',s:'Open your textbook.'},
+{w:'homework',p:'n.',c:'家庭作业',s:'Finish your homework.'},
+{w:'exam',p:'n.',c:'考试',s:'I have an exam tomorrow.'},
+{w:'quiz',p:'n.',c:'测验',s:'We have a quiz today.'},
+{w:'grade',p:'n.',c:'年级/成绩',s:'She is in the fifth grade.'},
+{w:'score',p:'n.',c:'分数',s:'He got a high score.'},
+{w:'subject',p:'n.',c:'科目',s:'Math is my favorite subject.'},
+{w:'math',p:'n.',c:'数学',s:'I study math every day.'},
+{w:'science',p:'n.',c:'科学',s:'Science is interesting.'},
+{w:'history',p:'n.',c:'历史',s:'I like learning history.'},
+{w:'geography',p:'n.',c:'地理',s:'Geography teaches about the world.'},
+{w:'physics',p:'n.',c:'物理',s:'Physics explains how things work.'},
+{w:'chemistry',p:'n.',c:'化学',s:'We did an experiment in chemistry.'},
+{w:'biology',p:'n.',c:'生物',s:'Biology is about living things.'},
+{w:'literature',p:'n.',c:'文学',s:'She studies English literature.'},
+{w:'art',p:'n.',c:'美术',s:'I enjoy art class.'},
+{w:'PE',p:'n.',c:'体育课',s:'We play sports in PE class.'},
+{w:'library',p:'n.',c:'图书馆',s:'I borrow books from the library.'},
+{w:'laboratory',p:'n.',c:'实验室',s:'We did experiments in the laboratory.'},
+{w:'experiment',p:'n.',c:'实验',s:'The experiment was successful.'},
+{w:'equation',p:'n.',c:'方程式',s:'Solve the equation.'},
+{w:'formula',p:'n.',c:'公式',s:'Learn the formula by heart.'},
+{w:'theory',p:'n.',c:'理论',s:'This is an interesting theory.'},
+{w:'principle',p:'n.',c:'原理/原则',s:'Understand the basic principles.'},
+{w:'definition',p:'n.',c:'定义',s:'What is the definition of this word?'},
+{w:'exercise',p:'n.',c:'练习',s:'Complete the exercises.'},
+{w:'assignment',p:'n.',c:'作业/任务',s:'Submit your assignment on time.'},
+{w:'essay',p:'n.',c:'论文/作文',s:'Write a short essay.'},
+{w:'paragraph',p:'n.',c:'段落',s:'Read the first paragraph.'},
+{w:'sentence',p:'n.',c:'句子',s:'Make a sentence with this word.'},
+{w:'alphabet',p:'n.',c:'字母表',s:'Learn the English alphabet.'},
+{w:'vowel',p:'n.',c:'元音',s:'A, E, I, O, U are vowels.'},
+{w:'consonant',p:'n.',c:'辅音',s:'B, C, D are consonants.'},
+{w:'grammar',p:'n.',c:'语法',s:'Study English grammar.'},
+{w:'pronunciation',p:'n.',c:'发音',s:'Practice your pronunciation.'},
+{w:'spelling',p:'n.',c:'拼写',s:'Check your spelling.'},
+{w:'dictionary',p:'n.',c:'词典',s:'Look it up in the dictionary.'},
+{w:'knowledge',p:'n.',c:'知识',s:'Knowledge is power.'},
+{w:'wisdom',p:'n.',c:'智慧',s:'Wisdom comes with experience.'},
+{w:'intelligence',p:'n.',c:'智力',s:'She has high intelligence.'},
+{w:'memory',p:'n.',c:'记忆力',s:'He has a good memory.'},
+{w:'imagination',p:'n.',c:'想象力',s:'Use your imagination.'},
+{w:'creativity',p:'n.',c:'创造力',s:'Creativity is important.'},
+{w:'logic',p:'n.',c:'逻辑',s:'Use logic to solve the problem.'},
+{w:'method',p:'n.',c:'方法',s:'Try a new method.'},
+{w:'technique',p:'n.',c:'技巧',s:'Learn the right technique.'},
+{w:'strategy',p:'n.',c:'策略',s:'Develop a study strategy.'},
+{w:'solution',p:'n.',c:'解决方案',s:'Find the solution.'},
+{w:'mistake',p:'n.',c:'错误',s:'Learn from your mistakes.'},
+{w:'correction',p:'n.',c:'改正',s:'Make the corrections.'},
+{w:'progress',p:'n.',c:'进步',s:'You are making good progress.'},
+{w:'achievement',p:'n.',c:'成就',s:'It was a great achievement.'},
+{w:'effort',p:'n.',c:'努力',s:'Put in more effort.'},
+{w:'practice',p:'n.',c:'练习',s:'Practice makes perfect.'},
+{w:'instruction',p:'n.',c:'指导',s:'Follow the instructions.'},
+{w:'lecture',p:'n.',c:'讲座',s:'Attend the lecture.'},
+{w:'seminar',p:'n.',c:'研讨会',s:'We had a seminar today.'},
+{w:'workshop',p:'n.',c:'工作坊',s:'Join the writing workshop.'},
+{w:'degree',p:'n.',c:'学位',s:'She got a master degree.'},
+{w:'diploma',p:'n.',c:'文凭',s:'He received his diploma.'},
+{w:'certificate',p:'n.',c:'证书',s:'She earned a certificate.'},
+{w:'graduation',p:'n.',c:'毕业',s:'Congratulations on your graduation!'},
+{w:'scholarship',p:'n.',c:'奖学金',s:'She won a scholarship.'},
+{w:'campus',p:'n.',c:'校园',s:'The campus is beautiful.'},
+{w:'dormitory',p:'n.',c:'宿舍',s:'I live in the dormitory.'},
+{w:'cafeteria',p:'n.',c:'食堂',s:'We eat in the cafeteria.'},
+{w:'playground',p:'n.',c:'操场',s:'Children play on the playground.'},
+{w:'gymnasium',p:'n.',c:'体育馆',s:'We exercise in the gymnasium.'},
+{w:'principal',p:'n.',c:'校长',s:'The principal gave a speech.'},
+{w:'tutor',p:'n.',c:'导师/家教',s:'I have a math tutor.'},
+{w:'curriculum',p:'n.',c:'课程',s:'The curriculum is updated.'},
+{w:'semester',p:'n.',c:'学期',s:'The semester starts in September.'},
+{w:'recess',p:'n.',c:'课间休息',s:'We play during recess.'},
+{w:'attendance',p:'n.',c:'出勤',s:'Attendance is important.'},
+{w:'absent',p:'adj.',c:'缺席的',s:'He was absent yesterday.'},
+{w:'present',p:'adj.',c:'出席的',s:'All students are present.'}
+]},
+{id:'tech',name:'科技数码',icon:'💻',desc:'互联网和科技词汇',words:[
+{w:'internet',p:'n.',c:'互联网',s:'I use the internet every day.'},
+{w:'website',p:'n.',c:'网站',s:'Visit our website.'},
+{w:'browser',p:'n.',c:'浏览器',s:'Open your browser.'},
+{w:'search',p:'v.',c:'搜索',s:'Search for the answer online.'},
+{w:'download',p:'v.',c:'下载',s:'Download the app.'},
+{w:'upload',p:'v.',c:'上传',s:'Upload the photo.'},
+{w:'software',p:'n.',c:'软件',s:'Install the software.'},
+{w:'hardware',p:'n.',c:'硬件',s:'The hardware is broken.'},
+{w:'application',p:'n.',c:'应用程序',s:'Download a new application.'},
+{w:'database',p:'n.',c:'数据库',s:'Store data in the database.'},
+{w:'server',p:'n.',c:'服务器',s:'The server is down.'},
+{w:'network',p:'n.',c:'网络',s:'Connect to the network.'},
+{w:'password',p:'n.',c:'密码',s:'Change your password.'},
+{w:'username',p:'n.',c:'用户名',s:'Enter your username.'},
+{w:'account',p:'n.',c:'账户',s:'Create an account.'},
+{w:'profile',p:'n.',c:'个人资料',s:'Update your profile.'},
+{w:'message',p:'n.',c:'消息',s:'I received your message.'},
+{w:'notification',p:'n.',c:'通知',s:'Turn off notifications.'},
+{w:'update',p:'v.',c:'更新',s:'Update your phone.'},
+{w:'install',p:'v.',c:'安装',s:'Install the latest version.'},
+{w:'delete',p:'v.',c:'删除',s:'Delete the old files.'},
+{w:'click',p:'v.',c:'点击',s:'Click the button.'},
+{w:'scroll',p:'v.',c:'滚动',s:'Scroll down the page.'},
+{w:'link',p:'n.',c:'链接',s:'Click the link.'},
+{w:'page',p:'n.',c:'页面',s:'Open the next page.'},
+{w:'screen',p:'n.',c:'屏幕',s:'The screen is bright.'},
+{w:'keyboard',p:'n.',c:'键盘',s:'Type on the keyboard.'},
+{w:'mouse',p:'n.',c:'鼠标',s:'Move the mouse.'},
+{w:'printer',p:'n.',c:'打印机',s:'Use the printer.'},
+{w:'scanner',p:'n.',c:'扫描仪',s:'Scan the document with the scanner.'},
+{w:'charger',p:'n.',c:'充电器',s:'I need my phone charger.'},
+{w:'battery',p:'n.',c:'电池',s:'The battery is low.'},
+{w:'cable',p:'n.',c:'电缆/数据线',s:'Plug in the cable.'},
+{w:'bluetooth',p:'n.',c:'蓝牙',s:'Connect via bluetooth.'},
+{w:'wifi',p:'n.',c:'无线网络',s:'Connect to the wifi.'},
+{w:'data',p:'n.',c:'数据',s:'Save your data.'},
+{w:'file',p:'n.',c:'文件',s:'Open the file.'},
+{w:'folder',p:'n.',c:'文件夹',s:'Put it in the folder.'},
+{w:'document',p:'n.',c:'文档',s:'Save the document.'},
+{w:'image',p:'n.',c:'图片',s:'Upload the image.'},
+{w:'video',p:'n.',c:'视频',s:'Watch the video.'},
+{w:'audio',p:'n.',c:'音频',s:'Listen to the audio.'},
+{w:'pixel',p:'n.',c:'像素',s:'The image has high pixels.'},
+{w:'code',p:'n.',c:'代码',s:'Write the code.'},
+{w:'program',p:'n.',c:'程序',s:'Run the program.'},
+{w:'bug',p:'n.',c:'漏洞/错误',s:'Fix the bug.'},
+{w:'crash',p:'v.',c:'崩溃',s:'The app crashed.'},
+{w:'hack',p:'v.',c:'黑客攻击',s:'Someone hacked my account.'},
+{w:'virus',p:'n.',c:'病毒',s:'The computer has a virus.'},
+{w:'digital',p:'adj.',c:'数字的',s:'We live in a digital world.'},
+{w:'online',p:'adj.',c:'在线的',s:'Shop online.'},
+{w:'offline',p:'adj.',c:'离线的',s:'I am offline now.'},
+{w:'wireless',p:'adj.',c:'无线的',s:'Use a wireless mouse.'},
+{w:'smart',p:'adj.',c:'智能的',s:'I have a smart phone.'},
+{w:'robot',p:'n.',c:'机器人',s:'The robot can walk.'},
+{w:'artificial',p:'adj.',c:'人工的',s:'Artificial intelligence is growing.'},
+{w:'algorithm',p:'n.',c:'算法',s:'The algorithm is efficient.'},
+{w:'cloud',p:'n.',c:'云',s:'Save files to the cloud.'},
+{w:'stream',p:'v.',c:'流媒体播放',s:'Stream movies online.'},
+{w:'subscribe',p:'v.',c:'订阅',s:'Subscribe to the channel.'},
+{w:'follower',p:'n.',c:'粉丝',s:'She has many followers.'},
+{w:'post',p:'n.',c:'帖子',s:'She made a new post.'},
+{w:'comment',p:'n.',c:'评论',s:'Leave a comment.'},
+{w:'share',p:'v.',c:'分享',s:'Share this photo.'},
+{w:'like',p:'v.',c:'点赞',s:'I liked your post.'},
+{w:'emoji',p:'n.',c:'表情符号',s:'Use an emoji.'},
+{w:'selfie',p:'n.',c:'自拍',s:'She took a selfie.'},
+{w:'blog',p:'n.',c:'博客',s:'Read my blog.'},
+{w:'podcast',p:'n.',c:'播客',s:'Listen to the podcast.'},
+{w:'gadget',p:'n.',c:'小工具/电子设备',s:'He loves new gadgets.'},
+{w:'drone',p:'n.',c:'无人机',s:'Fly the drone.'},
+{w:'virtual',p:'adj.',c:'虚拟的',s:'Virtual reality is amazing.'},
+{w:'backup',p:'n.',c:'备份',s:'Make a backup of your files.'},
+{w:'encrypt',p:'v.',c:'加密',s:'Encrypt your data.'},
+{w:'firewall',p:'n.',c:'防火墙',s:'The firewall blocks threats.'},
+{w:'bandwidth',p:'n.',c:'带宽',s:'The bandwidth is slow.'},
+{w:'startup',p:'n.',c:'创业公司',s:'He works at a startup.'},
+{w:'interface',p:'n.',c:'界面',s:'The interface is easy to use.'},
+{w:'compatible',p:'adj.',c:'兼容的',s:'Is it compatible with my phone?'},
+{w:'portable',p:'adj.',c:'便携的',s:'This speaker is portable.'}
+]},
+{id:'transport',name:'交通运输',icon:'🚗',desc:'出行和交通方式',words:[
+{w:'bicycle',p:'n.',c:'自行车',s:'I ride a bicycle to work.'},
+{w:'motorcycle',p:'n.',c:'摩托车',s:'He rides a motorcycle.'},
+{w:'scooter',p:'n.',c:'滑板车',s:'She rides a scooter.'},
+{w:'truck',p:'n.',c:'卡车',s:'The truck is very big.'},
+{w:'van',p:'n.',c:'面包车',s:'We rented a van.'},
+{w:'ambulance',p:'n.',c:'救护车',s:'The ambulance arrived quickly.'},
+{w:'ferry',p:'n.',c:'渡轮',s:'Take the ferry across the river.'},
+{w:'yacht',p:'n.',c:'游艇',s:'They sailed on a yacht.'},
+{w:'canoe',p:'n.',c:'独木舟',s:'We paddled a canoe.'},
+{w:'helicopter',p:'n.',c:'直升机',s:'The helicopter landed.'},
+{w:'rocket',p:'n.',c:'火箭',s:'The rocket launched.'},
+{w:'submarine',p:'n.',c:'潜水艇',s:'The submarine went underwater.'},
+{w:'engine',p:'n.',c:'引擎',s:'The engine is powerful.'},
+{w:'wheel',p:'n.',c:'轮子',s:'The wheel is round.'},
+{w:'tire',p:'n.',c:'轮胎',s:'The tire is flat.'},
+{w:'brake',p:'n.',c:'刹车',s:'Press the brake.'},
+{w:'horn',p:'n.',c:'喇叭',s:'Honk the horn.'},
+{w:'speed',p:'n.',c:'速度',s:'Drive at a safe speed.'},
+{w:'lane',p:'n.',c:'车道',s:'Stay in your lane.'},
+{w:'sidewalk',p:'n.',c:'人行道',s:'Walk on the sidewalk.'},
+{w:'crosswalk',p:'n.',c:'人行横道',s:'Use the crosswalk.'},
+{w:'intersection',p:'n.',c:'十字路口',s:'Turn left at the intersection.'},
+{w:'roundabout',p:'n.',c:'环形交叉路口',s:'Go around the roundabout.'},
+{w:'tunnel',p:'n.',c:'隧道',s:'Drive through the tunnel.'},
+{w:'toll',p:'n.',c:'过路费',s:'Pay the toll.'},
+{w:'fine',p:'n.',c:'罚款',s:'I got a parking fine.'},
+{w:'parking',p:'n.',c:'停车',s:'Find a parking spot.'},
+{w:'gasoline',p:'n.',c:'汽油',s:'Fill up with gasoline.'},
+{w:'fuel',p:'n.',c:'燃料',s:'The car needs fuel.'},
+{w:'electric',p:'adj.',c:'电动的',s:'I drive an electric car.'},
+{w:'hybrid',p:'adj.',c:'混合动力的',s:'She bought a hybrid car.'},
+{w:'seatbelt',p:'n.',c:'安全带',s:'Wear your seatbelt.'},
+{w:'airbag',p:'n.',c:'安全气囊',s:'The airbag saved his life.'},
+{w:'mirror',p:'n.',c:'后视镜',s:'Check the mirror.'},
+{w:'signal',p:'n.',c:'信号灯',s:'Wait for the green signal.'},
+{w:'pedestrian',p:'n.',c:'行人',s:'Pedestrians cross the road.'},
+{w:'driver',p:'n.',c:'司机',s:'The driver stopped.'},
+{w:'passenger',p:'n.',c:'乘客',s:'The passenger got in the car.'},
+{w:'route',p:'n.',c:'路线',s:'Choose the shortest route.'},
+{w:'destination',p:'n.',c:'目的地',s:'We reached our destination.'},
+{w:'boarding',p:'n.',c:'登机',s:'Boarding starts at gate 5.'},
+{w:'terminal',p:'n.',c:'航站楼',s:'Go to terminal 2.'},
+{w:'runway',p:'n.',c:'跑道',s:'The plane is on the runway.'},
+{w:'crew',p:'n.',c:'机组人员',s:'The crew is friendly.'},
+{w:'cargo',p:'n.',c:'货物',s:'The cargo is heavy.'},
+{w:'transit',p:'n.',c:'运输/中转',s:'Goods in transit.'},
+{w:'commute',p:'v.',c:'通勤',s:'I commute to work by train.'},
+{w:'depart',p:'v.',c:'出发',s:'The train departs at 9.'},
+{w:'arrive',p:'v.',c:'到达',s:'We arrived on time.'},
+{w:'board',p:'v.',c:'登机/上车',s:'Board the plane now.'},
+{w:'transfer',p:'v.',c:'换乘',s:'Transfer to line 2.'},
+{w:'accelerate',p:'v.',c:'加速',s:'Accelerate slowly.'},
+{w:'reverse',p:'v.',c:'倒车',s:'Reverse into the parking spot.'},
+{w:'overtake',p:'v.',c:'超车',s:'Do not overtake here.'},
+{w:'honk',p:'v.',c:'按喇叭',s:'Honk the horn.'},
+{w:'park',p:'v.',c:'停车',s:'Park the car here.'},
+{w:'rent',p:'v.',c:'租用',s:'Rent a car for the trip.'},
+{w:'hitchhike',p:'v.',c:'搭便车',s:'He hitchhiked across the country.'},
+{w:'sail',p:'v.',c:'航行',s:'We sailed across the lake.'},
+{w:'pedal',p:'v.',c:'踩踏板',s:'Pedal the bicycle faster.'},
+{w:'steer',p:'v.',c:'驾驶/操控方向',s:'Steer the car carefully.'},
+{w:'navigate',p:'v.',c:'导航',s:'Navigate using the GPS.'},
+{w:'congestion',p:'n.',c:'拥堵',s:'There is traffic congestion.'},
+{w:'detour',p:'n.',c:'绕行',s:'Take a detour.'},
+{w:'overpass',p:'n.',c:'天桥/立交桥',s:'Drive over the overpass.'},
+{w:'railway',p:'n.',c:'铁路',s:'The railway is long.'},
+{w:'platform',p:'n.',c:'站台',s:'Wait on the platform.'},
+{w:'track',p:'n.',c:'轨道',s:'The train is on track 3.'},
+{w:'express',p:'adj.',c:'快速的',s:'Take the express train.'},
+{w:'direct',p:'adj.',c:'直达的',s:'Is there a direct flight?'},
+{w:'nonstop',p:'adj.',c:'不停的',s:'It is a nonstop flight.'}
+]},
+{id:'society',name:'社会文化',icon:'🏛️',desc:'社会和文化词汇',words:[
+{w:'government',p:'n.',c:'政府',s:'The government made a new policy.'},
+{w:'president',p:'n.',c:'总统/主席',s:'The president gave a speech.'},
+{w:'minister',p:'n.',c:'部长/大臣',s:'The minister visited our city.'},
+{w:'election',p:'n.',c:'选举',s:'The election is next month.'},
+{w:'vote',p:'v.',c:'投票',s:'Everyone should vote.'},
+{w:'law',p:'n.',c:'法律',s:'Follow the law.'},
+{w:'court',p:'n.',c:'法院',s:'The case went to court.'},
+{w:'judge',p:'n.',c:'法官',s:'The judge made a decision.'},
+{w:'police',p:'n.',c:'警察',s:'Call the police.'},
+{w:'officer',p:'n.',c:'警官/官员',s:'The officer helped us.'},
+{w:'army',p:'n.',c:'军队',s:'He joined the army.'},
+{w:'soldier',p:'n.',c:'士兵',s:'The soldier is brave.'},
+{w:'peace',p:'n.',c:'和平',s:'We want peace.'},
+{w:'war',p:'n.',c:'战争',s:'War brings suffering.'},
+{w:'freedom',p:'n.',c:'自由',s:'Freedom is important.'},
+{w:'justice',p:'n.',c:'正义',s:'Fight for justice.'},
+{w:'equality',p:'n.',c:'平等',s:'Everyone deserves equality.'},
+{w:'right',p:'n.',c:'权利',s:'Know your rights.'},
+{w:'duty',p:'n.',c:'责任/义务',s:'It is your duty to help.'},
+{w:'citizen',p:'n.',c:'公民',s:'Every citizen can vote.'},
+{w:'population',p:'n.',c:'人口',s:'The population is growing.'},
+{w:'community',p:'n.',c:'社区',s:'Our community is friendly.'},
+{w:'volunteer',p:'n.',c:'志愿者',s:'She works as a volunteer.'},
+{w:'charity',p:'n.',c:'慈善',s:'Donate to charity.'},
+{w:'donation',p:'n.',c:'捐赠',s:'Thank you for your donation.'},
+{w:'religion',p:'n.',c:'宗教',s:'People practice different religions.'},
+{w:'church',p:'n.',c:'教堂',s:'The church is old.'},
+{w:'temple',p:'n.',c:'寺庙',s:'Visit the ancient temple.'},
+{w:'mosque',p:'n.',c:'清真寺',s:'The mosque is beautiful.'},
+{w:'tradition',p:'n.',c:'传统',s:'It is a family tradition.'},
+{w:'culture',p:'n.',c:'文化',s:'Chinese culture is rich.'},
+{w:'custom',p:'n.',c:'习俗',s:'Learn the local customs.'},
+{w:'festival',p:'n.',c:'节日',s:'The festival is exciting.'},
+{w:'ceremony',p:'n.',c:'典礼/仪式',s:'The wedding ceremony was beautiful.'},
+{w:'celebration',p:'n.',c:'庆祝',s:'It was a big celebration.'},
+{w:'heritage',p:'n.',c:'遗产',s:'Protect our cultural heritage.'},
+{w:'language',p:'n.',c:'语言',s:'English is a global language.'},
+{w:'dialect',p:'n.',c:'方言',s:'He speaks a local dialect.'},
+{w:'accent',p:'n.',c:'口音',s:'She has a British accent.'},
+{w:'symbol',p:'n.',c:'象征/符号',s:'The dove is a symbol of peace.'},
+{w:'flag',p:'n.',c:'旗帜',s:'The flag is red.'},
+{w:'monument',p:'n.',c:'纪念碑',s:'Visit the monument.'},
+{w:'museum',p:'n.',c:'博物馆',s:'The museum has old art.'},
+{w:'gallery',p:'n.',c:'画廊',s:'We visited an art gallery.'},
+{w:'exhibition',p:'n.',c:'展览',s:'The exhibition is interesting.'},
+{w:'performance',p:'n.',c:'表演',s:'The performance was great.'},
+{w:'audience',p:'n.',c:'观众',s:'The audience clapped.'},
+{w:'stage',p:'n.',c:'舞台',s:'She stood on the stage.'},
+{w:'concert',p:'n.',c:'音乐会',s:'We went to a concert.'},
+{w:'theater',p:'n.',c:'剧院',s:'Watch a play at the theater.'},
+{w:'cinema',p:'n.',c:'电影院',s:'Go to the cinema.'},
+{w:'novel',p:'n.',c:'小说',s:'She is reading a novel.'},
+{w:'poem',p:'n.',c:'诗歌',s:'He wrote a poem.'},
+{w:'author',p:'n.',c:'作者',s:'The author signed books.'},
+{w:'poet',p:'n.',c:'诗人',s:'Li Bai was a famous poet.'},
+{w:'media',p:'n.',c:'媒体',s:'The media reported the news.'},
+{w:'headline',p:'n.',c:'标题',s:'Read the headline.'},
+{w:'article',p:'n.',c:'文章',s:'She wrote an article.'},
+{w:'interview',p:'n.',c:'采访',s:'The journalist gave an interview.'},
+{w:'opinion',p:'n.',c:'观点',s:'Share your opinion.'},
+{w:'debate',p:'n.',c:'辩论',s:'They had a debate.'},
+{w:'policy',p:'n.',c:'政策',s:'The new policy is effective.'},
+{w:'reform',p:'n.',c:'改革',s:'The country needs reform.'},
+{w:'economy',p:'n.',c:'经济',s:'The economy is growing.'},
+{w:'industry',p:'n.',c:'工业/行业',s:'The car industry is big.'},
+{w:'agriculture',p:'n.',c:'农业',s:'Agriculture is important.'},
+{w:'trade',p:'n.',c:'贸易',s:'International trade is growing.'},
+{w:'export',p:'v.',c:'出口',s:'China exports many goods.'},
+{w:'import',p:'v.',c:'进口',s:'We import coffee beans.'},
+{w:'tax',p:'n.',c:'税',s:'Pay your taxes.'},
+{w:'budget',p:'n.',c:'预算',s:'Plan your budget.'},
+{w:'debt',p:'n.',c:'债务',s:'He is in debt.'},
+{w:'income',p:'n.',c:'收入',s:'Her income is good.'},
+{w:'poverty',p:'n.',c:'贫困',s:'Fight against poverty.'},
+{w:'wealth',p:'n.',c:'财富',s:'Wealth is not everything.'},
+{w:'democracy',p:'n.',c:'民主',s:'Democracy gives people a voice.'},
+{w:'republic',p:'n.',c:'共和国',s:'China is a republic.'},
+{w:'nation',p:'n.',c:'国家/民族',s:'The whole nation celebrated.'},
+{w:'border',p:'n.',c:'边界',s:'Cross the border.'},
+{w:'capital',p:'n.',c:'首都',s:'Beijing is the capital of China.'},
+{w:'embassy',p:'n.',c:'大使馆',s:'Go to the embassy.'},
+{w:'immigration',p:'n.',c:'移民/入境',s:'Go through immigration.'},
+{w:'civilization',p:'n.',c:'文明',s:'Ancient civilizations are fascinating.'}
+]}
+];
+
+// ═══════════════ PHRASES DATABASE ═══════════════
+const PHRASE_CATS=[
+{id:'greet',name:'日常问候',icon:'👋',items:[
+{en:'Hello! How are you?',cn:'你好！你怎么样？'},
+{en:'Good morning! Did you sleep well?',cn:'早上好！睡得好吗？'},
+{en:'What\'s up?',cn:'最近怎样？'},
+{en:'Long time no see!',cn:'好久不见！'},
+{en:'How have you been?',cn:'你最近过得如何？'},
+{en:'Nice to meet you.',cn:'很高兴认识你。'},
+{en:'How\'s your day going?',cn:'你今天过得怎么样？'},
+{en:'I\'m doing great, thanks!',cn:'我很好，谢谢！'},
+{en:'Not bad, how about you?',cn:'还不错，你呢？'},
+{en:'I\'m a little tired today.',cn:'我今天有点累。'},
+{en:'Take care! See you later.',cn:'保重！回头见。'},
+{en:'Have a good day!',cn:'祝你有美好的一天！'},
+{en:'Good night! Sleep well.',cn:'晚安！睡个好觉。'},
+{en:'See you tomorrow!',cn:'明天见！'},
+{en:'It was nice talking to you.',cn:'和你聊天很开心。'}
+]},
+{id:'intro',name:'自我介绍',icon:'🙋',items:[
+{en:'My name is... Nice to meet you.',cn:'我叫……很高兴认识你。'},
+{en:'I\'m from China.',cn:'我来自中国。'},
+{en:'I\'m twenty-five years old.',cn:'我25岁。'},
+{en:'I work as a software engineer.',cn:'我是一名软件工程师。'},
+{en:'I\'m a student at university.',cn:'我是大学生。'},
+{en:'I like reading and traveling.',cn:'我喜欢阅读和旅行。'},
+{en:'My hobby is playing basketball.',cn:'我的爱好是打篮球。'},
+{en:'I\'m learning English now.',cn:'我现在在学英语。'},
+{en:'I have one brother and one sister.',cn:'我有一个哥哥和一个姐姐。'},
+{en:'I live in Shanghai.',cn:'我住在上海。'},
+{en:'My favorite food is hotpot.',cn:'我最喜欢的食物是火锅。'},
+{en:'I usually wake up at 7 AM.',cn:'我通常早上7点起床。'},
+{en:'Let me introduce myself.',cn:'让我自我介绍一下。'},
+{en:'I\'m interested in technology.',cn:'我对科技感兴趣。'},
+{en:'Nice talking to you!',cn:'和你聊天很开心！'}
+]},
+{id:'directions',name:'问路指路',icon:'🗺️',items:[
+{en:'Excuse me, where is the subway station?',cn:'打扰一下，地铁站在哪里？'},
+{en:'How do I get to the airport?',cn:'我怎么去机场？'},
+{en:'Go straight and turn left.',cn:'直走然后左转。'},
+{en:'It\'s about 10 minutes on foot.',cn:'步行大约10分钟。'},
+{en:'Is it far from here?',cn:'离这里远吗？'},
+{en:'Can you show me on the map?',cn:'你能在地图上指给我看吗？'},
+{en:'I\'m lost. Can you help me?',cn:'我迷路了。你能帮我吗？'},
+{en:'Take the second right.',cn:'在第二个路口右转。'},
+{en:'It\'s next to the bank.',cn:'在银行旁边。'},
+{en:'It\'s across from the park.',cn:'在公园对面。'},
+{en:'Walk two blocks and turn right.',cn:'走两个街区然后右转。'},
+{en:'The bus stop is over there.',cn:'公交站在那边。'}
+]},
+{id:'shopping',name:'购物消费',icon:'🛒',items:[
+{en:'How much is this?',cn:'这个多少钱？'},
+{en:'Can I try this on?',cn:'我可以试穿吗？'},
+{en:'Do you have a bigger size?',cn:'有大一号的吗？'},
+{en:'I\'m just looking, thanks.',cn:'我只是看看，谢谢。'},
+{en:'I\'ll take this one.',cn:'我要这个。'},
+{en:'Can I pay by card?',cn:'可以刷卡吗？'},
+{en:'Is there a discount?',cn:'有折扣吗？'},
+{en:'This is too expensive.',cn:'这个太贵了。'},
+{en:'Can you give me a better price?',cn:'能便宜点吗？'},
+{en:'Where is the fitting room?',cn:'试衣间在哪里？'},
+{en:'I\'d like to return this.',cn:'我想退这个。'},
+{en:'What time do you close?',cn:'你们几点关门？'},
+{en:'Do you have this in black?',cn:'这个有黑色的吗？'},
+{en:'I need a bag, please.',cn:'请给我一个袋子。'}
+]},
+{id:'dining',name:'餐厅用餐',icon:'🍽️',items:[
+{en:'A table for two, please.',cn:'请给我一张两人的桌子。'},
+{en:'Can I see the menu?',cn:'我能看看菜单吗？'},
+{en:'What do you recommend?',cn:'你推荐什么？'},
+{en:'I\'d like a cup of coffee.',cn:'我想要一杯咖啡。'},
+{en:'Can I have the bill, please?',cn:'请给我结账。'},
+{en:'This is delicious!',cn:'这很好吃！'},
+{en:'I\'m allergic to nuts.',cn:'我对坚果过敏。'},
+{en:'No spicy, please.',cn:'请不要辣。'},
+{en:'Could I have some water?',cn:'能给我一些水吗？'},
+{en:'Is the tip included?',cn:'包含小费了吗？'},
+{en:'We\'d like to order now.',cn:'我们现在想点餐。'},
+{en:'How long will it take?',cn:'需要等多久？'},
+{en:'I\'m a vegetarian.',cn:'我是素食者。'},
+{en:'Can I have this to go?',cn:'可以打包吗？'}
+]},
+{id:'travel2',name:'旅行住宿',icon:'🏨',items:[
+{en:'I have a reservation.',cn:'我有预订。'},
+{en:'I\'d like to check in, please.',cn:'我想办理入住。'},
+{en:'What time is check-out?',cn:'退房时间是几点？'},
+{en:'Is breakfast included?',cn:'包含早餐吗？'},
+{en:'Where is the Wi-Fi password?',cn:'WiFi密码在哪里？'},
+{en:'Can I have a wake-up call at 7?',cn:'能在7点叫醒我吗？'},
+{en:'Is there a gym in the hotel?',cn:'酒店有健身房吗？'},
+{en:'I\'d like a room with a view.',cn:'我想要一间有风景的房间。'},
+{en:'The air conditioner is not working.',cn:'空调坏了。'},
+{en:'Can you call a taxi for me?',cn:'能帮我叫出租车吗？'},
+{en:'Where is the nearest restaurant?',cn:'最近的餐厅在哪里？'},
+{en:'I\'d like to extend my stay.',cn:'我想延长住宿。'}
+]},
+{id:'phone',name:'电话通讯',icon:'📱',items:[
+{en:'Hello, this is... speaking.',cn:'你好，我是……'},
+{en:'May I speak to Mr. Wang?',cn:'我可以和王先生说话吗？'},
+{en:'Hold on a moment, please.',cn:'请稍等一下。'},
+{en:'I\'ll call you back later.',cn:'我稍后给你回电话。'},
+{en:'Can you hear me clearly?',cn:'你能听清楚吗？'},
+{en:'The line is busy.',cn:'电话占线。'},
+{en:'I sent you a message.',cn:'我给你发了一条消息。'},
+{en:'Did you get my email?',cn:'你收到我的邮件了吗？'},
+{en:'Let me check my schedule.',cn:'让我查看一下我的日程。'},
+{en:'I\'ll text you the address.',cn:'我把地址发给你。'},
+{en:'Sorry, I missed your call.',cn:'抱歉，我错过了你的电话。'},
+{en:'Can we meet tomorrow?',cn:'我们明天能见面吗？'}
+]},
+{id:'opinion',name:'表达想法',icon:'💭',items:[
+{en:'I think that\'s a good idea.',cn:'我觉得那是个好主意。'},
+{en:'In my opinion, we should wait.',cn:'在我看来，我们应该等等。'},
+{en:'I agree with you completely.',cn:'我完全同意你的看法。'},
+{en:'I\'m not sure about that.',cn:'我对此不太确定。'},
+{en:'That makes sense.',cn:'这有道理。'},
+{en:'I don\'t think so.',cn:'我不这么认为。'},
+{en:'Let me think about it.',cn:'让我想想。'},
+{en:'You\'re absolutely right.',cn:'你完全正确。'},
+{en:'I\'d rather stay home.',cn:'我宁愿待在家里。'},
+{en:'What do you think?',cn:'你觉得呢？'},
+{en:'That\'s exactly what I mean.',cn:'这正是我的意思。'},
+{en:'I have no idea.',cn:'我不知道。'},
+{en:'It depends on the situation.',cn:'这要看情况。'},
+{en:'To be honest, I don\'t like it.',cn:'说实话，我不喜欢。'},
+{en:'Sounds great! Let\'s do it.',cn:'听起来很棒！我们做吧。'}
+]},
+{id:'help',name:'请求帮助',icon:'🆘',items:[
+{en:'Can you help me, please?',cn:'你能帮我一下吗？'},
+{en:'I don\'t understand.',cn:'我不明白。'},
+{en:'Could you speak more slowly?',cn:'你能说慢一点吗？'},
+{en:'Can you repeat that?',cn:'你能重复一遍吗？'},
+{en:'What does this word mean?',cn:'这个词是什么意思？'},
+{en:'How do you say this in English?',cn:'这个用英语怎么说？'},
+{en:'Can you write it down for me?',cn:'你能写下来给我吗？'},
+{en:'I need your help.',cn:'我需要你的帮助。'},
+{en:'Could you explain that again?',cn:'你能再解释一遍吗？'},
+{en:'Where can I find...?',cn:'我在哪里能找到……？'},
+{en:'Is there a bathroom nearby?',cn:'附近有洗手间吗？'},
+{en:'Can you show me how to do this?',cn:'你能教我怎么做吗？'}
+]},
+{id:'emotions2',name:'情感表达',icon:'❤️',items:[
+{en:'I\'m so happy right now!',cn:'我现在好开心！'},
+{en:'I feel really excited about this.',cn:'我对此感到很兴奋。'},
+{en:'I\'m a little worried.',cn:'我有点担心。'},
+{en:'That makes me so angry!',cn:'那让我好生气！'},
+{en:'I\'m feeling a bit down today.',cn:'我今天有点低落。'},
+{en:'I can\'t believe it! I\'m shocked.',cn:'我不敢相信！我好震惊。'},
+{en:'I\'m really proud of you.',cn:'我为你感到骄傲。'},
+{en:'I feel so embarrassed.',cn:'我觉得好尴尬。'},
+{en:'I\'m tired of waiting.',cn:'我等得不耐烦了。'},
+{en:'I\'m so grateful for your help.',cn:'我非常感谢你的帮助。'},
+{en:'I feel lonely sometimes.',cn:'我有时候觉得孤单。'},
+{en:'That really touched my heart.',cn:'那真的触动了我的心。'},
+{en:'I\'m nervous about the exam.',cn:'我对考试感到紧张。'},
+{en:'I feel much better now.',cn:'我现在感觉好多了。'},
+{en:'I\'m disappointed with the result.',cn:'我对结果感到失望。'},
+{en:'I\'m amazed by your progress.',cn:'我对你的进步感到惊讶。'},
+{en:'I feel safe with you.',cn:'和你在一起我觉得很安心。'},
+{en:'I\'m confused about this.',cn:'我对此感到困惑。'},
+{en:'I\'m so thankful for everything.',cn:'我对一切都心存感激。'},
+{en:'I feel hopeful about the future.',cn:'我对未来感到有希望。'},
+{en:'I\'m frustrated with myself.',cn:'我对自己感到沮丧。'},
+{en:'I\'m over the moon!',cn:'我高兴极了！'},
+{en:'I feel at peace.',cn:'我感到很平静。'},
+{en:'I\'m scared of the dark.',cn:'我怕黑。'},
+{en:'I can\'t hide my feelings.',cn:'我掩饰不了我的感情。'},
+{en:'I feel inspired by your story.',cn:'你的故事让我很受启发。'},
+{en:'I\'m stressed out lately.',cn:'我最近压力很大。'},
+{en:'I\'m deeply moved.',cn:'我深受感动。'},
+{en:'I feel jealous sometimes.',cn:'我有时候会嫉妒。'},
+{en:'I\'m full of energy today!',cn:'我今天精力充沛！'},
+{en:'I feel calm and relaxed.',cn:'我感到平静又放松。'}
+]},
+{id:'suggestions',name:'建议请求',icon:'💡',items:[
+{en:'I think you should try it.',cn:'我觉得你应该试试。'},
+{en:'How about going for a walk?',cn:'去散散步怎么样？'},
+{en:'Why don\'t you take a break?',cn:'你为什么不休息一下？'},
+{en:'You\'d better see a doctor.',cn:'你最好去看医生。'},
+{en:'I suggest we leave early.',cn:'我建议我们早点出发。'},
+{en:'Would you like some advice?',cn:'你想要一些建议吗？'},
+{en:'If I were you, I would say yes.',cn:'如果我是你，我会同意。'},
+{en:'Maybe you should think about it.',cn:'也许你应该考虑一下。'},
+{en:'It might be a good idea to study harder.',cn:'更努力学习可能是个好主意。'},
+{en:'Have you thought about changing jobs?',cn:'你考虑过换工作吗？'},
+{en:'I recommend this book to you.',cn:'我向你推荐这本书。'},
+{en:'Let me give you a suggestion.',cn:'让我给你一个建议。'},
+{en:'You could try talking to her.',cn:'你可以试着和她谈谈。'},
+{en:'Don\'t you think it\'s too late?',cn:'你不觉得太晚了吗？'},
+{en:'Perhaps we should wait a moment.',cn:'也许我们应该等一下。'},
+{en:'It would be better if you apologized.',cn:'如果你道歉会更好。'},
+{en:'I advise you to be careful.',cn:'我建议你小心一点。'},
+{en:'How do you feel about this plan?',cn:'你觉得这个计划怎么样？'},
+{en:'What would you do in my place?',cn:'你在我这个位置会怎么做？'},
+{en:'Could you give me some tips?',cn:'你能给我一些建议吗？'},
+{en:'I\'d like to hear your thoughts.',cn:'我想听听你的想法。'},
+{en:'Let\'s think about it together.',cn:'让我们一起想想吧。'},
+{en:'You might want to reconsider.',cn:'你可能需要重新考虑。'},
+{en:'It\'s worth a try.',cn:'值得一试。'},
+{en:'Don\'t be afraid to ask for help.',cn:'不要害怕寻求帮助。'},
+{en:'I think it\'s a great opportunity.',cn:'我觉得这是一个很好的机会。'}
+]},
+{id:'compliments',name:'赞美感谢',icon:'🌟',items:[
+{en:'You did an amazing job!',cn:'你做得太棒了！'},
+{en:'I really appreciate your help.',cn:'我非常感谢你的帮助。'},
+{en:'You look great today!',cn:'你今天看起来很棒！'},
+{en:'That\'s a wonderful idea!',cn:'那是一个很棒的想法！'},
+{en:'You\'re so talented!',cn:'你太有才华了！'},
+{en:'I\'m impressed by your work.',cn:'你的工作让我印象深刻。'},
+{en:'You always make me smile.',cn:'你总是让我微笑。'},
+{en:'Thank you for being so kind.',cn:'谢谢你这么善良。'},
+{en:'You\'re the best!',cn:'你是最棒的！'},
+{en:'I can\'t thank you enough.',cn:'我怎么感谢你都不够。'},
+{en:'That was really thoughtful of you.',cn:'你真的很贴心。'},
+{en:'You have a beautiful voice.',cn:'你的声音很好听。'},
+{en:'I admire your courage.',cn:'我钦佩你的勇气。'},
+{en:'You\'re such a hard worker.',cn:'你真是个努力工作的人。'},
+{en:'Your English is excellent!',cn:'你的英语太棒了！'},
+{en:'Thanks for always being there.',cn:'谢谢你一直在。'},
+{en:'You make everything look easy.',cn:'你让一切看起来都很简单。'},
+{en:'I\'m lucky to know you.',cn:'我很幸运认识你。'},
+{en:'You have a great sense of humor.',cn:'你很有幽默感。'},
+{en:'That\'s really kind of you.',cn:'你真是太好了。'},
+{en:'You\'re an inspiration to me.',cn:'你是我的榜样。'},
+{en:'I really value your friendship.',cn:'我非常珍视你的友谊。'}
+]},
+{id:'daily',name:'日常生活',icon:'🏡',items:[
+{en:'I wake up at seven every morning.',cn:'我每天早上七点起床。'},
+{en:'I brush my teeth twice a day.',cn:'我每天刷两次牙。'},
+{en:'I take a shower before breakfast.',cn:'我早餐前洗澡。'},
+{en:'I have coffee every morning.',cn:'我每天早上喝咖啡。'},
+{en:'I take the bus to work.',cn:'我坐公交车上班。'},
+{en:'I usually have lunch at noon.',cn:'我通常中午吃午饭。'},
+{en:'I get home around six.',cn:'我大约六点到家。'},
+{en:'I cook dinner every evening.',cn:'我每天晚上做饭。'},
+{en:'I do the dishes after dinner.',cn:'我晚饭后洗碗。'},
+{en:'I watch TV before bed.',cn:'我睡前看电视。'},
+{en:'I go to bed at eleven.',cn:'我十一点睡觉。'},
+{en:'I clean my room on weekends.',cn:'我周末打扫房间。'},
+{en:'I do laundry once a week.',cn:'我每周洗一次衣服。'},
+{en:'I go grocery shopping on Saturdays.',cn:'我星期六去买菜。'},
+{en:'I walk my dog every evening.',cn:'我每天晚上遛狗。'},
+{en:'I water the plants in the morning.',cn:'我早上浇花。'},
+{en:'I make my bed when I get up.',cn:'我起床时整理床铺。'},
+{en:'I check my phone first thing.',cn:'我第一件事就是看手机。'},
+{en:'I pack my bag the night before.',cn:'我前一天晚上收拾包。'},
+{en:'I lock the door when I leave.',cn:'我离开时锁门。'},
+{en:'I set my alarm clock every night.',cn:'我每晚设定闹钟。'},
+{en:'I feed the cat in the morning.',cn:'我早上喂猫。'},
+{en:'I read the news over breakfast.',cn:'我边吃早餐边看新闻。'},
+{en:'I tidy up before guests come.',cn:'客人来之前我收拾一下。'},
+{en:'I hang out the laundry to dry.',cn:'我把衣服挂出去晾干。'},
+{en:'I turn off the lights before sleeping.',cn:'我睡觉前关灯。'},
+{en:'I charge my phone at night.',cn:'我晚上给手机充电。'},
+{en:'I take out the trash every morning.',cn:'我每天早上倒垃圾。'},
+{en:'I put on my pajamas before bed.',cn:'我睡前穿上睡衣。'},
+{en:'I keep my keys by the door.',cn:'我把钥匙放在门边。'},
+{en:'I drink a glass of water every morning.',cn:'我每天早上喝一杯水。'}
+]},
+{id:'weather2',name:'天气季节',icon:'🌈',items:[
+{en:'It\'s a beautiful day today!',cn:'今天天气真好！'},
+{en:'It looks like it\'s going to rain.',cn:'看起来要下雨了。'},
+{en:'The weather is getting colder.',cn:'天气变冷了。'},
+{en:'I hope it stops raining soon.',cn:'我希望雨快点停。'},
+{en:'It\'s freezing outside!',cn:'外面冷死了！'},
+{en:'The sun is shining brightly.',cn:'阳光灿烂。'},
+{en:'There\'s a strong wind today.',cn:'今天风很大。'},
+{en:'It\'s humid and uncomfortable.',cn:'又潮湿又不舒服。'},
+{en:'We had a heavy storm last night.',cn:'昨晚下了一场大暴风雨。'},
+{en:'The flowers bloom in spring.',cn:'花在春天开放。'},
+{en:'Summer is my favorite season.',cn:'夏天是我最喜欢的季节。'},
+{en:'The leaves turn yellow in autumn.',cn:'秋天树叶变黄了。'},
+{en:'It snows a lot in winter here.',cn:'这里冬天经常下雪。'},
+{en:'I love watching the sunset.',cn:'我喜欢看日落。'},
+{en:'The rainbow appeared after the rain.',cn:'雨后出现了彩虹。'},
+{en:'It\'s cloudy but warm.',cn:'多云但很暖和。'},
+{en:'There\'s thick fog this morning.',cn:'今天早上雾很大。'},
+{en:'The temperature dropped suddenly.',cn:'气温突然下降了。'},
+{en:'We need an umbrella today.',cn:'我们今天需要带伞。'},
+{en:'It\'s a perfect day for a picnic.',cn:'今天是野餐的好日子。'},
+{en:'The sky is clear and blue.',cn:'天空晴朗湛蓝。'},
+{en:'I can\'t stand this heat!',cn:'我受不了这么热！'}
+]},
+{id:'work2',name:'工作沟通',icon:'📊',items:[
+{en:'Let\'s schedule a meeting.',cn:'我们安排一个会议吧。'},
+{en:'The deadline is next Friday.',cn:'截止日期是下周五。'},
+{en:'I\'ll send you the report.',cn:'我把报告发给你。'},
+{en:'Can we push the meeting back?',cn:'我们可以把会议推迟吗？'},
+{en:'I need your feedback on this.',cn:'我需要你对此的反馈。'},
+{en:'The project is on track.',cn:'项目进展顺利。'},
+{en:'We need to meet the target.',cn:'我们需要达成目标。'},
+{en:'I\'m working on a new project.',cn:'我在做一个新项目。'},
+{en:'Let me check my schedule.',cn:'让我看看我的日程。'},
+{en:'Could you handle this for me?',cn:'你能帮我处理这个吗？'},
+{en:'I\'ll get back to you soon.',cn:'我很快回复你。'},
+{en:'We need to discuss this issue.',cn:'我们需要讨论这个问题。'},
+{en:'The client is very satisfied.',cn:'客户非常满意。'},
+{en:'Let\'s divide the tasks.',cn:'我们来分配任务吧。'},
+{en:'I\'m available tomorrow morning.',cn:'我明天上午有空。'},
+{en:'Please keep me updated.',cn:'请随时通知我进展。'},
+{en:'We\'re running behind schedule.',cn:'我们进度落后了。'},
+{en:'I appreciate your hard work.',cn:'感谢你的辛勤工作。'},
+{en:'Let\'s wrap up this meeting.',cn:'我们结束这个会议吧。'},
+{en:'I\'ll take care of it right away.',cn:'我马上处理。'},
+{en:'We need more resources.',cn:'我们需要更多资源。'},
+{en:'The presentation went well.',cn:'演讲进行得很顺利。'},
+{en:'Can you cover for me today?',cn:'你今天能替我一下吗？'},
+{en:'I\'ve finished the assignment.',cn:'我完成了任务。'},
+{en:'Let\'s brainstorm some ideas.',cn:'我们来头脑风暴一下。'}
+]},
+{id:'health2',name:'健康运动',icon:'🏃',items:[
+{en:'I go jogging every morning.',cn:'我每天早上慢跑。'},
+{en:'You should exercise regularly.',cn:'你应该经常运动。'},
+{en:'I\'m trying to lose weight.',cn:'我在努力减肥。'},
+{en:'Swimming is good for your health.',cn:'游泳对你的健康有好处。'},
+{en:'I do yoga to relax.',cn:'我做瑜伽来放松。'},
+{en:'Don\'t skip breakfast.',cn:'不要不吃早餐。'},
+{en:'I need to drink more water.',cn:'我需要多喝水。'},
+{en:'I have a headache.',cn:'我头疼。'},
+{en:'You should get more sleep.',cn:'你应该多睡觉。'},
+{en:'I\'m building up my strength.',cn:'我在增强体力。'},
+{en:'Eating vegetables is healthy.',cn:'吃蔬菜有益健康。'},
+{en:'I joined a gym last month.',cn:'我上个月加入了健身房。'},
+{en:'Stretch before you exercise.',cn:'运动前先拉伸。'},
+{en:'I ride my bike to work.',cn:'我骑自行车上班。'},
+{en:'Too much sugar is bad for you.',cn:'吃太多糖对身体不好。'},
+{en:'I take a walk after dinner.',cn:'我晚饭后散步。'},
+{en:'Fresh air is good for you.',cn:'新鲜空气对你有好处。'},
+{en:'I\'m feeling out of shape.',cn:'我觉得自己体能下降了。'},
+{en:'You look healthier than before.',cn:'你看起来比以前健康了。'},
+{en:'I play basketball on weekends.',cn:'我周末打篮球。'},
+{en:'A balanced diet is important.',cn:'均衡饮食很重要。'}
+]},
+{id:'social',name:'社交聚会',icon:'🎉',items:[
+{en:'Would you like to come to my party?',cn:'你想来我的派对吗？'},
+{en:'Let\'s hang out this weekend.',cn:'我们周末出去玩吧。'},
+{en:'I\'d like to introduce you to my friend.',cn:'我想把你介绍给我的朋友。'},
+{en:'Are you free this evening?',cn:'你今晚有空吗？'},
+{en:'Let\'s grab a cup of coffee.',cn:'我们去喝杯咖啡吧。'},
+{en:'Thanks for inviting me!',cn:'谢谢你邀请我！'},
+{en:'It was nice seeing you again.',cn:'很高兴再见到你。'},
+{en:'Let\'s keep in touch.',cn:'我们保持联系吧。'},
+{en:'I had a great time tonight!',cn:'我今晚玩得很开心！'},
+{en:'Shall we go out for dinner?',cn:'我们出去吃晚饭好吗？'},
+{en:'Do you want to join us?',cn:'你想加入我们吗？'},
+{en:'It\'s been a long time!',cn:'好久不见了！'},
+{en:'Let me introduce myself.',cn:'让我自我介绍一下。'},
+{en:'I\'m having a small get-together.',cn:'我在办一个小型聚会。'},
+{en:'Feel free to bring a friend.',cn:'可以带朋友一起来。'},
+{en:'Cheers to our friendship!',cn:'为我们的友谊干杯！'},
+{en:'Let\'s plan something for next week.',cn:'我们计划一下下周的活动吧。'},
+{en:'It was a wonderful evening.',cn:'这是一个美好的夜晚。'},
+{en:'I\'m so glad you could come.',cn:'我很高兴你能来。'},
+{en:'Let\'s do this again sometime.',cn:'我们找个时间再聚吧。'},
+{en:'Welcome to my home!',cn:'欢迎来我家！'}
+]}
+];
+
+// ═══════════════ READING PASSAGES ═══════════════
+const READINGS=[
+{id:'r1',title:'My Daily Routine',cn:'我的日常',level:'easy',lc:'初级',
+text:'I wake up at seven o\'clock every morning. First, I brush my teeth and wash my face. Then I have breakfast. I usually eat bread and drink milk. After breakfast, I walk to the bus stop. I take the bus to work. The bus ride takes about thirty minutes. I start work at nine o\'clock. At noon, I eat lunch with my colleagues. We often go to a small restaurant near the office. I finish work at six in the evening. After work, I go to the supermarket to buy food. Then I go home and cook dinner. After dinner, I read a book or watch television. I go to bed at eleven o\'clock. This is my simple but happy life.',
+vocab:{wake:'醒来',brush:'刷',teeth:'牙齿',wash:'洗',breakfast:'早餐',usually:'通常',colleagues:'同事们',restaurant:'餐厅',supermarket:'超市',cook:'烹饪',simple:'简单的'}},
+{id:'r2',title:'A Visit to the Zoo',cn:'参观动物园',level:'easy',lc:'初级',
+text:'Last Sunday, my family went to the zoo. The weather was sunny and warm. We arrived at the zoo at ten in the morning. First, we saw the monkeys. They were jumping and playing. They were very funny. Then we visited the elephants. The elephants were very big. They were eating grass. My daughter loved the pandas the most. The pandas were eating bamboo. They looked very cute. We also saw lions, tigers, and birds. At noon, we had a picnic in the park. We ate sandwiches and fruit. In the afternoon, we watched a dolphin show. The dolphins were very smart. We took many pictures. It was a wonderful day.',
+vocab:{zoo:'动物园',arrived:'到达',monkeys:'猴子',funny:'有趣的',elephants:'大象',pandas:'熊猫',bamboo:'竹子',cute:'可爱的',lions:'狮子',tigers:'老虎',picnic:'野餐',dolphins:'海豚',smart:'聪明的',wonderful:'精彩的'}},
+{id:'r3',title:'Learning to Cook',cn:'学做饭',level:'easy',lc:'初级',
+text:'When I was a student, I could not cook. I always ate at the school cafeteria. After I graduated, I lived alone. I had to learn to cook. At first, it was very hard. I burned the rice. I put too much salt in the soup. My food tasted terrible. But I did not give up. I watched cooking videos on the internet. I asked my mother for advice. She taught me how to make simple dishes. Little by little, I got better. Now I can cook many dishes. My friends say my food is delicious. Cooking makes me happy. I think cooking is an important skill. Everyone should learn to cook.',
+vocab:{student:'学生',cafeteria:'食堂',graduated:'毕业',alone:'独自',burned:'烧焦',salt:'盐',terrible:'糟糕的','give up':'放弃',advice:'建议',dishes:'菜肴',delicious:'美味的',skill:'技能'}},
+{id:'r4',title:'My Best Friend',cn:'我最好的朋友',level:'easy',lc:'初级',
+text:'My best friend is named Li Ming. We met in high school. We were in the same class. Li Ming is tall and thin. He has short black hair. He always wears glasses. He is very kind and funny. We like to play basketball together. Every weekend, we go to the park and play for two hours. Li Ming is also very smart. He is good at math and science. When I have problems with my homework, he always helps me. We also like to watch movies together. Our favorite movies are action movies. Last year, Li Ming moved to another city for work. We still talk on the phone every week. I miss him very much. A good friend is hard to find, and I am lucky to have Li Ming as my best friend.',
+vocab:{named:'名叫',glasses:'眼镜',kind:'善良的',basketball:'篮球',smart:'聪明的',homework:'作业',action:'动作',moved:'搬家',still:'仍然',lucky:'幸运的'}},
+{id:'r5',title:'The Power of Reading',cn:'阅读的力量',level:'medium',lc:'中级',
+text:'Reading is one of the most important habits a person can develop. When you read, you open a door to a new world. Books can teach you about history, science, art, and many other subjects. Reading also improves your vocabulary and language skills. People who read regularly tend to have better memory and concentration. In today\'s world, many people spend too much time on their phones. They watch short videos and scroll through social media. While these activities can be fun, they do not challenge your brain the way reading does. When you read a book, you must focus and think. You must imagine the scenes and understand the ideas. This makes your brain stronger. I try to read for at least thirty minutes every day. Before bed is my favorite time to read. Over the years, reading has made me a better thinker and a better communicator.',
+vocab:{habits:'习惯',develop:'培养',history:'历史',vocabulary:'词汇',regularly:'定期地',memory:'记忆',concentration:'专注力',challenge:'挑战',imagine:'想象',scenes:'场景',communicator:'沟通者'}},
+{id:'r6',title:'Traveling Alone',cn:'独自旅行',level:'medium',lc:'中级',
+text:'Last summer, I traveled to Yunnan by myself. It was my first time traveling alone. I was a little nervous, but also very excited. My first stop was Kunming, the capital city. The weather was perfect. Sunny but not too hot. I visited the Stone Forest, which was amazing. The rocks looked like trees and animals. From Kunming, I took a train to Dali. Dali is a beautiful old town near a lake. I walked through the narrow streets and visited old temples. The local food was delicious and very cheap. My favorite part of the trip was Lijiang. I stayed in a small hotel with a view of the snow mountain. Every morning, I woke up early and watched the sunrise. I met some other travelers at the hotel. We became good friends and explored the town together. Traveling alone taught me to be brave and independent.',
+vocab:{nervous:'紧张的',excited:'兴奋的',capital:'首都',amazing:'令人惊叹的',narrow:'狭窄的',temples:'寺庙',local:'当地的',sunrise:'日出',explored:'探索',brave:'勇敢的',independent:'独立的'}},
+{id:'r7',title:'Technology and Our Lives',cn:'科技与我们的生活',level:'hard',lc:'高级',
+text:'Technology has changed our lives in ways that our grandparents could never have imagined. Today, we can talk to anyone in the world through our phones. We can order food, buy clothes, and even see a doctor without leaving our homes. Smartphones have become an essential part of our daily lives. However, this convenience comes with some problems. Many people are now addicted to their phones. They check social media hundreds of times a day. They spend hours watching videos instead of talking to family members. Another concern is privacy. Companies collect huge amounts of data about us. They know what we buy, where we go, and what we search for online. Despite these problems, I believe technology is mostly a good thing. It helps us work more efficiently, stay connected with loved ones, and access information instantly. The key is to use technology wisely. We should set limits on screen time and remember to enjoy the real world around us.',
+vocab:{technology:'科技',imagined:'想象',essential:'必不可少的',convenience:'便利',addicted:'上瘾的',concern:'担忧',privacy:'隐私',data:'数据',despite:'尽管',efficiently:'高效地',wisely:'明智地'}},
+{id:'r8',title:'The Secret to Learning Languages',cn:'学习语言的秘诀',level:'hard',lc:'高级',
+text:'Many people want to learn a new language, but few succeed. Why is that? The truth is, learning a language takes time and patience. There is no magic shortcut. However, there are some proven strategies that can help. First, consistency is more important than intensity. It is better to study for thirty minutes every day than to study for five hours once a week. Your brain needs regular exposure to the new language. Second, do not be afraid of making mistakes. Mistakes are a natural part of learning. Every time you make a mistake and correct it, you learn something new. Third, try to use the language in real situations. Speaking with real people is much more effective than studying grammar books alone. Fourth, immerse yourself in the language as much as possible. Watch movies, listen to music, and read books in the target language. Finally, set realistic goals. Do not expect to become fluent in a month. Instead, set small, achievable goals. For example, learn ten new words every day. Remember, the journey of a thousand miles begins with a single step. Start today, and do not stop.',
+vocab:{patience:'耐心',shortcut:'捷径',proven:'被证明的',strategies:'策略',consistency:'一致性',exposure:'接触',immerse:'沉浸',realistic:'现实的',fluent:'流利的',achievable:'可实现的',journey:'旅程'}}
+];
+
+// ═══════════════ APP STATE ═══════════════
+const STORE={learned:{},starred:{},phrases:{},readings:{},streak:0,lastDate:null,totalDays:0,darkMode:false,todayWords:0,todayPhrases:0,todayRead:false};
+function loadStore(){try{const d=localStorage.getItem('engtrainer');if(d){const p=JSON.parse(d);Object.assign(STORE,p)}}catch(e){}}
+function saveStore(){try{localStorage.setItem('engtrainer',JSON.stringify(STORE))}catch(e){}}
+
+let currentCat='core100',currentDeck=[],currentIdx=0,isPlaying=false,playTimer=null;
+let showMeaning=false,showExample=false,isShuffle=true,isRepeat=false,showExSetting=true;
+let playSpeed=0.85,interval=3;
+let ttsVoice=null;
+
+// ═══════════════ TTS ═══════════════
+function initTTS(){
+  if(!('speechSynthesis' in window))return;
+  function pick(){
+    const v=speechSynthesis.getVoices();if(!v.length)return;
+    ttsVoice=v.find(x=>/en[-_]US/i.test(x.lang)&&/female|samantha|zira|Google/i.test(x.name))
+      ||v.find(x=>/en[-_]US/i.test(x.lang))
+      ||v.find(x=>/en/i.test(x.lang))||null;
+  }
+  pick();speechSynthesis.onvoiceschanged=pick;
+}
+function speak(text,rate){
+  return new Promise(r=>{
+    if(!('speechSynthesis' in window))return r();
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';u.rate=rate||playSpeed;
+    if(ttsVoice)u.voice=ttsVoice;
+    u.onend=()=>r();u.onerror=()=>r();
+    speechSynthesis.speak(u);
+  });
+}
+
+// ═══════════════ STREAK ═══════════════
+function updateStreak(){
+  const today=new Date().toISOString().slice(0,10);
+  if(STORE.lastDate===today)return;
+  if(STORE.lastDate){
+    const last=new Date(STORE.lastDate),now=new Date(today);
+    const diff=Math.floor((now-last)/(864e5));
+    if(diff===1)STORE.streak++;
+    else if(diff>1)STORE.streak=1;
+  }else{STORE.streak=1}
+  if(!STORE.firstDate)STORE.firstDate=today;
+  STORE.lastDate=today;
+  STORE.todayWords=0;STORE.todayPhrases=0;STORE.todayRead=false;
+  STORE.totalDays=(STORE.totalDays||0)+1;
+  saveStore();
+}
+
+// ═══════════════ NAVIGATION ═══════════════
+const tabs=['v-player','v-book','v-phrases','v-reading','v-profile'];
+function switchTab(i){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(tabs[i]).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach((n,j)=>n.classList.toggle('active',j===i));
+  document.getElementById('main').scrollTop=0;
+  if(i===1)renderBookHome();
+  if(i===2)renderPhrasesHome();
+  if(i===3)renderReadingHome();
+  if(i===4)updateProfile();
+}
+
+// ═══════════════ PLAYER ═══════════════
+function renderCatSelect(){
+  const el=document.getElementById('catSelect');
+  let h='';
+  WORD_CATS.forEach(c=>{h+=`<div class="cat-chip${c.id===currentCat?' active':''}" onclick="selectCat('${c.id}')">${c.icon} ${c.name}</div>`});
+  PHRASE_CATS.forEach(c=>{h+=`<div class="cat-chip${('p_'+c.id)===currentCat?' active':''}" onclick="selectCat('p_${c.id}')">${c.icon} ${c.name}</div>`});
+  el.innerHTML=h;
+}
+function selectCat(id){
+  if(isPlaying)stopPlay();
+  currentCat=id;buildDeck();currentIdx=0;showMeaning=false;showExample=false;
+  renderCatSelect();renderCard();
+}
+function buildDeck(){
+  if(currentCat.startsWith('p_')){
+    const cat=PHRASE_CATS.find(c=>c.id===currentCat.substring(2));
+    currentDeck=cat?cat.items.map(it=>({type:'phrase',w:it.en,c:it.cn,s:'',p:'短语'})):[];
+  }else{
+    const cat=WORD_CATS.find(c=>c.id===currentCat);
+    currentDeck=cat?cat.words.map(w=>({...w,type:'word'})):[];
+  }
+  if(isShuffle)shuffleDeck();
+}
+function shuffleDeck(){for(let i=currentDeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[currentDeck[i],currentDeck[j]]=[currentDeck[j],currentDeck[i]]}}
+
+function renderCard(){
+  if(!currentDeck.length){document.getElementById('fcWord').textContent='选择分类开始';return}
+  const card=currentDeck[currentIdx];
+  let catName='';
+  if(currentCat.startsWith('p_')){const c=PHRASE_CATS.find(x=>'p_'+x.id===currentCat);catName=c?c.name:''}
+  else{const c=WORD_CATS.find(x=>x.id===currentCat);catName=c?c.name:''}
+  document.getElementById('fcCat').textContent=catName;
+  document.getElementById('fcCounter').textContent=`${currentIdx+1}/${currentDeck.length}`;
+  const wEl=document.getElementById('fcWord');
+  wEl.textContent=card.w;
+  wEl.style.fontSize=card.type==='phrase'?(card.w.length>30?'20px':card.w.length>20?'26px':'34px'):(card.w.length>10?'30px':'42px');
+  document.getElementById('fcPhonetic').textContent='';
+  document.getElementById('fcPos').textContent=card.p||'';
+  document.getElementById('fcMeaning').textContent=card.c;
+  document.getElementById('fcExample').textContent=card.s||'';
+  document.getElementById('fcMeaning').classList.toggle('hidden',!showMeaning);
+  document.getElementById('fcExample').classList.toggle('hidden',!showExample||!showExSetting);
+  document.getElementById('fcHint').textContent=showMeaning?'点击隐藏释义':'点击显示释义';
+  // Track
+  if(card.type==='word'){
+    if(!STORE.learned[card.w])STORE.learned[card.w]={seen:0,mastered:false};
+    STORE.learned[card.w].seen++;
+    if(STORE.learned[card.w].seen>=5)STORE.learned[card.w].mastered=true;
+    STORE.todayWords=(STORE.todayWords||0)+1;
+  }else{
+    if(!STORE.phrases[card.w])STORE.phrases[card.w]={seen:0};
+    STORE.phrases[card.w].seen++;
+    STORE.todayPhrases=(STORE.todayPhrases||0)+1;
+  }
+  updateStreak();saveStore();
+}
+function toggleCard(){
+  showMeaning=!showMeaning;
+  if(showMeaning&&showExSetting)showExample=true;
+  renderCard();
+  if(showMeaning){const card=currentDeck[currentIdx];if(card)speak(card.w)}
+}
+function nextCard(){if(!currentDeck.length)return;currentIdx=(currentIdx+1)%currentDeck.length;showMeaning=false;showExample=false;renderCard()}
+function prevCard(){if(!currentDeck.length)return;currentIdx=(currentIdx-1+currentDeck.length)%currentDeck.length;showMeaning=false;showExample=false;renderCard()}
+
+// Auto-play
+async function togglePlay(){isPlaying?stopPlay():startPlay()}
+function startPlay(){
+  if(!currentDeck.length)return;
+  isPlaying=true;updatePlayIcon();playNext();
+}
+function stopPlay(){isPlaying=false;if(playTimer)clearTimeout(playTimer);playTimer=null;updatePlayIcon()}
+function updatePlayIcon(){
+  const el=document.getElementById('playIcon');
+  el.innerHTML=isPlaying?'<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>':'<polygon points="5,3 19,12 5,21"/>';
+}
+async function playNext(){
+  if(!isPlaying||!currentDeck.length)return;
+  showMeaning=true;showExample=showExSetting;renderCard();
+  const card=currentDeck[currentIdx];
+  // Speak word
+  await speak(card.w);
+  if(!isPlaying)return;
+  // Wait a beat
+  await new Promise(r=>setTimeout(r,400));
+  if(!isPlaying)return;
+  // Speak example if exists and setting is on
+  if(showExSetting&&card.s){await speak(card.s,0.8);if(!isPlaying)return;await new Promise(r=>setTimeout(r,300))}
+  // Wait interval
+  await new Promise(r=>{playTimer=setTimeout(r,interval*1000)});
+  if(!isPlaying)return;
+  // Move to next
+  if(isRepeat){/* stay on same card */}
+  else{currentIdx=(currentIdx+1)%currentDeck.length;if(currentIdx===0&&isShuffle)shuffleDeck()}
+  showMeaning=false;showExample=false;
+  playNext();
+}
+function toggleShuffle(){isShuffle=!isShuffle;document.getElementById('chipShuffle').classList.toggle('active',isShuffle);if(isShuffle)shuffleDeck()}
+function toggleRepeat(){isRepeat=!isRepeat;document.getElementById('chipRepeat').classList.toggle('active',isRepeat)}
+function toggleExSetting(){showExSetting=!showExSetting;document.getElementById('chipExample').classList.toggle('active',showExSetting);renderCard()}
+function cycleSpeed(){
+  const speeds=[0.6,0.75,0.85,1.0,1.2];const labels=['0.6x','0.75x','1x','1x','1.2x'];
+  let i=speeds.indexOf(playSpeed);i=(i+1)%speeds.length;
+  playSpeed=speeds[i];
+  document.getElementById('chipSpeed').textContent=labels[i];
+}
+function updateInterval(v){interval=parseInt(v);document.getElementById('intervalVal').textContent=v+'s'}
+
+// ═══════════════ WORD BOOK ═══════════════
+function renderBookHome(){
+  const el=document.getElementById('catGrid');
+  let h='';
+  WORD_CATS.forEach(c=>{
+    const total=c.words.length;
+    const mastered=c.words.filter(w=>STORE.learned[w.w]&&STORE.learned[w.w].mastered).length;
+    const pct=total?Math.round(mastered/total*100):0;
+    h+=`<div class="cat-card" onclick="showBookDetail('${c.id}')">
+      <div class="icon">${c.icon}</div><div class="name">${c.name}</div>
+      <div class="count">${total}词 · 掌握${pct}%</div>
+      <div class="prog"><div class="prog-fill" style="width:${pct}%"></div></div></div>`;
+  });
+  el.innerHTML=h;
+  document.getElementById('bookHome').style.display='';
+  document.getElementById('bookDetail').style.display='none';
+}
+function showBookDetail(catId){
+  const cat=WORD_CATS.find(c=>c.id===catId);if(!cat)return;
+  document.getElementById('bookHome').style.display='none';
+  document.getElementById('bookDetail').style.display='';
+  document.getElementById('detailTitle').textContent=cat.icon+' '+cat.name+' ('+cat.words.length+'词)';
+  let h='';
+  cat.words.forEach(w=>{
+    const m=STORE.learned[w.w]&&STORE.learned[w.w].mastered;
+    const st=STORE.starred[w.w];
+    h+=`<div class="word-item${m?' mastered':''}" onclick="speak('${w.w.replace(/'/g,"\\'")}')">
+      <div class="star-btn" onclick="event.stopPropagation();toggleStar('${w.w.replace(/'/g,"\\'")}',this)">${st?'★':'☆'}</div>
+      <div class="wi-word">${w.w}</div><div class="wi-pos">${w.p}</div><div class="wi-cn">${w.c}</div>
+      <div class="wi-speak"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></div>
+    </div>`;
+  });
+  document.getElementById('detailList').innerHTML=h;
+}
+function showBookHome(){document.getElementById('bookHome').style.display='';document.getElementById('bookDetail').style.display='none';renderBookHome()}
+function toggleStar(w,el){STORE.starred[w]=!STORE.starred[w];el.textContent=STORE.starred[w]?'★':'☆';saveStore()}
+
+// ═══════════════ PHRASES ═══════════════
+function renderPhrasesHome(){
+  const el=document.getElementById('phraseGrid');
+  let h='';
+  PHRASE_CATS.forEach(c=>{
+    const learned=c.items.filter(it=>STORE.phrases[it.en]).length;
+    h+=`<div class="cat-card" onclick="showPhraseDetail('${c.id}')">
+      <div class="icon">${c.icon}</div><div class="name">${c.name}</div>
+      <div class="count">${c.items.length}条 · 已学${learned}</div>
+      <div class="prog"><div class="prog-fill" style="width:${c.items.length?Math.round(learned/c.items.length*100):0}%"></div></div></div>`;
+  });
+  el.innerHTML=h;
+  document.getElementById('phrasesHome').style.display='';
+  document.getElementById('phrasesDetail').style.display='none';
+}
+function showPhraseDetail(catId){
+  const cat=PHRASE_CATS.find(c=>c.id===catId);if(!cat)return;
+  document.getElementById('phrasesHome').style.display='none';
+  document.getElementById('phrasesDetail').style.display='';
+  document.getElementById('phraseDetailTitle').textContent=cat.icon+' '+cat.name+' ('+cat.items.length+'条)';
+  let h='';
+  cat.items.forEach(it=>{
+    h+=`<div class="phrase-item" onclick="speak(\`${it.en.replace(/`/g,'\\`')}\`,0.8)">
+      <div class="phrase-en">${it.en}</div><div class="phrase-cn">${it.cn}</div></div>`;
+    if(!STORE.phrases[it.en])STORE.phrases[it.en]={seen:1};
+  });
+  document.getElementById('phraseDetailList').innerHTML=h;
+  saveStore();
+}
+function showPhrasesHome(){document.getElementById('phrasesHome').style.display='';document.getElementById('phrasesDetail').style.display='none';renderPhrasesHome()}
+
+// ═══════════════ READING ═══════════════
+function renderReadingHome(){
+  const el=document.getElementById('readingList');
+  let h='';
+  READINGS.forEach(r=>{
+    h+=`<div class="reading-card" onclick="showReadingDetail('${r.id}')">
+      <span class="rc-level ${r.level}">${r.lc}</span>
+      <div class="rc-title">${r.title}</div>
+      <div class="rc-desc">${r.cn} · ${r.text.split(' ').length}词</div></div>`;
+  });
+  el.innerHTML=h;
+  document.getElementById('readingHome').style.display='';
+  document.getElementById('readingDetail').style.display='none';
+}
+function showReadingDetail(rId){
+  const r=READINGS.find(x=>x.id===rId);if(!r)return;
+  document.getElementById('readingHome').style.display='none';
+  document.getElementById('readingDetail').style.display='';
+  document.getElementById('readingDetailTitle').textContent=r.title;
+  // Render text with highlighted vocab words
+  const words=r.text.split(/(\s+)/);
+  let h='';
+  words.forEach(token=>{
+    const clean=token.toLowerCase().replace(/[^a-z']/g,'');
+    if(r.vocab[clean]){
+      h+=`<span class="word-tap" onclick="showTranslation('${clean}','${r.vocab[clean].replace(/'/g,"\\'")}')">${token}</span>`;
+    }else{h+=token}
+  });
+  document.getElementById('readingDetailContent').innerHTML=h;
+  STORE.readings[rId]={done:true};STORE.todayRead=true;saveStore();
+}
+function showReadingHome(){document.getElementById('readingHome').style.display='';document.getElementById('readingDetail').style.display='none';renderReadingHome()}
+function showTranslation(w,cn){
+  document.getElementById('tpWord').textContent=w;
+  document.getElementById('tpMeaning').textContent=cn;
+  document.getElementById('transPopup').classList.add('show');
+  speak(w,0.8);
+}
+function hideTranslation(){document.getElementById('transPopup').classList.remove('show')}
+async function readPassage(){
+  const el=document.getElementById('readingDetailContent');
+  const text=el.textContent||el.innerText;
+  await speak(text,0.75);
+}
+function stopReading(){if('speechSynthesis' in window)speechSynthesis.cancel()}
+
+// ═══════════════ PROFILE ═══════════════
+function updateProfile(){
+  const wordCount=Object.keys(STORE.learned).length;
+  const mastered=Object.values(STORE.learned).filter(v=>v.mastered).length;
+  const phraseCount=Object.keys(STORE.phrases).length;
+  document.getElementById('streakNum').textContent=STORE.streak+' 天';
+  document.getElementById('statWords').textContent=wordCount;
+  document.getElementById('statMastered').textContent=mastered;
+  document.getElementById('statPhrases').textContent=phraseCount;
+  document.getElementById('statDays').textContent=STORE.totalDays||STORE.streak||0;
+  // Daily tasks
+  const tasks=document.getElementById('dailyTasks');
+  const w30=STORE.todayWords>=30;
+  const p10=STORE.todayPhrases>=10;
+  const rd=STORE.todayRead;
+  tasks.innerHTML=`
+    <div class="plan-item">${w30?'✅':'⬜'} 学习30个单词 (${Math.min(STORE.todayWords||0,30)}/30)</div>
+    <div class="plan-item">${p10?'✅':'⬜'} 学习10条短语 (${Math.min(STORE.todayPhrases||0,10)}/10)</div>
+    <div class="plan-item">${rd?'✅':'⬜'} 完成1篇阅读</div>`;
+  document.getElementById('themeToggle').classList.toggle('on',STORE.darkMode);
+}
+function toggleTheme(){
+  STORE.darkMode=!STORE.darkMode;
+  document.body.classList.toggle('dark',STORE.darkMode);
+  document.getElementById('themeToggle').classList.toggle('on',STORE.darkMode);
+  saveStore();
+}
+
+// ═══════════════ INIT ═══════════════
+loadStore();
+if(STORE.darkMode)document.body.classList.add('dark');
+initTTS();buildDeck();renderCatSelect();renderCard();updateProfile();
+// Check streak on load
+const today=new Date().toISOString().slice(0,10);
+if(STORE.lastDate&&STORE.lastDate!==today){
+  const last=new Date(STORE.lastDate),now=new Date(today);
+  const diff=Math.floor((now-last)/864e5);
+  if(diff>1)STORE.streak=0;
+}
+// Register Service Worker
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
