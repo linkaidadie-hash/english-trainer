@@ -50,8 +50,8 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:flex-
 .btn-ctrl{width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);transition:.2s}
 .btn-ctrl:active{transform:scale(.9)}
 .btn-ctrl svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
-.settings-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.chip{padding:6px 14px;border-radius:20px;font-size:13px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;transition:.2s;white-space:nowrap}
+.settings-row{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:0 4px}
+.chip{padding:5px 10px;border-radius:16px;font-size:12px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;transition:.2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;min-height:32px;display:inline-flex;align-items:center}
 .chip.active{background:var(--pri-bg);border-color:var(--pri);color:var(--pri);font-weight:500}
 .chip:active{transform:scale(.95)}
 .cat-select{margin-top:12px;display:flex;gap:8px;overflow-x:auto;padding:4px 0;-webkit-overflow-scrolling:touch;scrollbar-width:none;width:100%;box-sizing:border-box}
@@ -193,8 +193,10 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:flex-
     <div class="settings-row">
       <div class="chip active" id="chipShuffle" onclick="toggleShuffle()">随机</div>
       <div class="chip" id="chipRepeat" onclick="toggleRepeat()">重复</div>
+      <div class="chip" id="chipSpell" onclick="toggleSpellMain()">拼读</div>
+      <div class="chip active" id="chipCnMeaning" onclick="toggleCnMeaning()">释义</div>
       <div class="chip active" id="chipExample" onclick="toggleExSetting()">例句</div>
-      <div class="chip" id="chipSpell" onclick="toggleSpellMain()">拼读</div><div class="chip active" id="chipCnMeaning" onclick="toggleCnMeaning()">释义</div><div class="chip" id="chipSpeed" onclick="cycleSpeed()">0.85x</div>
+      <div class="chip" id="chipSpeed" onclick="cycleSpeed()">0.85x</div>
     </div>
     <div class="interval-slider">
       <label>间隔</label>
