@@ -2225,7 +2225,7 @@ const tabs=['v-player','v-bgplayer','v-book','v-phrases','v-reading','v-quiz','v
 function switchTab(i){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(tabs[i]).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach((n,j)=>n.classList.toggle('active',j===i));
+  document.querySelectorAll('.nav-item').forEach(function(n){var oc=n.getAttribute('onclick')||'';n.classList.toggle('active',oc.indexOf('switchTab('+i+')')>=0)});
   document.getElementById('main').scrollTop=0;
   if(i===2)renderBookHome();
   if(i===3)renderPhrasesHome();
