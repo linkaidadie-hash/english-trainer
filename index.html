@@ -287,7 +287,7 @@ body{display:flex;flex-direction:column}
   </div>
   <div style="height:80px"></div>
 </div>
-<div class="view" id="v-profile">
+<div class="view" id="v-quiz"><div class="section-title">测试模式</div><p style="font-size:13px;color:var(--text2);margin-bottom:12px">选择测试类型，检验学习效果</p><div class="cat-grid"><div class="cat-card" onclick="startQuiz('en2cn')"><div class="icon">🇬🇧</div><div class="name">英译中</div><div class="count">看英文选中文</div></div><div class="cat-card" onclick="startQuiz('cn2en')"><div class="icon">🇨🇳</div><div class="name">中译英</div><div class="count">看中文选英文</div></div><div class="cat-card" onclick="startQuiz('listen')"><div class="icon">🎧</div><div class="name">听音辨义</div><div class="count">听发音选意思</div></div><div class="cat-card" onclick="startQuiz('fill')"><div class="icon">✏️</div><div class="name">句子填空</div><div class="count">看例句选单词</div></div></div><div id="quizArea" style="display:none"><div class="flashcard" style="min-height:200px;cursor:default" id="quizCard"><div class="fc-cat" id="qCat"></div><div class="fc-counter" id="qCounter">0/0</div><div class="fc-word" id="qWord" style="font-size:32px"></div><div class="fc-example" id="qExample" style="margin-top:12px"></div></div><div class="cat-select" id="qOptions" style="margin-top:16px"></div><div id="qResult" style="text-align:center;margin-top:12px;font-size:16px;font-weight:600;display:none"></div><div style="text-align:center;margin-top:12px"><div class="chip" onclick="quitQuiz()">退出测试</div></div></div><div style="height:80px"></div></div><div class="view" id="v-errors"><div class="section-title">错题本</div><p style="font-size:13px;color:var(--text2);margin-bottom:12px">自动收集答错、忘记和模糊的单词</p><div id="errorList" class="word-list"></div><div style="text-align:center;margin-top:12px"><div class="chip" onclick="reviewErrors()">复习错题</div><div class="chip" onclick="clearErrors()">清空错题</div></div><div style="height:80px"></div></div><div class="view" id="v-profile">
   <div class="section-title">学习中心</div>
   <div class="streak-bar">
     <div class="streak-fire">&#x1F525;</div>
@@ -316,7 +316,7 @@ body{display:flex;flex-direction:column}
     <span class="label">深色模式</span>
     <div class="toggle" id="themeToggle"></div>
   </div>
-  <div style="text-align:center;padding:16px;font-size:12px;color:var(--text3)">英语快充 v1.0 - PWA 可安装到桌面</div>
+  <div style="text-align:center;padding:16px;font-size:12px;color:var(--text3)"><div style="text-align:center;padding:8px"><div style="display:flex;gap:8px;justify-content:center"><div class="chip" onclick="exportData()">导出数据</div><label class="chip" style="cursor:pointer">导入数据<input type="file" accept=".json" style="display:none" onchange="importData(this)"></label><div class="chip" onclick="resetProgress()">重置进度</div></div></div></div><div style="text-align:center;padding:8px"><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><div class="chip" onclick="exportData()">导出数据</div><label class="chip" style="cursor:pointer">导入数据<input type="file" accept=".json" style="display:none" onchange="importData(this)"></label><div class="chip" onclick="resetProgress()">重置进度</div></div></div><div style="text-align:center;padding:16px;font-size:12px;color:var(--text3)">英语快充 v2.0 - PWA 可安装到桌面</div>
 </div>
 </div>
 <div class="translation-popup" id="transPopup">
@@ -324,14 +324,7 @@ body{display:flex;flex-direction:column}
   <div class="tp-word" id="tpWord"></div>
   <div class="tp-meaning" id="tpMeaning"></div>
 </div>
-<nav class="bottom-nav">
-  <div class="nav-item active" onclick="switchTab(0)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg><span>播放</span></div>
-  <div class="nav-item" onclick="switchTab(5)"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg><span>磨耳朵</span></div>
-  <div class="nav-item" onclick="switchTab(1)"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>单词</span></div>
-  <div class="nav-item" onclick="switchTab(2)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>短语</span></div>
-  <div class="nav-item" onclick="switchTab(3)"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>阅读</span></div>
-  <div class="nav-item" onclick="switchTab(4)"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></div>
-</nav>
+<nav class="bottom-nav"><div class="nav-item active" onclick="switchTab(0)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg><span>播放</span></div><div class="nav-item" onclick="switchTab(1)"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg><span>听力</span></div><div class="nav-item" onclick="switchTab(3)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>短语</span></div><div class="nav-item" onclick="switchTab(4)"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>阅读</span></div><div class="nav-item" onclick="switchTab(5)"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>测试</span></div><div class="nav-item" onclick="switchTab(6)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>错题</span></div><div class="nav-item" onclick="switchTab(7)"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></div></nav>
 <div class="mini-player" id="miniPlayer">
   <button class="mp-btn mp-play" onclick="bgTogglePlay()"><svg viewBox="0 0 24 24" id="mpPlayIcon"><polygon points="5,3 19,12 5,21"/></svg></button>
   <div class="mp-info">
@@ -340,6 +333,7 @@ body{display:flex;flex-direction:column}
   </div>
   <button class="mp-btn mp-close" onclick="bgStop()"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
 </div>
+<script src="extra-words.js"></script>
 <script>
 // ═══════════════ VOCABULARY DATABASE ═══════════════
 const WORD_CATS=[
@@ -2226,7 +2220,7 @@ function updateStreak(){
 }
 
 // ═══════════════ NAVIGATION ═══════════════
-const tabs=['v-player','v-bgplayer','v-book','v-phrases','v-reading','v-profile'];
+const tabs=['v-player','v-bgplayer','v-book','v-phrases','v-reading','v-quiz','v-errors','v-profile'];
 function switchTab(i){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(tabs[i]).classList.add('active');
@@ -2235,7 +2229,9 @@ function switchTab(i){
   if(i===2)renderBookHome();
   if(i===3)renderPhrasesHome();
   if(i===4)renderReadingHome();
-  if(i===5)updateProfile();
+  if(i===5){}
+  if(i===6)renderErrorList();
+  if(i===7)updateProfile();
 }
 
 // ═══════════════ PLAYER ═══════════════
@@ -2476,8 +2472,125 @@ function toggleTheme(){
   saveStore();
 }
 
+
+// QUIZ MODE
+var quizMode=null,quizDeck=[],quizIdx=0,quizOptions=[];
+function startQuiz(mode){
+  quizMode=mode;quizDeck=[];
+  WORD_CATS.forEach(function(cat){cat.words.forEach(function(w){
+    if(STORE.learned[w.w]&&STORE.learned[w.w].level>=1)quizDeck.push(w);
+  })});
+  if(quizDeck.length<4){var cat=WORD_CATS.find(function(c){return c.id==="core100"});quizDeck=cat?cat.words.slice(0,20):[]}
+  for(var i=quizDeck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=quizDeck[i];quizDeck[i]=quizDeck[j];quizDeck[j]=t}
+  quizDeck=quizDeck.slice(0,20);quizIdx=0;
+  document.getElementById("quizArea").style.display="";
+  document.querySelectorAll(".cat-grid").forEach(function(g){g.style.display="none"});
+  renderQuiz();
+}
+function quitQuiz(){
+  quizMode=null;
+  document.getElementById("quizArea").style.display="none";
+  document.querySelectorAll(".cat-grid").forEach(function(g){g.style.display=""});
+}
+function renderQuiz(){
+  if(quizIdx>=quizDeck.length){quitQuiz();return}
+  var item=quizDeck[quizIdx];
+  document.getElementById("qCounter").textContent=(quizIdx+1)+"/"+quizDeck.length;
+  document.getElementById("qResult").style.display="none";
+  quizOptions=pickOptions(item);
+  var qWord=document.getElementById("qWord");
+  var qEx=document.getElementById("qExample");
+  var qCat=document.getElementById("qCat");
+  qWord.style.fontSize="32px";
+  if(quizMode==="en2cn"){qWord.textContent=item.w;qEx.style.display="none";qCat.textContent="英译中";renderOptions(item.c,quizOptions.map(function(o){return o.c}))}
+  else if(quizMode==="cn2en"){qWord.textContent=item.c;qEx.style.display="none";qCat.textContent="中译英";renderOptions(item.w,quizOptions.map(function(o){return o.w}))}
+  else if(quizMode==="listen"){qWord.textContent="🎧";qEx.style.display="none";qCat.textContent="听音辨义";speak(item.w,0.85);renderOptions(item.c,quizOptions.map(function(o){return o.c}))}
+  else if(quizMode==="fill"){qWord.style.fontSize="20px";qWord.textContent=item.s.replace(item.w,"____");qEx.style.display="none";qCat.textContent="句子填空";renderOptions(item.w,quizOptions.map(function(o){return o.w}))}
+}
+function pickOptions(correct){
+  var pool=[];
+  WORD_CATS.forEach(function(cat){cat.words.forEach(function(w){if(w.w!==correct.w)pool.push(w)})});
+  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t}
+  var opts=pool.slice(0,3);opts.push(correct);
+  for(var i=opts.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=opts[i];opts[i]=opts[j];opts[j]=t}
+  return opts;
+}
+function renderOptions(correct,opts){
+  var el=document.getElementById("qOptions");
+  var h="";
+  for(var i=0;i<opts.length;i++){
+    h+='<div class="cat-chip" onclick="answerQuiz('+i+')">'+opts[i]+'</div>';
+  }
+  el.innerHTML=h;
+  el.dataset.correct=correct;
+  el.dataset.opts=JSON.stringify(opts);
+}
+function answerQuiz(idx){
+  var el=document.getElementById("qOptions");
+  var correct=el.dataset.correct;
+  var opts=JSON.parse(el.dataset.opts);
+  var answer=opts[idx];
+  var res=document.getElementById("qResult");
+  res.style.display="block";
+  var w=quizDeck[quizIdx].w;
+  if(!STORE.learned[w])STORE.learned[w]={level:0,correctCount:0,wrongCount:0};
+  if(answer===correct){
+    res.textContent="✅ 正确！";res.style.color="var(--success)";
+    STORE.learned[w].correctCount++;if(STORE.learned[w].level<5)STORE.learned[w].level++;
+  } else {
+    res.textContent="❌ 正确答案："+correct;res.style.color="var(--danger)";
+    STORE.learned[w].wrongCount++;if(STORE.learned[w].level>0)STORE.learned[w].level--;
+    STORE.errors=STORE.errors||{};STORE.errors[w]={word:w,addedAt:localDateKey(new Date())};
+  }
+  saveStore();
+  setTimeout(function(){quizIdx++;renderQuiz()},1500);
+}
+
+// ERROR NOTEBOOK
+function renderErrorList(){
+  var el=document.getElementById("errorList");
+  if(!STORE.errors||!Object.keys(STORE.errors).length){el.innerHTML='<div style="text-align:center;color:var(--text2);padding:20px">暂无错题</div>';return}
+  var h="";
+  Object.values(STORE.errors).forEach(function(e){
+    var found=null;
+    WORD_CATS.forEach(function(cat){cat.words.forEach(function(w){if(w.w===e.word)found=w})});
+    if(!found)return;
+    h+='<div class="word-item" onclick="speak(\''+found.w.replace(/'/g,"\\'")+'\')"><div class="wi-word">'+found.w+'</div><div class="wi-pos">'+found.p+'</div><div class="wi-cn">'+found.c+'</div><div class="wi-speak"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></div></div>';
+  });
+  el.innerHTML=h||'<div style="text-align:center;color:var(--text2);padding:20px">暂无错题</div>';
+}
+function reviewErrors(){
+  if(!STORE.errors||!Object.keys(STORE.errors).length)return;
+  quizDeck=[];Object.keys(STORE.errors).forEach(function(w){
+    var found=null;WORD_CATS.forEach(function(cat){cat.words.forEach(function(x){if(x.w===w)found=x})});
+    if(found)quizDeck.push(found);
+  });
+  if(quizDeck.length<4)return;
+  for(var i=quizDeck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=quizDeck[i];quizDeck[i]=quizDeck[j];quizDeck[j]=t}
+  quizDeck=quizDeck.slice(0,20);quizIdx=0;quizMode="en2cn";
+  document.getElementById("quizArea").style.display="";
+  document.querySelectorAll(".cat-grid").forEach(function(g){g.style.display="none"});
+  renderQuiz();
+}
+function clearErrors(){STORE.errors={};saveStore();renderErrorList()}
+
+// DATA EXPORT/IMPORT
+function exportData(){
+  var blob=new Blob([JSON.stringify(STORE)],{type:"application/json"});
+  var url=URL.createObjectURL(blob);var a=document.createElement("a");
+  a.href=url;a.download="english-trainer-export.json";a.click();URL.revokeObjectURL(url);
+}
+function importData(input){
+  var file=input.files[0];if(!file)return;var reader=new FileReader();
+  reader.onload=function(e){try{Object.assign(STORE,JSON.parse(e.target.result));saveStore();location.reload()}catch(err){alert("Import failed")}};
+  reader.readAsText(file);
+}
+
 // ═══════════════ INIT ═══════════════
 loadStore();
+// Merge extra words into categories
+if(typeof EXTRA_WORDS!=="undefined"){EXTRA_WORDS.forEach(function(w){var cat=WORD_CATS.find(function(c){return c.id===w.cat});if(cat){var exists=cat.words.find(function(x){return x.w===w.w});if(!exists)cat.words.push(w)}});// Also add to bgDeck builder
+}
 if(STORE.darkMode)document.body.classList.add('dark');
 initTTS();buildDeck();renderCatSelect();renderCard();updateProfile();
 // Check streak on load
@@ -2489,6 +2602,10 @@ if(STORE.lastDate&&STORE.lastDate!==today){
 }
 // Register Service Worker
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+
+function resetProgress(){if(confirm("确定要重置所有学习进度吗？")){localStorage.removeItem("engtrainer");location.reload()}}
+function exportData(){var b=new Blob([JSON.stringify(STORE)],{type:"application/json"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download="english-trainer-export.json";a.click();URL.revokeObjectURL(u)}
+function importData(input){var f=input.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){try{Object.assign(STORE,JSON.parse(e.target.result));saveStore();location.reload()}catch(err){alert("导入失败")}};r.readAsText(f)}
 </script>
 </body>
 </html>
