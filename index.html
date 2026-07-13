@@ -131,6 +131,36 @@ body{display:flex;flex-direction:column}
 .reading-toolbar{display:flex;gap:8px;margin-bottom:12px}
 .reading-toolbar .chip{font-size:12px;padding:4px 12px}
 </style>
+<style>
+/* Feedback buttons */
+.feedback-row{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.fb-btn{padding:8px 18px;border-radius:20px;font-size:13px;border:none;cursor:pointer;transition:.2s;font-weight:500}
+.fb-forget{background:#fee2e2;color:#991b1b}
+.fb-fuzzy{background:#fef3c7;color:#92400e}
+.fb-good{background:#d1fae5;color:#065f46}
+.fb-perfect{background:#dbeafe;color:#1e40af}
+.fb-btn:active{transform:scale(.93)}
+/* Mini player for 磨耳朵 */
+.mini-player{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b) + 8px);left:16px;right:16px;background:var(--card);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow2);z-index:150;display:none;align-items:center;gap:12px}
+.mini-player.show{display:flex}
+.mp-info{flex:1;min-width:0}
+.mp-word{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-status{font-size:11px;color:var(--text2)}
+.mp-btn{width:40px;height:40px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.mp-btn.mp-play{background:var(--pri);color:#fff}
+.mp-btn.mp-close{background:var(--bg);color:var(--text2)}
+.mp-btn svg{width:18px;height:18px;fill:currentColor;stroke:none}
+/* 磨耳朵 view */
+.bg-controls{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.bg-control-group{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.bg-control-group .label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;display:block}
+.bg-range-options{display:flex;gap:8px;flex-wrap:wrap}
+.bg-chips{display:flex;gap:8px;flex-wrap:wrap}
+.bg-cat-list{max-height:200px;overflow-y:auto;margin-top:8px}
+.bg-cat-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.bg-cat-item:last-child{border:none}
+.bg-cat-item input{accent-color:var(--pri)}
+</style>
 </head>
 <body>
 <div class="main" id="main">
@@ -148,6 +178,12 @@ body{display:flex;flex-direction:column}
     <div class="fc-example hidden" id="fcExample"></div>
     <div class="fc-hint" id="fcHint">点击卡片显示释义</div>
   </div>
+  <div class="feedback-row" id="feedbackRow" style="display:none">
+    <button class="fb-btn fb-forget" onclick="reviewWord('forget')">忘记</button>
+    <button class="fb-btn fb-fuzzy" onclick="reviewWord('fuzzy')">模糊</button>
+    <button class="fb-btn fb-good" onclick="reviewWord('good')">记住</button>
+    <button class="fb-btn fb-perfect" onclick="reviewWord('perfect')">熟练</button>
+  </div>
   <div class="player-controls">
     <div class="play-row">
       <button class="btn-ctrl" onclick="prevCard()" title="上一个"><svg viewBox="0 0 24 24"><path d="M19 20L9 12l10-8v16zM5 4h2v16H5V4z"/></svg></button>
@@ -158,7 +194,7 @@ body{display:flex;flex-direction:column}
       <div class="chip active" id="chipShuffle" onclick="toggleShuffle()">随机</div>
       <div class="chip" id="chipRepeat" onclick="toggleRepeat()">重复</div>
       <div class="chip active" id="chipExample" onclick="toggleExSetting()">例句</div>
-      <div class="chip" id="chipSpeed" onclick="cycleSpeed()">1x</div>
+      <div class="chip" id="chipSpeed" onclick="cycleSpeed()">0.85x</div>
     </div>
     <div class="interval-slider">
       <label>间隔</label>
@@ -205,6 +241,52 @@ body{display:flex;flex-direction:column}
     <div id="readingDetailContent" class="reading-content"></div>
   </div>
 </div>
+<div class="view" id="v-bgplayer">
+  <div class="section-title">磨耳朵后台播放</div>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:12px">高频单词和短语自动播放，支持锁屏控制</p>
+  <div class="bg-controls">
+    <div class="bg-control-group">
+      <span class="label">播放范围</span>
+      <div class="bg-range-options">
+        <div class="chip active" id="bgRangeAll" onclick="bgSetRange('all')">全部词库</div>
+        <div class="chip" id="bgRangeHigh" onclick="bgSetRange('high')">高频词</div>
+        <div class="chip" id="bgRangeStar" onclick="bgSetRange('star')">生词本</div>
+      </div>
+      <div class="bg-cat-list" id="bgCatList" style="display:none"></div>
+    </div>
+    <div class="bg-control-group">
+      <span class="label">播放内容</span>
+      <div class="bg-chips">
+        <div class="chip active" id="bgChipSpell" onclick="bgToggleSpell()">拼读单词</div>
+        <div class="chip active" id="bgChipMeaning" onclick="bgToggleMeaning()">中文释义</div>
+        <div class="chip" id="bgChipExample" onclick="bgToggleExample()">例句</div>
+        <div class="chip" id="bgChipPhrase" onclick="bgTogglePhrase()">含短语</div>
+      </div>
+    </div>
+    <div class="bg-control-group">
+      <span class="label">设置</span>
+      <div class="bg-chips">
+        <div class="chip active" id="bgChipShuffle" onclick="bgToggleShuffle()">随机</div>
+        <div class="chip" id="bgChipRepeat" onclick="bgToggleRepeat()">循环</div>
+      </div>
+      <div class="interval-slider" style="margin-top:12px">
+        <label>间隔</label>
+        <input type="range" min="1" max="10" value="2" id="bgIntervalSlider" oninput="bgUpdateInterval(this.value)">
+        <span class="val" id="bgIntervalVal">2s</span>
+      </div>
+      <div class="interval-slider" style="margin-top:8px">
+        <label>语速</label>
+        <input type="range" min="0" max="4" value="2" id="bgSpeedSlider" oninput="bgUpdateSpeed(this.value)">
+        <span class="val" id="bgSpeedVal">1x</span>
+      </div>
+    </div>
+    <button class="btn-play" style="width:100%;border-radius:var(--radius);height:48px;font-size:16px;font-weight:600" onclick="bgTogglePlay()">
+      <svg viewBox="0 0 24 24" id="bgPlayIcon" style="width:24px;height:24px"><polygon points="5,3 19,12 5,21"/></svg>
+      <span id="bgPlayText" style="margin-left:8px">开始播放</span>
+    </button>
+  </div>
+  <div style="height:80px"></div>
+</div>
 <div class="view" id="v-profile">
   <div class="section-title">学习中心</div>
   <div class="streak-bar">
@@ -244,11 +326,20 @@ body{display:flex;flex-direction:column}
 </div>
 <nav class="bottom-nav">
   <div class="nav-item active" onclick="switchTab(0)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg><span>播放</span></div>
+  <div class="nav-item" onclick="switchTab(5)"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg><span>磨耳朵</span></div>
   <div class="nav-item" onclick="switchTab(1)"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>单词</span></div>
   <div class="nav-item" onclick="switchTab(2)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>短语</span></div>
   <div class="nav-item" onclick="switchTab(3)"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>阅读</span></div>
   <div class="nav-item" onclick="switchTab(4)"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></div>
 </nav>
+<div class="mini-player" id="miniPlayer">
+  <button class="mp-btn mp-play" onclick="bgTogglePlay()"><svg viewBox="0 0 24 24" id="mpPlayIcon"><polygon points="5,3 19,12 5,21"/></svg></button>
+  <div class="mp-info">
+    <div class="mp-word" id="mpWord">未开始</div>
+    <div class="mp-status" id="mpStatus">磨耳朵模式</div>
+  </div>
+  <button class="mp-btn mp-close" onclick="bgStop()"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+</div>
 <script>
 // ═══════════════ VOCABULARY DATABASE ═══════════════
 const WORD_CATS=[
@@ -1906,6 +1997,184 @@ const STORE={learned:{},starred:{},phrases:{},readings:{},streak:0,lastDate:null
 function loadStore(){try{const d=localStorage.getItem('engtrainer');if(d){const p=JSON.parse(d);Object.assign(STORE,p)}}catch(e){}}
 function saveStore(){try{localStorage.setItem('engtrainer',JSON.stringify(STORE))}catch(e){}}
 
+// DATE UTILS already added above
+
+// SRS REVIEW
+function reviewWord(result){
+  var card=currentDeck[currentIdx];if(!card||card.type!=='word')return;
+  if(!STORE.learned[card.w])STORE.learned[card.w]={level:0,correctCount:0,wrongCount:0,lastResult:null,lastReview:null,nextReview:null};
+  var L=STORE.learned[card.w];
+  L.lastResult=result;
+  L.lastReview=localDateKey(new Date());
+  if(result==='forget'){L.level=0;L.wrongCount++;L.nextReview=minsLater(10)}
+  else if(result==='fuzzy'){L.nextReview=minsLater(1440)}
+  else if(result==='good'){L.level=Math.min(5,L.level+1);L.correctCount++;L.nextReview=daysLater(3)}
+  else if(result==='perfect'){L.level=Math.min(5,L.level+2);L.correctCount++;L.nextReview=daysLater(7)}
+  STORE.todayWords=(STORE.todayWords||0)+1;
+  updateStreak();saveStore();
+  nextCard();
+}
+function minsLater(mins){var d=new Date(Date.now()+mins*60000);return localDateKey(d)+'T'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function daysLater(days){var d=new Date(Date.now()+days*864e5);return localDateKey(d)}
+
+// PHRASE LEARN
+function phraseLearn(en){
+  speak(en,0.8);
+  if(!STORE.phrases[en])STORE.phrases[en]={learned:false};
+  STORE.phrases[en].learned=true;
+  STORE.todayPhrases=(STORE.todayPhrases||0)+1;
+  updateStreak();saveStore();
+  renderPhrasesHome();
+}
+
+// SLEEP HELPER
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+// BG PLAYER STATE
+var bgDeck=[],bgIdx=0,bgPlaying=false,bgWakeLock=null;
+var bgRange='all',bgSpell=true,bgMeaning=true,bgExample=false,bgIncludePhrase=false,bgShuffle=true,bgRepeat=false;
+var bgInterval=2,bgSpeedIdx=2;
+var BG_SPEEDS=[0.6,0.75,0.85,1.0,1.2];
+var BG_SPEED_LABELS=['0.6x','0.75x','0.85x','1x','1.2x'];
+
+function bgSetRange(range){
+  bgRange=range;
+  document.getElementById('bgRangeAll').classList.remove('active');
+  document.getElementById('bgRangeHigh').classList.remove('active');
+  document.getElementById('bgRangeStar').classList.remove('active');
+  var cap=range.charAt(0).toUpperCase()+range.slice(1);
+  document.getElementById('bgRange'+cap).classList.add('active');
+  bgBuildDeck();
+}
+function bgToggleSpell(){bgSpell=!bgSpell;document.getElementById('bgChipSpell').classList.toggle('active',bgSpell)}
+function bgToggleMeaning(){bgMeaning=!bgMeaning;document.getElementById('bgChipMeaning').classList.toggle('active',bgMeaning)}
+function bgToggleExample(){bgExample=!bgExample;document.getElementById('bgChipExample').classList.toggle('active',bgExample)}
+function bgTogglePhrase(){bgIncludePhrase=!bgIncludePhrase;document.getElementById('bgChipPhrase').classList.toggle('active',bgIncludePhrase)}
+function bgToggleShuffle(){bgShuffle=!bgShuffle;document.getElementById('bgChipShuffle').classList.toggle('active',bgShuffle);bgBuildDeck()}
+function bgToggleRepeat(){bgRepeat=!bgRepeat;document.getElementById('bgChipRepeat').classList.toggle('active',bgRepeat)}
+function bgUpdateInterval(v){bgInterval=parseInt(v);document.getElementById('bgIntervalVal').textContent=v+'s'}
+function bgUpdateSpeed(v){bgSpeedIdx=parseInt(v);document.getElementById('bgSpeedVal').textContent=BG_SPEED_LABELS[bgSpeedIdx]}
+
+function bgBuildDeck(){
+  bgDeck=[];
+  if(bgRange==='star'){
+    WORD_CATS.forEach(function(c){c.words.forEach(function(w){if(STORE.starred[w.w])bgDeck.push(Object.assign({},w,{type:'word'}))})});
+  } else if(bgRange==='high'){
+    var cat=WORD_CATS.find(function(c){return c.id==='core100'});
+    if(cat)cat.words.forEach(function(w){bgDeck.push(Object.assign({},w,{type:'word'}))});
+  } else {
+    WORD_CATS.forEach(function(c){c.words.forEach(function(w){bgDeck.push(Object.assign({},w,{type:'word'}))})});
+  }
+  if(bgIncludePhrase){
+    PHRASE_CATS.forEach(function(c){c.items.forEach(function(it){bgDeck.push({w:it.en,c:it.cn,s:'',p:'phrase',type:'phrase'})})});
+  }
+  if(bgShuffle){for(var i=bgDeck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=bgDeck[i];bgDeck[i]=bgDeck[j];bgDeck[j]=tmp}}
+  bgIdx=0;
+}
+
+function spellWord(w){return w.split('').join(' ').toUpperCase()}
+
+function bgPlayItem(){
+  if(!bgPlaying)return;
+  if(bgIdx>=bgDeck.length){
+    if(bgRepeat){bgIdx=0;if(bgShuffle)bgBuildDeck();bgPlayItem()}else{bgStop()}
+    return;
+  }
+  var item=bgDeck[bgIdx];
+  var mpW=document.getElementById('mpWord');if(mpW)mpW.textContent=item.w;
+  var mpS=document.getElementById('mpStatus');if(mpS)mpS.textContent='Playing...';
+  
+  speak(item.w,BG_SPEEDS[bgSpeedIdx]).then(function(){
+    if(!bgPlaying)return;
+    if(bgSpell&&item.type==='word'){
+      return sleep(300).then(function(){return speak(spellWord(item.w),BG_SPEEDS[bgSpeedIdx]*0.9)});
+    }
+  }).then(function(){
+    if(!bgPlaying)return;
+    if(bgMeaning&&item.c){
+      return sleep(200).then(function(){
+        return new Promise(function(resolve){
+          var u=new SpeechSynthesisUtterance(item.c);
+          u.lang='zh-CN';u.rate=0.9;
+          var voices=speechSynthesis.getVoices();
+          var v=null;
+          for(var i=0;i<voices.length;i++){if(/zh/i.test(voices[i].lang)){v=voices[i];break}}
+          if(v)u.voice=v;
+          u.onend=resolve;u.onerror=resolve;
+          speechSynthesis.speak(u);
+        });
+      });
+    }
+  }).then(function(){
+    if(!bgPlaying)return;
+    if(bgExample&&item.s&&item.type==='word'){
+      return sleep(200).then(function(){return speak(item.s,BG_SPEEDS[bgSpeedIdx])});
+    }
+  }).then(function(){
+    if(!bgPlaying)return;
+    return sleep(bgInterval*1000);
+  }).then(function(){
+    if(!bgPlaying)return;
+    bgIdx++;
+    bgPlayItem();
+  });
+}
+
+function bgTogglePlay(){
+  if(bgPlaying){
+    bgPlaying=false;
+    if('speechSynthesis'in window)speechSynthesis.cancel();
+    updateBgPlayIcon(false);
+    var mpS=document.getElementById('mpStatus');if(mpS)mpS.textContent='Paused';
+  }else{
+    if(!bgDeck.length)bgBuildDeck();
+    if(!bgDeck.length)return;
+    bgPlaying=true;
+    updateBgPlayIcon(true);
+    var mp=document.getElementById('miniPlayer');if(mp)mp.classList.add('show');
+    // Wake Lock
+    if('wakeLock'in navigator){
+      navigator.wakeLock.request('screen').then(function(wl){bgWakeLock=wl}).catch(function(){});
+    }
+    // Media Session
+    if('mediaSession'in navigator){
+      try{
+        navigator.mediaSession.metadata=new MediaMetadata({title:'English Trainer - BG Player',artist:'English Trainer',album:'PWA'});
+        navigator.mediaSession.setActionHandler('play',function(){bgTogglePlay()});
+        navigator.mediaSession.setActionHandler('pause',function(){bgTogglePlay()});
+        navigator.mediaSession.setActionHandler('previoustrack',function(){if(bgIdx>0)bgIdx--;bgPlayItem()});
+        navigator.mediaSession.setActionHandler('nexttrack',function(){bgIdx++;bgPlayItem()});
+      }catch(e){}
+    }
+    bgPlayItem();
+  }
+}
+
+function bgStop(){
+  bgPlaying=false;
+  if('speechSynthesis'in window)speechSynthesis.cancel();
+  if(bgWakeLock){try{bgWakeLock.release()}catch(e){};bgWakeLock=null}
+  var mp=document.getElementById('miniPlayer');if(mp)mp.classList.remove('show');
+  updateBgPlayIcon(false);
+}
+
+function updateBgPlayIcon(playing){
+  var el=document.getElementById('bgPlayIcon');
+  var txt=document.getElementById('bgPlayText');
+  var mpEl=document.getElementById('mpPlayIcon');
+  if(playing){
+    if(el)el.innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    if(txt)txt.textContent='\u6682\u505c\u64ad\u653e';
+    if(mpEl)mpEl.innerHTML='<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    var mpS=document.getElementById('mpStatus');if(mpS)mpS.textContent='Playing...';
+  }else{
+    if(el)el.innerHTML='<polygon points="5,3 19,12 5,21"/>';
+    if(txt)txt.textContent='\u5f00\u59cb\u64ad\u653e';
+    if(mpEl)mpEl.innerHTML='<polygon points="5,3 19,12 5,21"/>';
+  }
+}
+
+
 let currentCat='core100',currentDeck=[],currentIdx=0,isPlaying=false,playTimer=null;
 let showMeaning=false,showExample=false,isShuffle=true,isRepeat=false,showExSetting=true;
 let playSpeed=0.85,interval=3;
@@ -1934,9 +2203,14 @@ function speak(text,rate){
   });
 }
 
+function localDateKey(d){
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
 // ═══════════════ STREAK ═══════════════
 function updateStreak(){
-  const today=new Date().toISOString().slice(0,10);
+  const today=localDateKey(new Date());
   if(STORE.lastDate===today)return;
   if(STORE.lastDate){
     const last=new Date(STORE.lastDate),now=new Date(today);
@@ -1952,16 +2226,16 @@ function updateStreak(){
 }
 
 // ═══════════════ NAVIGATION ═══════════════
-const tabs=['v-player','v-book','v-phrases','v-reading','v-profile'];
+const tabs=['v-player','v-bgplayer','v-book','v-phrases','v-reading','v-profile'];
 function switchTab(i){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(tabs[i]).classList.add('active');
   document.querySelectorAll('.nav-item').forEach((n,j)=>n.classList.toggle('active',j===i));
   document.getElementById('main').scrollTop=0;
-  if(i===1)renderBookHome();
-  if(i===2)renderPhrasesHome();
-  if(i===3)renderReadingHome();
-  if(i===4)updateProfile();
+  if(i===2)renderBookHome();
+  if(i===3)renderPhrasesHome();
+  if(i===4)renderReadingHome();
+  if(i===5)updateProfile();
 }
 
 // ═══════════════ PLAYER ═══════════════
@@ -2000,25 +2274,14 @@ function renderCard(){
   const wEl=document.getElementById('fcWord');
   wEl.textContent=card.w;
   wEl.style.fontSize=card.type==='phrase'?(card.w.length>30?'20px':card.w.length>20?'26px':'34px'):(card.w.length>10?'30px':'42px');
-  document.getElementById('fcPhonetic').textContent='';
   document.getElementById('fcPos').textContent=card.p||'';
   document.getElementById('fcMeaning').textContent=card.c;
   document.getElementById('fcExample').textContent=card.s||'';
   document.getElementById('fcMeaning').classList.toggle('hidden',!showMeaning);
   document.getElementById('fcExample').classList.toggle('hidden',!showExample||!showExSetting);
   document.getElementById('fcHint').textContent=showMeaning?'点击隐藏释义':'点击显示释义';
-  // Track
-  if(card.type==='word'){
-    if(!STORE.learned[card.w])STORE.learned[card.w]={seen:0,mastered:false};
-    STORE.learned[card.w].seen++;
-    if(STORE.learned[card.w].seen>=5)STORE.learned[card.w].mastered=true;
-    STORE.todayWords=(STORE.todayWords||0)+1;
-  }else{
-    if(!STORE.phrases[card.w])STORE.phrases[card.w]={seen:0};
-    STORE.phrases[card.w].seen++;
-    STORE.todayPhrases=(STORE.todayPhrases||0)+1;
-  }
-  updateStreak();saveStore();
+  var fbRow=document.getElementById('feedbackRow');
+  if(fbRow){fbRow.style.display=(showMeaning&&card.type==='word')?'flex':'none'}
 }
 function toggleCard(){
   showMeaning=!showMeaning;
@@ -2035,7 +2298,7 @@ function startPlay(){
   if(!currentDeck.length)return;
   isPlaying=true;updatePlayIcon();playNext();
 }
-function stopPlay(){isPlaying=false;if(playTimer)clearTimeout(playTimer);playTimer=null;updatePlayIcon()}
+function stopPlay(){isPlaying=false;if(playTimer)clearTimeout(playTimer);playTimer=null;if('speechSynthesis'in window)speechSynthesis.cancel();updatePlayIcon()}
 function updatePlayIcon(){
   const el=document.getElementById('playIcon');
   el.innerHTML=isPlaying?'<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>':'<polygon points="5,3 19,12 5,21"/>';
@@ -2065,7 +2328,7 @@ function toggleShuffle(){isShuffle=!isShuffle;document.getElementById('chipShuff
 function toggleRepeat(){isRepeat=!isRepeat;document.getElementById('chipRepeat').classList.toggle('active',isRepeat)}
 function toggleExSetting(){showExSetting=!showExSetting;document.getElementById('chipExample').classList.toggle('active',showExSetting);renderCard()}
 function cycleSpeed(){
-  const speeds=[0.6,0.75,0.85,1.0,1.2];const labels=['0.6x','0.75x','1x','1x','1.2x'];
+  const speeds=[0.6,0.75,0.85,1.0,1.2];const labels=['0.6x','0.75x','0.85x','1x','1.2x'];
   let i=speeds.indexOf(playSpeed);i=(i+1)%speeds.length;
   playSpeed=speeds[i];
   document.getElementById('chipSpeed').textContent=labels[i];
@@ -2133,10 +2396,9 @@ function showPhraseDetail(catId){
   cat.items.forEach(it=>{
     h+=`<div class="phrase-item" onclick="speak(\`${it.en.replace(/`/g,'\\`')}\`,0.8)">
       <div class="phrase-en">${it.en}</div><div class="phrase-cn">${it.cn}</div></div>`;
-    if(!STORE.phrases[it.en])STORE.phrases[it.en]={seen:1};
-  });
+    });
   document.getElementById('phraseDetailList').innerHTML=h;
-  saveStore();
+  renderPhrasesHome();
 }
 function showPhrasesHome(){document.getElementById('phrasesHome').style.display='';document.getElementById('phrasesDetail').style.display='none';renderPhrasesHome()}
 
@@ -2169,7 +2431,7 @@ function showReadingDetail(rId){
     }else{h+=token}
   });
   document.getElementById('readingDetailContent').innerHTML=h;
-  STORE.readings[rId]={done:true};STORE.todayRead=true;saveStore();
+  // Reading completion is deferred until user scrolls to bottom or stays 30s
 }
 function showReadingHome(){document.getElementById('readingHome').style.display='';document.getElementById('readingDetail').style.display='none';renderReadingHome()}
 function showTranslation(w,cn){
@@ -2219,7 +2481,7 @@ loadStore();
 if(STORE.darkMode)document.body.classList.add('dark');
 initTTS();buildDeck();renderCatSelect();renderCard();updateProfile();
 // Check streak on load
-const today=new Date().toISOString().slice(0,10);
+const today=localDateKey(new Date());
 if(STORE.lastDate&&STORE.lastDate!==today){
   const last=new Date(STORE.lastDate),now=new Date(today);
   const diff=Math.floor((now-last)/864e5);
